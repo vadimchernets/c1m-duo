@@ -11,7 +11,7 @@ Trio is the Critique pair plus a third voice from a third company:
      that BOTH missed (prompt trio.txt). Its words come back as a separate block, never merged.
 
 The third voice speaks the OpenAI chat-completions dialect, so one request template serves every
-free provider: NVIDIA build (Kimi K3, DeepSeek V4.1, GLM-5.3), Google AI Studio (Gemini Flash),
+free provider: NVIDIA build (Kimi K3, GLM-5.3, DeepSeek V4.1), Google AI Studio (Gemini Flash),
 OpenRouter (its `:free` models) and Groq. The person may save any number of free keys; each is
 recognised by how it begins (nvapi- → NVIDIA, AIza/AQ. → Google, sk-or- → OpenRouter, gsk_ → Groq). Trio walks every model of every key until one answers: a busy model (503)
 or a spent daily limit (429) moves to the next model, a key with no money (402) or an invalid key (401)
@@ -43,7 +43,14 @@ from build_shortcut import (  # noqa: E402
 # (Kimi K3 — Moonshot, DeepSeek V4.1 — DeepSeek, GLM-5.3 — Zhipu; integrate.api.nvidia.com/v1/models,
 # 2026-10-01). About 40 requests a minute per key, no daily cap. Sign-up asks for a phone (SMS).
 NVIDIA_URL = 'https://integrate.api.nvidia.com/v1/chat/completions'
-NVIDIA_MODELS = ['moonshotai/kimi-k3', 'deepseek-ai/deepseek-v4.1-flash', 'z-ai/glm-5.3']
+# Order Kimi → GLM → DeepSeek: live on 2026-10-01 GLM-5.3 answered in 12 s, DeepSeek V4.1 stayed
+# silent for 90–120 s — the slow one goes last. «Get Contents of URL» has no timeout setting, so a
+# silent model holds Trio until the system gives up; only order protects the person.
+NVIDIA_MODELS = ['moonshotai/kimi-k3', 'z-ai/glm-5.3', 'deepseek-ai/deepseek-v4.1-flash']
+# Service tokens a model may leak into its text: Kimi K3 on NVIDIA ended a live answer (2026-10-01)
+# with `<|close|>message`. A trailing «token + word» goes whole, any other token alone.
+TOKEN_TAIL_RE = r'(?:<\|[^|>\n]{1,40}\|>[A-Za-z_]{0,20}\s*)+$'
+TOKEN_RE = r'<\|[^|>\n]{1,40}\|>'
 NVIDIA_KEY_RE = r'nvapi-[0-9A-Za-z_-]{20,}'
 GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'
 # Free quota is counted per model (~20 a day each), and a model may be «high demand» (503) while the
@@ -311,6 +318,7 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
     f_url, f_model, f_key, f_name, f_max = u(), u(), u(), u(), u()
     post, raw, raw_get, data, choices, first, message, content = (u() for _ in range(8))
     k_get, dead_get, tail_m, tail, label_n, label_m, label = (u() for _ in range(7))
+    c_tail, c_clean = u(), u()
     actions += [
         repeat_each(loop, lines, 'Matches'),
         act_set_from_repeat_item(attempts_v),
@@ -340,7 +348,9 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
         act_value('message', first, 'Item from List', message),
         act_value('content', message, 'Dictionary Value', content),
         if_output_has_value(has_text, content, 'Dictionary Value'),
-        act_set_variable(V['third'], content, 'Dictionary Value'),
+        act_replace(content, 'Dictionary Value', TOKEN_TAIL_RE, '', c_tail),
+        act_replace(c_tail, 'Updated Text', TOKEN_RE, '', c_clean),
+        act_set_variable(V['third'], c_clean, 'Updated Text'),
         act_set_variable(V['provider'], label, 'Text'),
         if_else(has_text),
         *set_text(why_v, T['why.empty'], u()),
