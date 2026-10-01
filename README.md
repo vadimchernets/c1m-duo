@@ -1,18 +1,18 @@
 # C1M (Duo)
 
-**Такого в мире телефонов еще нет. ChatGPT и Claude работают в паре. Смартфонная оркестрация сильнейших ИИ - без подписок, без доплат, без сервера, без ключей, без карты.**
+**Такого в мире телефонов еще нет. ChatGPT и Claude работают в паре. Смартфонная оркестрация сильнейших ИИ - без подписок, без доплат, без сервера, без карты.**
 
-**Nothing like this exists on phones yet. ChatGPT and Claude work as a pair. Smartphone orchestration of the strongest AIs — no subscriptions, no extra fees, no server, no keys, no card.**
+**Nothing like this exists on phones yet. ChatGPT and Claude work as a pair. Smartphone orchestration of the strongest AIs — no subscriptions, no extra fees, no server, no card.**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23089503.svg)](https://doi.org/10.5281/zenodo.23089503) Archived on Zenodo — concept DOI (all versions): [10.5281/zenodo.23089503](https://doi.org/10.5281/zenodo.23089503)
 
-**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No paid keys, no server of ours, no computer, nothing more to pay.**
+**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No server of ours, no computer, nothing more to pay.**
 
 The Duo and Trio shortcuts below are free and open source. The $5 is for the **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)): it installs Duo and Trio for you, walks you through every step, and on Android runs the same pair automatically on a free key.
 
 Have ChatGPT and Claude? Start right away. Have one? It helps you install the other. Have neither? Gemini (Google) or Meta AI (WhatsApp, Facebook) helps you install both, free.
 
-**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без платных ключей, нашего сервера, компьютера и доплат.**
+**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без нашего сервера, компьютера и доплат.**
 
 Сами ярлыки Duo и Трио для iPhone — бесплатные и открытые. $5 — за приложение **Poly A1** ([App Store / Google Play](https://polyhelper.ai/)): оно ставит Duo и Трио за вас, ведёт по шагам, а на Android делает то же автоматически по бесплатному ключу.
 
@@ -20,7 +20,7 @@ Have ChatGPT and Claude? Start right away. Have one? It helps you install the ot
 
 ### How it works
 
-The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours and no API keys, on your own accounts — free ones are enough. Android: inside the Poly A1 app ($5, Google Play) the phone itself calls the strongest free AIs from different companies with your free key — one answers, one from another company checks. NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then Google AI Studio (Gemini Flash), Groq (Qwen, gpt-oss) and OpenRouter `:free` models — no card, no server of ours; or by hand with your ChatGPT and Claude. Verified on an Android emulator on 2026-10-01. Nothing like it exists anywhere else.
+The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours, on your own accounts — free ones are enough. Android: inside the Poly A1 app ($5, Google Play) the phone itself calls the strongest free AIs from different companies with your free key — one answers, one from another company checks. NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then Google AI Studio (Gemini Flash), Groq (Qwen, gpt-oss) and OpenRouter `:free` models — no card, no server of ours; or by hand with your ChatGPT and Claude. Verified on an Android emulator on 2026-10-01. Nothing like it exists anywhere else.
 
 C1M is the source of **Duo** and **Trio**, two iPhone shortcuts from the
 [Poly A1](https://polyhelper.ai/) family. They run on the ChatGPT and Claude apps already on your
@@ -39,7 +39,7 @@ themselves. Nothing goes through a server of ours — there isn't one.
 - **Duo** — the pair. ChatGPT answers, Claude checks and corrects it, and you get one answer on the
   screen and in the clipboard, in about a minute. That is the default mode, **Critique**; ten more
   modes (debate, side by side, dispute map, decision, …) are one tap away. Spends 1–4 messages from
-  your own ChatGPT and Claude plans per run — no keys at all.
+  your own ChatGPT and Claude plans per run.
 - **Trio** — Duo plus a third voice from a third company. After Claude's check, a free AI names
   only the errors and gaps both of them missed; its words come as a separate block under Claude's
   answer. It runs on any **free** key — NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then
@@ -185,7 +185,7 @@ ChatGPT answers → Claude checks → third voice (NVIDIA → Gemini → Groq �
   Claude's answer is already in the clipboard before the third voice is asked.
 - File: `dist/<lang>/Trio.shortcut` (en, es, pt, ru, uk). Getting the key: [docs/en/install.md](docs/en/install.md#trio--the-third-voice-free-key).
 
-The pair still needs no key at all — Trio is the one place where a free key buys a third company.
+Trio is the one place where a free key buys a third company.
 
 ## Companions
 
