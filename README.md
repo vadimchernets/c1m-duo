@@ -288,6 +288,13 @@ get any other way.
 - **Issues** — bugs and concrete tasks, using the issue template.
 - **Security** — please don't file a vulnerability as an issue; follow [SECURITY.md](SECURITY.md).
 
+## Prior art / timestamps
+
+- GitHub Release v1.0.0 (signed Duo and Trio, 5 languages, SHA-256): https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0 — 2026-10-01
+- Software Heritage archive: `swh:1:snp:1da6fe462b3dc1729914fee2cef6331f44c87a3d` — https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/vadimchernets/c1m-duo
+- Wayback Machine: [repository](https://web.archive.org/web/20261001170056/https://github.com/vadimchernets/c1m-duo) · [release](https://web.archive.org/web/20261001170138/https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0) · [polyhelper.ai/duo](https://web.archive.org/web/20261001170120/https://polyhelper.ai/duo/)
+- Earlier version: C1M, first published on GitHub on 1–2 September 2026.
+
 ## Legal
 
 Poly is an independent product. It is not affiliated with, endorsed by, or sponsored
