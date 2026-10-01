@@ -1,0 +1,13 @@
+# built and signed shortcuts are published as release assets, not in git
+dist/
+
+__pycache__/
+*.pyc
+.DS_Store
+
+# never commit secrets
+.env
+.env.*
+secrets/
+*.key
+*.pem

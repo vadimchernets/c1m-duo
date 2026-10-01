@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "language": "en",
+    "english_name": "English",
+    "native_name": "English",
+    "note": "BASE LANGUAGE. Every other locale is a translation of this file. Placeholders in braces ({Q}, {R}, {D}, {X}…) are wired by the builder — keep them exactly as they are. The order of menu.main_items / menu.extra_items is FIXED: the builder indexes into them.",
+    "translator": "—"
+  },
+  "shortcut_names": {
+    "main": "Poly",
+    "voice": "Poly Voice",
+    "photo": "Poly Photo",
+    "quiet": "Poly Quiet",
+    "compress": "Poly Compress",
+    "multi": "Poly Multi"
+  },
+  "files": {
+    "journal": "Poly-journal.md",
+    "image_html": "Poly-image.html",
+    "pc_notice": "Poly-pc-notice.txt"
+  },
+  "comment": {
+    "main": "Poly — the ChatGPT + Claude duo. If the Claude/ChatGPT actions appear greyed out: delete them, search for «Ask Claude» / «Ask ChatGPT» and drop them back in the same places. Claude takes the text in its message field. ChatGPT: Start new chat ON, Continuous OFF, «Show When Run» OFF. Full guide: INSTALL.md in the kit.",
+    "photo": "Poly Photo: share a photo or PDF here — the text is recognized on-device and handed to Poly.",
+    "multi": "PRO EXTENSION (manual choir). This is NOT the main Poly: learn the automatic duo first. Poly Multi: a choir of AIs. ChatGPT and Claude answer by themselves (app intents); the others (Gemini, Grok, DeepSeek…) you poll by hand — the prompt is already in your clipboard, come back and tap OK after each Copy. Claude merges everything at the end."
+  },
+  "ask": {
+    "question": "What do you want to ask Poly?",
+    "clarify_suffix": "\n\nAnswer these in one message (or type «skip»):",
+    "clarify_default": "skip",
+    "voice_question": "Dictate your question for Poly",
+    "quiet_question": "Question (quiet mode — result goes to clipboard and journal)",
+    "multi_question": "What do you want to ask the AI choir?",
+    "multi_count": "The prompt is already in your CLIPBOARD. How many more AIs will you poll by hand (Gemini, Grok, DeepSeek…)? 0 — just the automatic pair."
+  },
+  "menu": {
+    "main_title": "Poly mode (ℹ️ help lives in «📂 More…»)",
+    "main_items": [
+      "⚖️ Critique · 2✉",
+      "🩺 Advisor · 1✉",
+      "👀 Side by side · 2✉",
+      "🔀 Synthesis · 3✉",
+      "🧭 Auto · +1✉",
+      "📂 More…"
+    ],
+    "extra_title": "More modes",
+    "extra_items": [
+      "⚔️ Decision · 3✉",
+      "🗺 Dispute map · 3✉",
+      "🥊 Debate · 4✉",
+      "❓ Clarify · 2✉",
+      "🎨 Image · 2–3✉",
+      "➕ Delta · 2✉",
+      "ℹ️ What is Poly"
+    ],
+    "anchor_title": "Which answer anchors the final?",
+    "anchor_items": [
+      "Claude — facts and structure",
+      "ChatGPT — tone and creativity"
+    ],
+    "image_title": "How should I show them?",
+    "image_items": [
+      "Sketches only · 2✉",
+      "Sketches + judge's verdict · 3✉"
+    ],
+    "finale_title": "What next?",
+    "finale_items": [
+      "✅ Done",
+      "🔁 Another mode — same question"
+    ],
+    "multi_merge_title": "Which merge?",
+    "multi_merge_items": [
+      "Standard merge",
+      "East–West merge"
+    ]
+  },
+  "notify": {
+    "critique_start": "⚖️ Critique: ChatGPT answers → Claude verifies. ≈1 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "critique_step2": "[2/2] Claude is verifying and assembling the final answer…",
+    "advisor_start": "🩺 Advisor: Claude reviews your text without rewriting it. ≈40 sec, don't touch the screen.",
+    "survey_start": "👀 Side by side: asking both independently. ≈1 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "synthesis_claude_start": "🔀 Synthesis (Claude anchors): two blind answers → assembly. ≈1.5 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "synthesis_gpt_start": "🔀 Synthesis (ChatGPT anchors): two blind answers → assembly. ≈1.5 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "auto_start": "🧭 Auto: picking the right mode for your question… (+1 ChatGPT message)",
+    "decision_start": "⚔️ Decision: fast view → cautious view → referee. ≈1.5 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "decision_step2": "[2/3] Claude — the cautious view…",
+    "decision_step3": "[3/3] Claude the referee is writing the recommendation…",
+    "disputemap_start": "🗺 Dispute map: two blind answers → a map of agreements and conflicts. ≈1.5 min.",
+    "debate_start": "🥊 Debate: draft → critique → revision → judge. ≈2 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "debate_step2": "[2/4] Claude the opponent is hunting for weaknesses…",
+    "debate_step3": "[3/4] ChatGPT is revising the draft…",
+    "debate_step4": "[4/4] Claude the judge is delivering the verdict…",
+    "clarify_step1": "❓ Clarify [1/2]: ChatGPT is working out what's missing…",
+    "clarify_step2": "[2/2] Claude is answering with your clarifications…",
+    "image_step1": "🎨 Image [1/2]: ChatGPT is drawing SVG blind… If ChatGPT says «logged out» — open its app and rerun Poly.",
+    "image_step2": "[2/2] Claude is drawing its own version…",
+    "image_judge": "[3/3] Claude the judge is comparing the sketches…",
+    "delta_step1": "➕ Delta [1/2]: Claude is writing the anchor answer…",
+    "delta_step2": "[2/2] ChatGPT is looking for what to add… If it says «logged out» — open its app and rerun Poly.",
+    "help": "ℹ️ Poly help — no AI calls, free.",
+    "tail_done": "✅ Final answer is in your clipboard (also on Mac/iPad via Universal Clipboard); the journal is written after it's shown. If the final looks empty — the intent timed out: the full answer is waiting in the Claude app.",
+    "tail_empty": "⚠️ The final answer is empty — the intent timed out. Look for the full answer in the Claude app; the drafts are in the journal.",
+    "voice_start": "🎧 Poly Voice: ChatGPT → Claude, I'll read the final answer aloud. ≈1 min. If ChatGPT says «logged out» — open its app and start again.",
+    "photo_done": "📸 Text recognized — opening Poly.",
+    "multi_step1": "🎼 Choir [1/3]: ChatGPT and Claude are answering on their own…",
+    "multi_step3": "[3/3] Claude is merging the choir…"
+  },
+  "alert": {
+    "multi_next_title": "Poly Multi — next AI",
+    "multi_next_body": "Open the next AI app yourself → paste the prompt from the clipboard → send → COPY its answer → come back here → OK.",
+    "pc_notice_title": "More on a laptop or PC",
+    "pc_notice_body": "💻 On a laptop or PC, PolyHelper does more: folders, agents, channels, schedules, a council of several AIs. Poly on your phone is the light version, without the PC features."
+  },
+  "output": {
+    "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
+    "delta": "■ ANCHOR (Claude)\n{C}\n\n➕ ADDITIONS (ChatGPT)\n{G}",
+    "auto": "🧭 Poly recommends this mode for your question: «{R}».\n\nOn the next screen pick «🔁 Another mode — same question» — Poly restarts with the same question; choose the recommended mode from the menu.",
+    "image_codes": "■ CLAUDE SKETCH (SVG code)\n{C}\n\n■ CHATGPT SKETCH (SVG code)\n{G}",
+    "image_codes_judged": "⚖️ JUDGE'S VERDICT\n{J}\n\n■ CLAUDE SKETCH (SVG code)\n{C}\n\n■ CHATGPT SKETCH (SVG code)\n{G}",
+    "image_html_title": "🎨 Two sketches — take your pick",
+    "image_html_claude": "◆ CLAUDE",
+    "image_html_gpt": "◆ CHATGPT"
+  },
+  "journal": {
+    "entry": "\n════════ {D} ════════\n{JX}\nQUESTION: {Q}\n\n{R}\n",
+    "entry_simple": "\n════════ {D} ════════\n{M}\nQUESTION: {Q}\n\n{R}\n",
+    "critique": "MODE: ⚖️ Critique\n—— raw: ChatGPT's answer ——\n{X}",
+    "advisor": "MODE: 🩺 Advisor",
+    "survey": "MODE: 👀 Side by side (the result IS the raw material)",
+    "decision": "MODE: ⚔️ Decision\n—— raw: fast view (ChatGPT) ——\n{X}\n—— cautious view (Claude) ——\n{Y}",
+    "synthesis_claude": "MODE: 🔀 Synthesis (Claude anchors)\n—— raw: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "synthesis_gpt": "MODE: 🔀 Synthesis (ChatGPT anchors)\n—— raw: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "disputemap": "MODE: 🗺 Dispute map\n—— raw: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "debate": "MODE: 🥊 Debate\n—— draft (ChatGPT) ——\n{X}\n—— critique (Claude) ——\n{Y}\n—— revision (ChatGPT) ——\n{Z}",
+    "clarify": "MODE: ❓ Clarify\n—— questions (ChatGPT) ——\n{X}\n—— your answers ——\n{Y}",
+    "image": "MODE: 🎨 Image (both pictures: Files → iCloud Drive → Shortcuts → Poly-image.html; SVG code is in the result)",
+    "delta": "MODE: ➕ Delta",
+    "auto": "MODE: 🧭 Auto (recommendation)",
+    "help": "MODE: ℹ️ Help (no AI calls)",
+    "voice": "MODE: 🎧 Voice",
+    "quiet": "MODE: 🤫 Quiet (critique)",
+    "multi": "MODE: 🎼 Multi choir"
+  },
+  "variables": {
+    "result": "Result",
+    "journal_extra": "JournalExtra",
+    "extra_answers": "ExtraAnswers",
+    "final_prompt": "FinalPrompt",
+    "pc_notice_seen": "PCNoticeSeen"
+  },
+  "help": "ℹ️ WHAT IS POLY\n\nOne question — and two AIs (ChatGPT and Claude) work on it as a pair. It runs on your own subscriptions; the ✉ badge on a mode tells you how many messages it will spend.\n\nEVERYDAY MODES (main menu):\n⚖️ Critique — ChatGPT answers, Claude verifies and improves it. Your default.\n🩺 Advisor — Claude reviews YOUR text without rewriting it. The cheapest mode.\n👀 Side by side — two independent opinions, no blending.\n🔀 Synthesis — both answer blind, then the best is assembled. For what matters.\n🧭 Auto — not sure what to pick? Poly chooses the mode for you.\n\nIn «📂 More…»:\n⚔️ Decision — first steps and risks. 🗺 Dispute map — where the AIs agree and where they don't.\n🥊 Debate — draft → opponent attacks → revision → judge. For the hardest questions; expensive.\n❓ Clarify — asks you follow-up questions first (the only mode where you must touch the screen mid-run — just its dialog).\n➕ Delta — a cheap stand-in for Synthesis: anchor + a list of additions. 🎨 Image — two vector sketches to choose from.\n\nThe result always arrives three ways: on screen, in your clipboard (paste it anywhere) and in the journal Poly-journal.md (Files → iCloud Drive → Shortcuts).\nWhile Poly is running — don't touch the phone: a tap cancels the shortcut. Details and troubleshooting: INSTALL.md in the kit.\n\n💻 On a laptop or PC, PolyHelper does more: folders, agents, channels, schedules, a council of several AIs. Poly on your phone is the light version, without the PC features.\n\nTap «Done» below, then pick «🔁 Another mode — same question» on the next screen — Poly restarts with your question and you choose a mode."
+}

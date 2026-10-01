@@ -1,0 +1,40 @@
+name: New language request
+description: Ask for a new locale, or offer to build one yourself.
+title: "[Translation]: "
+labels: ["translation", "good first issue"]
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: "e.g. Italian"
+    validations:
+      required: true
+
+  - type: input
+    id: iso-code
+    attributes:
+      label: ISO 639-1 code
+      description: The two-letter code this locale would use under locales/<code>/.
+      placeholder: "e.g. it"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: willing-to-translate
+    attributes:
+      label: Are you willing to do the translation yourself?
+      description: See CONTRIBUTING.md for what's involved — about 90 strings plus three docs.
+      options:
+        - "Yes, I'll open a PR"
+        - "No, I'm requesting it for someone else to pick up"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything relevant — dialect, right-to-left considerations, existing translation experience, etc.
+    validations:
+      required: false

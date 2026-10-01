@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "language": "zh",
+    "english_name": "Chinese (Simplified)",
+    "native_name": "简体中文",
+    "note": "基于基础语言（en）的翻译。快捷指令名和文件名不翻译（属于品牌与文件名），花括号占位符（{Q}、{R}、{D}、{X}……）原样保留；menu.main_items（6 条）和 menu.extra_items（7 条）的顺序与数量固定，构建脚本按下标取用。",
+    "translator": "Claude Opus, 2026-09-01"
+  },
+  "shortcut_names": {
+    "main": "Poly",
+    "voice": "Poly Voice",
+    "photo": "Poly Photo",
+    "quiet": "Poly Quiet",
+    "compress": "Poly Compress",
+    "multi": "Poly Multi"
+  },
+  "files": {
+    "journal": "Poly-journal.md",
+    "image_html": "Poly-image.html",
+    "pc_notice": "Poly-pc-notice.txt"
+  },
+  "comment": {
+    "main": "Poly：ChatGPT + Claude 双 AI 组合。如果 Claude/ChatGPT 的操作变成灰色：把它们删掉，搜索“Ask Claude”（询问 Claude）/“Ask ChatGPT”，再放回原来的位置。Claude 的文本放进它的 message 字段。ChatGPT：Start new chat 打开，Continuous 关闭，“运行时显示”关闭。完整指南：工具包里的 install.md。",
+    "photo": "Poly Photo：在这里共享一张照片或一个 PDF —— 文字会在本机识别，然后交给 Poly。",
+    "multi": "PRO 扩展（手动合唱）。这不是主力 Poly：请先熟悉自动双 AI。Poly Multi：AI 合唱团。ChatGPT 和 Claude 会自己作答（应用操作）；其余的（Gemini、Grok、DeepSeek……）需要你手动去问 —— 提示词已经在剪贴板里，每次 Copy 之后回到这里点 OK。最后由 Claude 把所有内容合并起来。"
+  },
+  "ask": {
+    "question": "你想问 Poly 什么？",
+    "clarify_suffix": "\n\n请在一条消息里把这些都回答掉（或者输入“跳过”）：",
+    "clarify_default": "跳过",
+    "voice_question": "请口述你要问 Poly 的问题",
+    "quiet_question": "问题（静默模式 —— 结果只进剪贴板和日志）",
+    "multi_question": "你想问 AI 合唱团什么？",
+    "multi_count": "提示词已经在你的剪贴板里。你还要手动去问几个 AI（Gemini、Grok、DeepSeek……）？0 —— 只用自动的这一对。"
+  },
+  "menu": {
+    "main_title": "Poly 模式（ℹ️ 帮助在“📂 更多…”里）",
+    "main_items": [
+      "⚖️ 审校 · 2✉",
+      "🩺 顾问 · 1✉",
+      "👀 并排对照 · 2✉",
+      "🔀 综合 · 3✉",
+      "🧭 自动 · +1✉",
+      "📂 更多…"
+    ],
+    "extra_title": "更多模式",
+    "extra_items": [
+      "⚔️ 决策 · 3✉",
+      "🗺 分歧地图 · 3✉",
+      "🥊 辩论 · 4✉",
+      "❓ 追问 · 2✉",
+      "🎨 绘图 · 2–3✉",
+      "➕ 增补 · 2✉",
+      "ℹ️ Poly 是什么"
+    ],
+    "anchor_title": "以哪一份回答作为主干？",
+    "anchor_items": [
+      "Claude —— 事实与结构",
+      "ChatGPT —— 语气与创意"
+    ],
+    "image_title": "希望我怎么呈现？",
+    "image_items": [
+      "只要草图 · 2✉",
+      "草图 + 裁判点评 · 3✉"
+    ],
+    "finale_title": "接下来做什么？",
+    "finale_items": [
+      "✅ 完成",
+      "🔁 换个模式 —— 同一个问题"
+    ],
+    "multi_merge_title": "用哪种合并？",
+    "multi_merge_items": [
+      "标准合并",
+      "东西方合并"
+    ]
+  },
+  "notify": {
+    "critique_start": "⚖️ 审校：ChatGPT 先答 → Claude 复核。约 1 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "critique_step2": "[2/2] Claude 正在复核并整理最终答案……",
+    "advisor_start": "🩺 顾问：Claude 只点评你的文字，不改写。约 40 秒，别碰屏幕。",
+    "survey_start": "👀 并排对照：分别独立地问两边。约 1 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "synthesis_claude_start": "🔀 综合（以 Claude 为主干）：两份盲答 → 合成。约 1.5 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "synthesis_gpt_start": "🔀 综合（以 ChatGPT 为主干）：两份盲答 → 合成。约 1.5 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "auto_start": "🧭 自动：正在为你的问题挑选合适的模式……（多花 1 条 ChatGPT 消息）",
+    "decision_start": "⚔️ 决策：快判 → 慎判 → 仲裁。约 1.5 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "decision_step2": "[2/3] Claude —— 谨慎的那一边……",
+    "decision_step3": "[3/3] 担任仲裁的 Claude 正在写建议……",
+    "disputemap_start": "🗺 分歧地图：两份盲答 → 一张共识与冲突的地图。约 1.5 分钟。",
+    "debate_start": "🥊 辩论：初稿 → 挑刺 → 修订 → 裁决。约 2 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "debate_step2": "[2/4] 担任对手的 Claude 正在找漏洞……",
+    "debate_step3": "[3/4] ChatGPT 正在修订初稿……",
+    "debate_step4": "[4/4] 担任裁判的 Claude 正在给出裁决……",
+    "clarify_step1": "❓ 追问 [1/2]：ChatGPT 正在梳理还缺什么……",
+    "clarify_step2": "[2/2] Claude 正在结合你的补充作答……",
+    "image_step1": "🎨 绘图 [1/2]：ChatGPT 正在盲画 SVG……如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "image_step2": "[2/2] Claude 正在画自己的那一版……",
+    "image_judge": "[3/3] 担任裁判的 Claude 正在比较两张草图……",
+    "delta_step1": "➕ 增补 [1/2]：Claude 正在写主干答案……",
+    "delta_step2": "[2/2] ChatGPT 正在找可以补充的内容……如果它说“logged out” —— 打开它的 App，再重新运行 Poly。",
+    "help": "ℹ️ Poly 帮助 —— 不调用 AI，免费。",
+    "tail_done": "✅ 最终答案已经在剪贴板里（借助“通用剪贴板”，在 Mac/iPad 上也能直接粘贴）；日志在答案显示之后写入。如果最终结果是空的 —— 说明操作超时了：完整答案正在 Claude App 里等你。",
+    "tail_empty": "⚠️ 最终答案是空的 —— 操作超时了。请到 Claude App 里找完整答案；草稿都在日志里。",
+    "voice_start": "🎧 Poly Voice：ChatGPT → Claude，最终答案我会念给你听。约 1 分钟。如果 ChatGPT 说“logged out” —— 打开它的 App，重新开始。",
+    "photo_done": "📸 文字已识别 —— 正在打开 Poly。",
+    "multi_step1": "🎼 合唱 [1/3]：ChatGPT 和 Claude 正在各自作答……",
+    "multi_step3": "[3/3] Claude 正在合并整个合唱团的回答……"
+  },
+  "alert": {
+    "multi_next_title": "Poly Multi —— 下一个 AI",
+    "multi_next_body": "自己打开下一个 AI 的 App → 粘贴剪贴板里的提示词 → 发送 → 复制它的回答 → 回到这里 → 点 OK。",
+    "pc_notice_title": "在笔记本或台式电脑上功能更多",
+    "pc_notice_body": "💻 在笔记本或台式电脑上，PolyHelper 能做得更多：文件夹、智能体、频道、定时任务、由多个 AI 组成的评审团。手机上的 Poly 是轻量版，不含电脑端功能。"
+  },
+  "output": {
+    "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
+    "delta": "■ 主干（Claude）\n{C}\n\n➕ 补充（ChatGPT）\n{G}",
+    "auto": "🧭 针对你的问题，Poly 推荐这个模式：“{R}”（模式名可能是英文的）。\n\n在下一屏选择“🔁 换个模式 —— 同一个问题” —— Poly 会带着同一个问题重新开始；然后在菜单里选推荐的那个模式。",
+    "image_codes": "■ CLAUDE 的草图（SVG 代码）\n{C}\n\n■ CHATGPT 的草图（SVG 代码）\n{G}",
+    "image_codes_judged": "⚖️ 裁判点评\n{J}\n\n■ CLAUDE 的草图（SVG 代码）\n{C}\n\n■ CHATGPT 的草图（SVG 代码）\n{G}",
+    "image_html_title": "🎨 两张草图 —— 挑一张",
+    "image_html_claude": "◆ CLAUDE",
+    "image_html_gpt": "◆ CHATGPT"
+  },
+  "journal": {
+    "entry": "\n════════ {D} ════════\n{JX}\n问题：{Q}\n\n{R}\n",
+    "entry_simple": "\n════════ {D} ════════\n{M}\n问题：{Q}\n\n{R}\n",
+    "critique": "模式：⚖️ 审校\n—— 原始：ChatGPT 的回答 ——\n{X}",
+    "advisor": "模式：🩺 顾问",
+    "survey": "模式：👀 并排对照（结果本身就是原始材料）",
+    "decision": "模式：⚔️ 决策\n—— 原始：快判（ChatGPT）——\n{X}\n—— 慎判（Claude）——\n{Y}",
+    "synthesis_claude": "模式：🔀 综合（以 Claude 为主干）\n—— 原始：ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "synthesis_gpt": "模式：🔀 综合（以 ChatGPT 为主干）\n—— 原始：ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "disputemap": "模式：🗺 分歧地图\n—— 原始：ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "debate": "模式：🥊 辩论\n—— 初稿（ChatGPT）——\n{X}\n—— 挑刺（Claude）——\n{Y}\n—— 修订（ChatGPT）——\n{Z}",
+    "clarify": "模式：❓ 追问\n—— 提问（ChatGPT）——\n{X}\n—— 你的回答 ——\n{Y}",
+    "image": "模式：🎨 绘图（两张图都在：文件 → iCloud 云盘 → 快捷指令 → Poly-image.html；SVG 代码在结果里）",
+    "delta": "模式：➕ 增补",
+    "auto": "模式：🧭 自动（推荐）",
+    "help": "模式：ℹ️ 帮助（不调用 AI）",
+    "voice": "模式：🎧 语音",
+    "quiet": "模式：🤫 静默（审校）",
+    "multi": "模式：🎼 多 AI 合唱"
+  },
+  "variables": {
+    "result": "结果",
+    "journal_extra": "日志附加",
+    "extra_answers": "额外回答",
+    "final_prompt": "最终提示词",
+    "pc_notice_seen": "电脑提示"
+  },
+  "help": "ℹ️ POLY 是什么\n\n一个问题 —— 两个 AI（ChatGPT 和 Claude）搭档处理它。它跑在你自己的订阅上；每个模式后面的 ✉ 标记告诉你这一次会花掉几条消息。\n\n日常模式（主菜单）：\n⚖️ 审校 —— ChatGPT 先答，Claude 复核并改进。你的默认选择。\n🩺 顾问 —— Claude 点评你自己的文字，不改写。最便宜的模式。\n👀 并排对照 —— 两份独立意见，不做融合。\n🔀 综合 —— 两边盲答，然后把最好的部分合成一份。用在要紧的事情上。\n🧭 自动 —— 不知道选哪个？让 Poly 替你挑模式。\n\n在“📂 更多…”里：\n⚔️ 决策 —— 第一步该做什么，风险在哪。🗺 分歧地图 —— 两个 AI 在哪里一致，在哪里不一致。\n🥊 辩论 —— 初稿 → 对手挑刺 → 修订 → 裁决。留给最难的问题；很贵。\n❓ 追问 —— 先反过来问你几个问题（唯一需要你在运行途中碰屏幕的模式 —— 只在它自己的对话框里）。\n➕ 增补 —— 综合的廉价替代：主干答案 + 一份补充清单。🎨 绘图 —— 两张矢量草图任你挑。\n\n结果始终有三个去处：屏幕上、剪贴板里（想粘到哪儿都行）、以及日志 Poly-journal.md（文件 → iCloud 云盘 → 快捷指令）。\nPoly 运行期间 —— 别碰手机：碰一下屏幕就会取消这条快捷指令。细节和排障：工具包里的 install.md。\n\n💻 在笔记本或台式电脑上，PolyHelper 能做得更多：文件夹、智能体、频道、定时任务、由多个 AI 组成的评审团。手机上的 Poly 是轻量版，不含电脑端功能。\n\n点下面的“完成”，然后在下一屏选“🔁 换个模式 —— 同一个问题” —— Poly 会带着你的问题重新开始，由你来挑模式。"
+}

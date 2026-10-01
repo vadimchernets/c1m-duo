@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "language": "ja",
+    "english_name": "Japanese",
+    "native_name": "日本語",
+    "note": "基準言語（en）からの翻訳。ショートカット名とファイル名は商標・ファイル名なので翻訳せず、波かっこ内のプレースホルダ（{Q}、{R}、{D}、{X}…）もそのまま残します。menu.main_items（6件）と menu.extra_items（7件）は並び順と件数が固定です — ビルダーが添字で参照します。",
+    "translator": "Claude Opus, 2026-09-01"
+  },
+  "shortcut_names": {
+    "main": "Poly",
+    "voice": "Poly Voice",
+    "photo": "Poly Photo",
+    "quiet": "Poly Quiet",
+    "compress": "Poly Compress",
+    "multi": "Poly Multi"
+  },
+  "files": {
+    "journal": "Poly-journal.md",
+    "image_html": "Poly-image.html",
+    "pc_notice": "Poly-pc-notice.txt"
+  },
+  "comment": {
+    "main": "Poly — ChatGPT + Claude のデュオ。Claude / ChatGPT のアクションがグレーアウトしていたら、いったん削除し、「Ask Claude」（「Claudeに質問」）/「Ask ChatGPT」で検索して同じ場所に入れ直してください。Claude ではテキストを message フィールドに入れます。ChatGPT では Start new chat をオン、Continuous をオフ、「実行時に表示」をオフに。詳しい手順はキット内の install.md。",
+    "photo": "Poly Photo：写真や PDF をここに共有すると、端末内で文字を認識して Poly に渡します。",
+    "multi": "PRO 拡張（手動の合唱）。これはメインの Poly ではありません。まず自動のデュオを使いこなしてください。Poly Multi：AI の合唱。ChatGPT と Claude は自分で回答しますが（App のアクション）、それ以外（Gemini、Grok、DeepSeek…）は手作業で聞きます — プロンプトはすでにクリップボードにあるので、Copy のたびにここへ戻って OK をタップしてください。最後に Claude がすべてをまとめます。"
+  },
+  "ask": {
+    "question": "Poly に何を聞きますか？",
+    "clarify_suffix": "\n\nこれらにまとめて1通で答えてください（不要なら「スキップ」と入力）：",
+    "clarify_default": "スキップ",
+    "voice_question": "Poly への質問を話してください",
+    "quiet_question": "質問（サイレントモード — 結果はクリップボードと記録へ）",
+    "multi_question": "AI の合唱に何を聞きますか？",
+    "multi_count": "プロンプトはすでにクリップボードにあります。あと何個の AI を手作業で聞きますか（Gemini、Grok、DeepSeek…）？ 0 — 自動のペアだけ。"
+  },
+  "menu": {
+    "main_title": "Poly のモード（ℹ️ ヘルプは「📂 その他…」の中）",
+    "main_items": [
+      "⚖️ 批評 · 2✉",
+      "🩺 助言 · 1✉",
+      "👀 並べて比較 · 2✉",
+      "🔀 統合 · 3✉",
+      "🧭 おまかせ · +1✉",
+      "📂 その他…"
+    ],
+    "extra_title": "その他のモード",
+    "extra_items": [
+      "⚔️ 決断 · 3✉",
+      "🗺 論点マップ · 3✉",
+      "🥊 討論 · 4✉",
+      "❓ 明確化 · 2✉",
+      "🎨 画像 · 2–3✉",
+      "➕ 差分 · 2✉",
+      "ℹ️ Poly とは"
+    ],
+    "anchor_title": "最終回答の軸にするのはどちら？",
+    "anchor_items": [
+      "Claude — 事実と構成",
+      "ChatGPT — トーンと創造性"
+    ],
+    "image_title": "どう見せましょうか？",
+    "image_items": [
+      "スケッチのみ · 2✉",
+      "スケッチ＋審判の判定 · 3✉"
+    ],
+    "finale_title": "次はどうしますか？",
+    "finale_items": [
+      "✅ 完了",
+      "🔁 別のモード — 同じ質問"
+    ],
+    "multi_merge_title": "どの統合にしますか？",
+    "multi_merge_items": [
+      "標準の統合",
+      "東西の統合"
+    ]
+  },
+  "notify": {
+    "critique_start": "⚖️ 批評：ChatGPT が答え → Claude が検証。約1分、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "critique_step2": "[2/2] Claude が検証して最終回答をまとめています…",
+    "advisor_start": "🩺 助言：Claude があなたの文章を書き換えずに講評します。約40秒、画面に触らないでください。",
+    "survey_start": "👀 並べて比較：二人に別々に聞いています。約1分、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "synthesis_claude_start": "🔀 統合（軸は Claude）：互いを見ずに二つの回答 → 組み立て。約1分半、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "synthesis_gpt_start": "🔀 統合（軸は ChatGPT）：互いを見ずに二つの回答 → 組み立て。約1分半、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "auto_start": "🧭 おまかせ：あなたの質問に合うモードを選んでいます…（ChatGPT のメッセージ +1）",
+    "decision_start": "⚔️ 決断：素早い見方 → 慎重な見方 → 審判。約1分半、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "decision_step2": "[2/3] Claude — 慎重な見方…",
+    "decision_step3": "[3/3] 審判役の Claude が推奨をまとめています…",
+    "disputemap_start": "🗺 論点マップ：互いを見ずに二つの回答 → 一致点と対立点の地図。約1分半。",
+    "debate_start": "🥊 討論：草案 → 批判 → 改稿 → 判定。約2分、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "debate_step2": "[2/4] 反対役の Claude が弱点を探しています…",
+    "debate_step3": "[3/4] ChatGPT が草案を書き直しています…",
+    "debate_step4": "[4/4] 審判役の Claude が判定を下しています…",
+    "clarify_step1": "❓ 明確化 [1/2]：ChatGPT が足りない情報を洗い出しています…",
+    "clarify_step2": "[2/2] Claude があなたの補足を踏まえて答えています…",
+    "image_step1": "🎨 画像 [1/2]：ChatGPT が相手を見ずに SVG を描いています… ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
+    "image_step2": "[2/2] Claude が自分の案を描いています…",
+    "image_judge": "[3/3] 審判役の Claude がスケッチを見比べています…",
+    "delta_step1": "➕ 差分 [1/2]：Claude が軸になる回答を書いています…",
+    "delta_step2": "[2/2] ChatGPT が足すべき点を探しています… 「logged out」と出たら、その App を開いてから Poly をやり直してください。",
+    "help": "ℹ️ Poly のヘルプ — AI を呼ばないので無料です。",
+    "tail_done": "✅ 最終回答はクリップボードに入っています（ユニバーサルクリップボード経由で Mac/iPad でも）。記録は表示のあとに書き込まれます。最終回答が空に見えるときはアクションがタイムアウトしています — 全文は Claude App で待っています。",
+    "tail_empty": "⚠️ 最終回答が空です — アクションがタイムアウトしました。全文は Claude App で探してください。途中の草案は記録に残っています。",
+    "voice_start": "🎧 Poly Voice：ChatGPT → Claude、最終回答を読み上げます。約1分。ChatGPT が「logged out」と言ったら、その App を開いてからやり直してください。",
+    "photo_done": "📸 文字を認識しました — Poly を開きます。",
+    "multi_step1": "🎼 合唱 [1/3]：ChatGPT と Claude が自分で答えています…",
+    "multi_step3": "[3/3] Claude が合唱をまとめています…"
+  },
+  "alert": {
+    "multi_next_title": "Poly Multi — 次の AI",
+    "multi_next_body": "次の AI の App を自分で開く → クリップボードのプロンプトを貼り付け → 送信 → その回答をコピー → ここに戻る → OK。",
+    "pc_notice_title": "ノートPCやパソコンならもっと",
+    "pc_notice_body": "💻 ノートPCやパソコンでは、PolyHelper がもっと多くのことをこなします: フォルダ、エージェント、チャンネル、スケジュール、複数の AI による合議。スマホの Poly は、PC 向け機能を省いた軽量版です。"
+  },
+  "output": {
+    "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
+    "delta": "■ 軸（Claude）\n{C}\n\n➕ 追加（ChatGPT）\n{G}",
+    "auto": "🧭 Poly はあなたの質問にこのモードを勧めます：「{R}」（モード名は英語で返ることがあります）。\n\n次の画面で「🔁 別のモード — 同じ質問」を選んでください — Poly が同じ質問で再スタートするので、メニューから勧められたモードを選びます。",
+    "image_codes": "■ CLAUDE のスケッチ（SVG コード）\n{C}\n\n■ CHATGPT のスケッチ（SVG コード）\n{G}",
+    "image_codes_judged": "⚖️ 審判の判定\n{J}\n\n■ CLAUDE のスケッチ（SVG コード）\n{C}\n\n■ CHATGPT のスケッチ（SVG コード）\n{G}",
+    "image_html_title": "🎨 2つのスケッチ — 好きな方をどうぞ",
+    "image_html_claude": "◆ CLAUDE",
+    "image_html_gpt": "◆ CHATGPT"
+  },
+  "journal": {
+    "entry": "\n════════ {D} ════════\n{JX}\n質問: {Q}\n\n{R}\n",
+    "entry_simple": "\n════════ {D} ════════\n{M}\n質問: {Q}\n\n{R}\n",
+    "critique": "モード: ⚖️ 批評\n—— 素材: ChatGPT の回答 ——\n{X}",
+    "advisor": "モード: 🩺 助言",
+    "survey": "モード: 👀 並べて比較（結果そのものが素材）",
+    "decision": "モード: ⚔️ 決断\n—— 素材: 素早い見方（ChatGPT） ——\n{X}\n—— 慎重な見方（Claude） ——\n{Y}",
+    "synthesis_claude": "モード: 🔀 統合（軸は Claude）\n—— 素材: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "synthesis_gpt": "モード: 🔀 統合（軸は ChatGPT）\n—— 素材: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "disputemap": "モード: 🗺 論点マップ\n—— 素材: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
+    "debate": "モード: 🥊 討論\n—— 草案（ChatGPT） ——\n{X}\n—— 批判（Claude） ——\n{Y}\n—— 改稿（ChatGPT） ——\n{Z}",
+    "clarify": "モード: ❓ 明確化\n—— 質問（ChatGPT） ——\n{X}\n—— あなたの回答 ——\n{Y}",
+    "image": "モード: 🎨 画像（両方の絵: ファイル → iCloud Drive → ショートカット → Poly-image.html。SVG コードは結果の中）",
+    "delta": "モード: ➕ 差分",
+    "auto": "モード: 🧭 おまかせ（推奨）",
+    "help": "モード: ℹ️ ヘルプ（AI を呼びません）",
+    "voice": "モード: 🎧 音声",
+    "quiet": "モード: 🤫 サイレント（批評）",
+    "multi": "モード: 🎼 マルチ合唱"
+  },
+  "variables": {
+    "result": "結果",
+    "journal_extra": "記録補足",
+    "extra_answers": "追加回答",
+    "final_prompt": "最終プロンプト",
+    "pc_notice_seen": "PC案内"
+  },
+  "help": "ℹ️ POLY とは\n\n質問はひとつ — それを2つの AI（ChatGPT と Claude）がペアで担当します。動くのはあなた自身のサブスクリプションの上で、各モードの ✉ バッジが消費するメッセージ数を示します。\n\nふだん使うモード（メインメニュー）:\n⚖️ 批評 — ChatGPT が答え、Claude が検証して仕上げます。まずはこれ。\n🩺 助言 — Claude が「あなたの」文章を書き換えずに講評します。いちばん安いモード。\n👀 並べて比較 — 独立した2つの意見を、混ぜずにそのまま。\n🔀 統合 — 互いを見ずに両方が答え、良いところを組み立てます。大事な用件に。\n🧭 おまかせ — 迷ったら、Poly がモードを選びます。\n\n「📂 その他…」の中:\n⚔️ 決断 — 最初の一歩とリスク。🗺 論点マップ — 2つの AI が一致する点としない点。\n🥊 討論 — 草案 → 反対役が突く → 改稿 → 判定。いちばん難しい問いに。高くつきます。\n❓ 明確化 — まずあなたに聞き返します（実行の途中で画面に触る必要がある唯一のモード — その入力欄だけ）。\n➕ 差分 — 統合の安い代わり: 軸 + 足すことのリスト。🎨 画像 — 選べるベクター2案。\n\n結果はいつも3か所に届きます: 画面、クリップボード（どこにでも貼れます）、記録ファイル Poly-journal.md（ファイル → iCloud Drive → ショートカット）。\nPoly が動いている間はスマホに触らないでください: 1回のタップでショートカットが止まります。詳細と困ったときは、キット内の install.md。\n\n💻 ノートPCやパソコンでは、PolyHelper がもっと多くのことをこなします: フォルダ、エージェント、チャンネル、スケジュール、複数の AI による合議。スマホの Poly は、PC 向け機能を省いた軽量版です。\n\n下の「完了」を押し、次の画面で「🔁 別のモード — 同じ質問」を選んでください — Poly が同じ質問で再スタートし、モードを選び直せます。"
+}

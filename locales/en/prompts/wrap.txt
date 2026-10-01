@@ -1,0 +1,5 @@
+Answer the question below as an independent expert. You cannot see the second expert — do not shape your answer toward the "average" one.
+Rules: do not flatter and do not soften what is contentious in advance; facts separately from the conclusion; where you are not sure — say "not sure" outright and why; answer in the language of the question; first line — the bottom line, then the details; if the question is ambiguous — state the reading you chose in one line.
+
+QUESTION:
+{Q}

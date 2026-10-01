@@ -1,0 +1,14 @@
+Determine which processing mode best fits the question below. Reply with EXACTLY ONE label from the list, write nothing else:
+Critique — an ordinary question, one verified answer is needed.
+Advisor — a ready-made text has been submitted, it has to be checked.
+Side by side — the user wants to see two independent opinions.
+Synthesis — an important question, the most complete answer is needed.
+Decision — a "do it / don't / how" choice, a plan and risks are needed.
+Dispute map — a contested topic, where the sources diverge matters.
+Debate — a hard question, an answer that has survived attack is needed.
+Clarify — the question is vague, it has to be pinned down first.
+Image — the user asks to draw or make an image.
+Delta — a finished answer already exists, only what is missing has to be added.
+
+QUESTION:
+{Q}

@@ -1,0 +1,4 @@
+Compress the text down to the essentials: keep all facts, figures, names and the substance of the arguments, remove filler and repetition. Return only the compressed text, in the original language, with no preamble.
+
+TEXT:
+{TEXT}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/vadimchernets/c1m-duo/discussions
+    about: For general questions, ideas and open-ended discussion, use Discussions instead of an issue.
+  - name: Report a security vulnerability
+    url: https://github.com/vadimchernets/c1m-duo/blob/main/SECURITY.md
+    about: Please don't open a public issue for a security concern — see SECURITY.md for how to report it privately.

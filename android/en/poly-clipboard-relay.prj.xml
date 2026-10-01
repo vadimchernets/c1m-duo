@@ -1,0 +1,821 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TaskerData sr="" dvi="1" tv="6.3.13">
+	<Project sr="proj0" ve="2">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>1</id>
+		<name>Poly Orchestration</name>
+		<tids>100,101,102,103,104,105,106,107,108,109</tids>
+	</Project>
+
+	<Task sr="task100">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>100</id>
+		<nme>Duo Ask</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoClaude</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoGPT</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFile</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Question for the duo</Str>
+			<Str sr="arg1" ve="3">%DuoQuestion</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Str sr="arg1" ve="3">You are one of two independent experts. You cannot see the other one. Do not hedge to match them. Do not flatter. Skip the preamble.
+Give the strongest possible answer. Keep facts separate from conclusions. Say so where you are unsure. Language = the language of the question.
+
+QUESTION:
+%DuoQuestion</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>548</code>
+			<label>Variable Query is the ask; next flash tells you to continue</label>
+			<Str sr="arg0" ve="3">Prompt is in the clipboard. Tap OK, then run Duo Open Claude</Str>
+			<Str sr="arg1" ve="3">%DuoOk</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+		</Action>
+	</Task>
+
+	<Task sr="task101">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>101</id>
+		<nme>Duo Open Claude</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.anthropic.claude</appPkg>
+				<label>Claude</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Claude: paste, send, Copy under the answer, then run Duo Catch Claude</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task102">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>102</id>
+		<nme>Duo Catch Claude</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoClaude</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.openai.chatgpt</appPkg>
+				<label>ChatGPT</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Anchor captured. ChatGPT: paste the same prompt, send, Copy, then run Duo Catch GPT</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task103">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>103</id>
+		<nme>Duo Catch GPT</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoGPT</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Str sr="arg1" ve="3">Method: anchor and reinforcement. Do not blend everything into one pot. ANCHOR is Claude — keep all of it. DONOR is ChatGPT — take only what is new or reinforcing, and mark it "Addition (ChatGPT)".
+Sections: 1) an 8-12 line summary 2) where they agree / disagree 3) what is unique from ChatGPT 4) the full reinforced answer 5) what to verify.
+Language = the language of the question.
+
+=== QUESTION ===
+%DuoQuestion
+
+=== ANCHOR (Claude) ===
+%DuoClaude
+
+=== DONOR (ChatGPT) ===
+%DuoGPT</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.anthropic.claude</appPkg>
+				<label>Claude</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Synthesis is in the clipboard. Paste it into Claude, send, Copy, then run Duo Catch Final</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task104">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>104</id>
+		<nme>Duo Catch Final</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFile</Str>
+			<Str sr="arg1" ve="3">QUESTION
+%DuoQuestion
+
+=== CLAUDE ANCHOR ===
+%DuoClaude
+
+=== CHATGPT DONOR ===
+%DuoGPT
+
+=== FINAL ===
+%DuoFinal
+</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>776</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3">Tasker/Poly/%DATE-%TIME.txt</Str>
+			<Str sr="arg2" ve="3">%DuoFile</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Done. The final answer is in the clipboard and in Tasker/Poly/</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task105">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>105</id>
+		<nme>Duo Fast Catch Claude</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoClaude</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoEnrich</Str>
+			<Str sr="arg1" ve="3">Below is Claude's answer — the anchor. Do not restate it. Return ONLY additions (a fact, a number, a risk, a different angle). If there is nothing to add, say so. Language = the language of the question.
+
+=== QUESTION ===
+%DuoQuestion
+
+=== ANCHOR (Claude) ===
+%DuoClaude</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoEnrich</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.openai.chatgpt</appPkg>
+				<label>ChatGPT</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Quick mode: paste into ChatGPT, Copy, then run Duo Catch Final</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task106">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>106</id>
+		<nme>Duo Two Catch GPT</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoGPT</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3">QUESTION
+%DuoQuestion
+
+=== CLAUDE ===
+%DuoClaude
+
+=== CHATGPT ===
+%DuoGPT</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>776</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3">Tasker/Poly/%DATE-%TIME-two.txt</Str>
+			<Str sr="arg2" ve="3">%DuoFinal</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Both answers are in the clipboard and in the file. Run the synthesis whenever you like.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task107">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>107</id>
+		<nme>Duo README</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Main widget: Duo Go. Copy = move on. Fallback: the Ask/Catch chain. Advisor: Duo Advisor.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task108">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>108</id>
+		<nme>Duo Go</nme>
+		<pri>100</pri>
+		<stayawake>true</stayawake><Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoClaude</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoGPT</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFile</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">Question for the duo</Str>
+			<Str sr="arg1" ve="3">%DuoQuestion</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Str sr="arg1" ve="3">You are one of two independent experts. You cannot see the other one. You will not see their answer until you have finished. Do not flatter. Skip the preamble. Do not soften a contentious point in advance.
+Give the strongest possible answer. Keep facts separate from conclusions. Say so where you are unsure. Language = the language of the question.
+
+QUESTION:
+%DuoQuestion</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.anthropic.claude</appPkg>
+				<label>Claude</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Claude: paste, send, Copy. Do not switch back — waiting on the clipboard.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>35</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<Condition sr="con0" ve="3">
+					<lhs>%CLIP</lhs>
+					<op>3</op>
+					<rhs>%DuoPrompt</rhs>
+				</Condition>
+			</ConditionList>
+			<Int sr="arg0" val="0" />
+			<Int sr="arg1" val="5" />
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoClaude</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act12" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act13" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.openai.chatgpt</appPkg>
+				<label>ChatGPT</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act14" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">ChatGPT: paste, send, Copy. Waiting on the clipboard.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+		<Action sr="act15" ve="7">
+			<code>35</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<Condition sr="con0" ve="3">
+					<lhs>%CLIP</lhs>
+					<op>3</op>
+					<rhs>%DuoPrompt</rhs>
+				</Condition>
+				<Condition sr="con1" ve="3">
+					<lhs>%CLIP</lhs>
+					<op>3</op>
+					<rhs>%DuoClaude</rhs>
+				</Condition>
+			</ConditionList>
+			<Int sr="arg0" val="0" />
+			<Int sr="arg1" val="5" />
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act16" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoGPT</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act17" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Str sr="arg1" ve="3">Method: anchor and reinforcement. Do not blend everything into one pot. First work out the donor's delta, then fold it into the anchor with a mark. A factual dispute belongs in the summary already. If the anchor or the donor is empty, write EMPTY — do not make anything up.
+Sections: 1) an 8-12 line summary 2) where they agree / disagree 3) the delta 4) the full reinforced answer 5) what to verify.
+
+=== QUESTION ===
+%DuoQuestion
+
+=== ANCHOR ===
+%DuoClaude
+
+=== DONOR ===
+%DuoGPT</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act18" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoSynth</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act19" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.anthropic.claude</appPkg>
+				<label>Claude</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act20" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Synthesis goes to Claude. Paste, send, Copy.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+		<Action sr="act21" ve="7">
+			<code>35</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<Condition sr="con0" ve="3">
+					<lhs>%CLIP</lhs>
+					<op>3</op>
+					<rhs>%DuoSynth</rhs>
+				</Condition>
+			</ConditionList>
+			<Int sr="arg0" val="0" />
+			<Int sr="arg1" val="5" />
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act22" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act23" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFile</Str>
+			<Str sr="arg1" ve="3">QUESTION
+%DuoQuestion
+
+=== CLAUDE ANCHOR ===
+%DuoClaude
+
+=== CHATGPT DONOR ===
+%DuoGPT
+
+=== FINAL ===
+%DuoFinal
+</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act24" ve="7">
+			<code>776</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3">Tasker/Poly/%DATE-%TIME.txt</Str>
+			<Str sr="arg2" ve="3">%DuoFile</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+		</Action>
+		<Action sr="act25" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act26" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Done. The final answer is in the clipboard and in Tasker/Poly/</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+
+	<Task sr="task109">
+		<cdate>1756684800</cdate>
+		<edate>1756684800</edate>
+		<id>109</id>
+		<nme>Duo Advisor</nme>
+		<pri>100</pri>
+		<stayawake>true</stayawake><Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoReview</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>548</code>
+			<Str sr="arg0" ve="3">What question is this an answer to? "Unknown" is fine</Str>
+			<Str sr="arg1" ve="3">%DuoQuestion</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Str sr="arg1" ve="3">You are a second-opinion reviewer, not a co-author. The text is a claim to check, not a draft to "make better". Do not rewrite it. Do not open with praise.
+Return: 1) a one-line verdict 2) the strongest objection first 3) unsupported claims 4) what is missing 5) what to verify 6) what is strong and should stay.
+
+=== QUESTION / CONTEXT ===
+%DuoQuestion
+
+=== TEXT TO REVIEW ===
+%DuoReview</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoPrompt</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>20</code>
+			<App sr="arg0" ve="2">
+				<appPkg>com.openai.chatgpt</appPkg>
+				<label>ChatGPT</label>
+			</App>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Advisor: paste into ChatGPT, Copy. Waiting on the clipboard.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>35</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<Condition sr="con0" ve="3">
+					<lhs>%CLIP</lhs>
+					<op>3</op>
+					<rhs>%DuoPrompt</rhs>
+				</Condition>
+			</ConditionList>
+			<Int sr="arg0" val="0" />
+			<Int sr="arg1" val="5" />
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Str sr="arg1" ve="3">%CLIP</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>776</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3">Tasker/Poly/%DATE-%TIME-advisor.txt</Str>
+			<Str sr="arg2" ve="3">%DuoFinal</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>105</code>
+			<Str sr="arg0" ve="3">%DuoFinal</Str>
+			<Int sr="arg1" val="0" />
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>550</code>
+			<Str sr="arg0" ve="3">Advisor is ready. In the clipboard and in the file.</Str>
+			<Int sr="arg1" val="1" />
+		</Action>
+	</Task>
+</TaskerData>

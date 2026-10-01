@@ -1,0 +1,92 @@
+name: Bug report
+description: Something in Poly isn't working as expected.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: input
+    id: ios-version
+    attributes:
+      label: iOS version
+      description: Settings → General → About → Software Version.
+      placeholder: "e.g. 18.4"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Locale
+      description: Which build of Poly are you running?
+      options:
+        - en
+        - ar
+        - de
+        - es
+        - fr
+        - hi
+        - ja
+        - pt
+        - ru
+        - zh
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      description: Which mode or companion were you using?
+      options:
+        - Critique
+        - Advisor
+        - Side by side
+        - Synthesis
+        - Auto
+        - Decision
+        - Dispute map
+        - Debate
+        - Clarify
+        - Image
+        - Delta
+        - What is Poly
+        - "Companion: Poly Voice"
+        - "Companion: Poly Photo"
+        - "Companion: Poly Quiet"
+        - "Companion: Poly Compress"
+        - "Companion: Poly Multi"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: paid-claude
+    attributes:
+      label: Do you have a paid Claude plan?
+      description: Poly's Claude actions require a paid subscription.
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you see? Include any error text shown on screen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What you expected
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag and drop an image here if you have one.
+    validations:
+      required: false

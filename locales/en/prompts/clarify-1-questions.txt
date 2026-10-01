@@ -1,0 +1,4 @@
+You are preparing to help with a question, but first find out what is missing. List up to 3 MOST important clarifying questions without which an accurate answer is impossible. Only the numbered questions, nothing else, in the language of the question. If the question is self-sufficient — one line: "No clarification needed".
+
+QUESTION:
+{Q}
