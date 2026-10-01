@@ -44,7 +44,7 @@ themselves. Nothing goes through a server of ours — there isn't one.
 
 ## Install in 60 seconds
 
-**One tap (recommended).** On your iPhone, tap the link for your language → the Shortcuts app opens → **Add Shortcut**. On the first run tap **Always Allow** each time it asks about ChatGPT, Claude and the clipboard (4–6 times).
+**One tap (recommended).** On your iPhone, tap the link for your language → the Shortcuts app opens → **Add**. On the first run tap **Always Allow** each time it asks about ChatGPT, Claude and the clipboard (4–6 times).
 
 | Language | Duo | Trio |
 |---|---|---|
@@ -57,7 +57,7 @@ themselves. Nothing goes through a server of ours — there isn't one.
 **Backup: the signed file.**
 
 1. On your iPhone, open [`releases/`](releases) and pick your language — `en`, `es`, `pt`, `ru` or `uk`.
-2. Tap **`Duo.shortcut`** (or **`Trio.shortcut`**) → **Add Shortcut**.
+2. Tap **`Duo.shortcut`** (or **`Trio.shortcut`**) → **Add**.
 3. Run it once and tap **Always Allow** each time it asks about ChatGPT, Claude and the clipboard (4–6 times on the first run).
 
 The same signed files are on [polyhelper.ai/duo](https://polyhelper.ai/duo/) (site update of 2026-10-01) and in the [GitHub release](https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0). Keep the file name

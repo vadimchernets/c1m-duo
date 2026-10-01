@@ -11,7 +11,7 @@ Poly es un «atajo» para iPhone: haces una sola pregunta y la trabajan dos IA a
 
 ### Lo más fácil — el enlace de iCloud (un toque)
 
-En tu iPhone, toca el enlace → se abre la app Atajos → **Añadir atajo**. En la primera ejecución el atajo pide permiso 4–6 veces — pulsa **Permitir siempre** cada vez.
+En tu iPhone, toca el enlace → se abre la app Atajos → **Añadir**. En la primera ejecución el atajo pide permiso 4–6 veces — pulsa **Permitir siempre** cada vez.
 
 - **Duo:** https://www.icloud.com/shortcuts/bc77f1e8d16c44b3b4baaa5f213f96c6
 - **Trio** (la tercera voz, ver abajo): https://www.icloud.com/shortcuts/5dece0ab0d8d4103b9c26447b01c9815
@@ -21,7 +21,7 @@ En tu iPhone, toca el enlace → se abre la app Atajos → **Añadir atajo**. En
 Los archivos firmados `Duo.shortcut` y `Trio.shortcut` están en [polyhelper.ai/duo/es/](https://polyhelper.ai/duo/es/) y en la [versión de GitHub](https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0). O bien:
 
 1. Consigue el archivo **`dist/es/Poly.shortcut`** como prefieras: AirDrop, WhatsApp/Telegram, correo, un pendrive — da igual.
-2. Toca el archivo. Se abre la app Atajos con una tarjeta «Poly» — pulsa **Añadir atajo**. Listo, Poly está instalado.
+2. Toca el archivo. Se abre la app Atajos con una tarjeta «Poly» — pulsa **Añadir**. Listo, Poly está instalado.
    - Si el archivo llegó por una app de mensajería, tócalo primero ahí, elige Compartir/«Abrir en…» y luego selecciona Atajos.
 3. **Primera ejecución:** el atajo pide permisos — «¿Permitir las acciones de ChatGPT?» → Permitir; «…enviar texto a Claude?» → **Permitir siempre**; «…copiar al portapapeles?» → **Permitir siempre**. Esto solo ocurre una vez.
 
