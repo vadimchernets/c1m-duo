@@ -338,8 +338,8 @@ def build(lang):
 
     validate(actions)
     workflow = plistlib.loads((ROOT / 'src' / 'metadata.plist').read_bytes())
-    workflow['WFWorkflowIcon'] = {'WFWorkflowIconStartColor': 2071128575,
-                                  'WFWorkflowIconGlyphNumber': 61440}
+    workflow['WFWorkflowIcon'] = {'WFWorkflowIconStartColor': 3679049983,   # purple (kin to Duo's violet)
+                                  'WFWorkflowIconGlyphNumber': 59800}      # people (a group)
     workflow['WFWorkflowTypes'] = ['ActionExtension']
     workflow['WFWorkflowInputContentItemClasses'] = ['WFStringContentItem', 'WFURLContentItem',
                                                      'WFRichTextContentItem', 'WFArticleContentItem']
