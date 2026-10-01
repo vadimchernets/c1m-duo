@@ -9,6 +9,17 @@ Poly is a "shortcut" for iPhone: ask one question, and it's handled by two AIs a
 
 ## Installing (one tap)
 
+### Easiest — the iCloud link (one tap)
+
+On your iPhone, tap the link → the Shortcuts app opens → **Add Shortcut**. On the first run the shortcut asks for permission 4–6 times — tap **Always Allow** each time.
+
+- **Duo:** https://www.icloud.com/shortcuts/f94d1ca513944d3fa5024f7ac9687d99
+- **Trio** (the third voice, see below): https://www.icloud.com/shortcuts/233c9684a2a740d49f22e1df20a3e740
+
+### Backup — the file
+
+The signed `Duo.shortcut` and `Trio.shortcut` files are on [polyhelper.ai/duo/en/](https://polyhelper.ai/duo/en/) and in the [GitHub release](https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0). Or:
+
 1. Get the **`Poly.shortcut`** file any way you like: AirDrop, WhatsApp/Telegram, email, a USB drive — it doesn't matter.
 2. Tap the file. The Shortcuts app opens with a "Poly" card — tap **Add Shortcut**. Done, Poly is installed.
    - If the file arrived in a messaging app, tap it there first, choose Share/"Open in…", then pick Shortcuts.

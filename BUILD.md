@@ -70,3 +70,5 @@ in the prompt and `menu.*_items` together, so the recommendation matches a real 
 `python3 tools/verify.py` compares your locale against `en`: every ui key present, all 21 prompts
 present, menu arrays the right length, and — for anything already built — that the signed files
 match what the sources produce and stay structurally valid.
+
+iCloud-ссылки (README, docs/*/install.md, poly-a1 src/shortcutLinks.ts, сайт /duo) сделаны с текущих подписанных файлов Duo/Trio; если файл команды изменится — ссылки пересоздать (Поделиться → Скопировать ссылку iCloud) и заменить везде.

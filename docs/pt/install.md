@@ -9,6 +9,17 @@ O Poly é um "atalho" para iPhone: você faz uma pergunta e ela é trabalhada po
 
 ## Instalação (um toque)
 
+### O mais fácil — o link do iCloud (um toque)
+
+No iPhone, toque no link → o app Atalhos abre → **Adicionar Atalho**. Na primeira execução o atalho pede permissão 4–6 vezes — toque em **Sempre Permitir** todas as vezes.
+
+- **Duo:** https://www.icloud.com/shortcuts/97b961ef17324dbd84f50e10ef546001
+- **Trio** (a terceira voz, veja abaixo): https://www.icloud.com/shortcuts/d16f65cac91542309dcbe351def9b6df
+
+### Alternativa — o arquivo
+
+Os arquivos assinados `Duo.shortcut` e `Trio.shortcut` estão em [polyhelper.ai/duo/pt/](https://polyhelper.ai/duo/pt/) e na [versão do GitHub](https://github.com/vadimchernets/c1m-duo/releases/tag/v1.0.0). Ou então:
+
 1. Leve o arquivo **`dist/pt/Poly.shortcut`** até o telefone do jeito que preferir: AirDrop, WhatsApp/Telegram, e-mail, um pen drive — tanto faz.
 2. Toque no arquivo. O app Atalhos abre com um cartão "Poly" — toque em **Adicionar Atalho**. Pronto, o Poly está instalado.
    - Se o arquivo chegou por um mensageiro, toque nele lá primeiro, escolha Compartilhar/"Abrir em…" e então selecione Atalhos.
