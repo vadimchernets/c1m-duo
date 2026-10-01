@@ -155,6 +155,11 @@ ChatGPT answers → Claude checks → third voice (NVIDIA → Gemini → Groq �
   DeepSeek V4.1 Flash — the strongest free models), Google AI Studio (Gemini Flash), Groq (Qwen,
   gpt-oss) and OpenRouter (its `:free` models and OpenRouter's free router). Save one or several; Trio walks every model of every key until one answers — a busy model or a spent daily
   limit moves on to the next, a key with no money or an invalid key is skipped.
+- **Your own paid key (optional, for experienced users).** Trio also recognises paid keys by how
+  they begin: `xai-` (Grok 4.7), `sk-ant-` (Claude Opus 5 → Sonnet 5), `sk-proj-`/`sk-` (OpenAI
+  GPT-6 Astra → GPT-6.1 Sol; a `sk-` + 32 hex key is DeepSeek V4 Pro). Grok and DeepSeek go first, ahead
+  of the free keys — a third company; Claude and OpenAI keys go after the free ones, since those
+  companies already speak in the pair. You pay your provider directly; nothing passes through us.
 - **The key stays out of the shortcut.** Trio asks for it once and saves it in iCloud Drive →
   Shortcuts → `poly-key.txt`. Sharing `Trio.shortcut` never shares a key.
 - **Errors in plain words.** Only if every key and model failed does the block list what each one

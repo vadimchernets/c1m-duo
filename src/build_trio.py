@@ -22,6 +22,17 @@ The keys are NOT in the shortcut. They are read from iCloud Drive → Shortcuts 
 line); on the first run the shortcut asks for them and saves them there. A shared shortcut therefore
 never carries a key.
 
+PAID keys (owner, 2026-10-01: «a well-off person may paste their own paid API keys»). Free keys stay the
+first thing a newcomer is asked for; a paid key is optional and recognised the same way, by how it begins:
+sk-ant- → Anthropic, xai- → xAI, sk-<32 hex> → DeepSeek, any other sk- (sk-proj-, sk-svcacct-…) → OpenAI.
+The person pays their provider directly; nothing passes through us. The third voice must come from a THIRD
+company — ChatGPT (OpenAI) and Claude (Anthropic) already spoke — so a paid xAI (Grok) or DeepSeek key goes
+first, ahead of every free key; a paid OpenAI or Anthropic key goes last, after the free chain: a third
+company on a free key adds more than a second word from the same company. Models checked against the
+providers' docs on 2026-10-01: grok-4.7 → grok-4.6 (docs.x.ai), deepseek-v4-pro → deepseek-flash
+(api-docs.deepseek.com), claude-opus-5 → claude-sonnet-5 (native Messages API, thinking off so the first
+content block is the text), gpt-6-astra → gpt-6.1-sol (Chat Completions, `max_completion_tokens`).
+
 Locales without locales/<lang>/trio.json are skipped: Trio ships where its words exist.
 """
 import json
@@ -74,6 +85,24 @@ GROQ_MODELS = ['qwen/qwen3.8-27b', 'openai/gpt-oss-120b']   # checked against /o
 GOOGLE_KEY_RE = r'(?:AIza[0-9A-Za-z_-]{30,}|AQ\.[0-9A-Za-z._-]{20,})'
 OPENROUTER_KEY_RE = r'sk-or-[0-9A-Za-z_-]{20,}'
 GROQ_KEY_RE = r'gsk_[A-Za-z0-9]+'
+# Paid keys (optional). Lookarounds keep one key from being read as another: a DeepSeek key is exactly
+# sk- and 32 lowercase hex characters; OpenAI is any other sk- that is not OpenRouter's or Anthropic's.
+_EDGE_L, _EDGE_R = r'(?<![0-9A-Za-z_-])', r'(?![0-9A-Za-z_-])'
+ANTHROPIC_KEY_RE = _EDGE_L + r'sk-ant-[0-9A-Za-z_-]{20,}'
+XAI_KEY_RE = _EDGE_L + r'xai-[0-9A-Za-z_-]{20,}'
+DEEPSEEK_KEY_RE = _EDGE_L + r'sk-[0-9a-f]{32}' + _EDGE_R
+OPENAI_KEY_RE = _EDGE_L + r'sk-(?!ant-|or-)(?![0-9a-f]{32}' + _EDGE_R + r')[0-9A-Za-z_-]{20,}'
+ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages'
+ANTHROPIC_MODELS = ['claude-opus-5', 'claude-sonnet-5']
+OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
+OPENAI_MODELS = ['gpt-6-astra', 'gpt-6.1-sol']
+XAI_URL = 'https://api.x.ai/v1/chat/completions'
+XAI_MODELS = ['grok-4.7', 'grok-4.6']
+DEEPSEEK_URL = 'https://api.deepseek.com/chat/completions'
+DEEPSEEK_MODELS = ['deepseek-v4-pro', 'deepseek-flash']
+ANTHROPIC_MAX_TOKENS = '4096'
+# OpenAI's reasoning models count their thinking against max_completion_tokens.
+OPENAI_MAX_TOKENS = '8000'
 # Groq's free tier allows 1000 OUTPUT tokens a minute; a request that may exceed it is refused
 # outright, so the answer is capped below that. 900 is ample for «only what both missed».
 MAX_TOKENS = '900'
@@ -132,8 +161,11 @@ def top_dict(items):
             'WFSerializationType': 'WFDictionaryFieldValue'}
 
 
-def act_post_json(url_uid, key_uid, model_uid, prompt_uid, uid, max_uid=None):
-    """POST {model, messages:[{role:user, content:prompt}], max_tokens} with a Bearer key."""
+def act_post_json(url_uid, key_uid, model_uid, prompt_uid, uid, max_uid=None,
+                  max_field='max_tokens'):
+    """POST {model, messages:[{role:user, content:prompt}], max_tokens} with a Bearer key.
+
+    OpenAI's current models refuse `max_tokens` on Chat Completions and want `max_completion_tokens`."""
     src = 'Item from List' if max_uid else 'Variable'
     body = top_dict([
         item_text('model', text_token('{M}', {'M': (model_uid, src)})),
@@ -142,12 +174,43 @@ def act_post_json(url_uid, key_uid, model_uid, prompt_uid, uid, max_uid=None):
              item_text('role', plain('user')),
              item_text('content', text_token('{P}', {'P': (prompt_uid, 'Text')})),
          ])}], 'WFSerializationType': 'WFArrayParameterState'}},
-        (item_number('max_tokens', MAX_TOKENS) if max_uid is None else
-         {'WFItemType': 3, 'WFKey': plain('max_tokens'),
+        (item_number(max_field, MAX_TOKENS) if max_uid is None else
+         {'WFItemType': 3, 'WFKey': plain(max_field),
           'WFValue': text_token('{X}', {'X': (max_uid, 'Item from List')})}),
     ])
     headers = top_dict([
         item_text('Authorization', text_token('Bearer {K}', {'K': (key_uid, src)})),
+        item_text('Content-Type', plain('application/json')),
+    ])
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.downloadurl',
+            'WFWorkflowActionParameters': {'WFURL': text_token('{U}', {'U': (url_uid, src)}),
+                                           'WFHTTPMethod': 'POST',
+                                           'ShowHeaders': True,
+                                           'WFHTTPHeaders': headers,
+                                           'WFHTTPBodyType': 'JSON',
+                                           'WFJSONValues': body,
+                                           'UUID': uid}}
+
+
+def act_post_anthropic(url_uid, key_uid, model_uid, prompt_uid, max_uid, uid):
+    """POST to Anthropic's native Messages API: `x-api-key`, `anthropic-version`, thinking off — so
+    content[0] is the text block (with thinking on, content[0] is an empty thinking block)."""
+    src = 'Item from List'
+    body = top_dict([
+        item_text('model', text_token('{M}', {'M': (model_uid, src)})),
+        {'WFItemType': 3, 'WFKey': plain('max_tokens'),
+         'WFValue': text_token('{X}', {'X': (max_uid, src)})},
+        {'WFItemType': 1, 'WFKey': plain('thinking'),
+         'WFValue': nested_dict([item_text('type', plain('disabled'))])},
+        {'WFItemType': 2, 'WFKey': plain('messages'),
+         'WFValue': {'Value': [{'WFItemType': 1, 'WFValue': nested_dict([
+             item_text('role', plain('user')),
+             item_text('content', text_token('{P}', {'P': (prompt_uid, 'Text')})),
+         ])}], 'WFSerializationType': 'WFArrayParameterState'}},
+    ])
+    headers = top_dict([
+        item_text('x-api-key', text_token('{K}', {'K': (key_uid, src)})),
+        item_text('anthropic-version', plain('2023-06-01')),
         item_text('Content-Type', plain('application/json')),
     ])
     return {'WFWorkflowActionIdentifier': 'is.workflow.actions.downloadurl',
@@ -258,29 +321,40 @@ def if_no_value(group, var_name):
 # Every free provider and its model chain. One attempt = one (model, key) pair; the shortcut walks
 # them in this order — every model of a provider over every key of that provider, then the next
 # provider — until someone answers. Names checked live on 2026-10-01 (models lists + real requests).
-PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens) — strongest free first
+PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens)
+    # paid keys of a THIRD company first (ChatGPT and Claude already spoke)
+    ('provider.xai', XAI_URL, XAI_KEY_RE, XAI_MODELS, OPENROUTER_MAX_TOKENS),
+    ('provider.deepseek', DEEPSEEK_URL, DEEPSEEK_KEY_RE, DEEPSEEK_MODELS, OPENROUTER_MAX_TOKENS),
+    # then the free keys, strongest first
     ('provider.nvidia', NVIDIA_URL, NVIDIA_KEY_RE, NVIDIA_MODELS, OPENROUTER_MAX_TOKENS),
     ('provider.gemini', GEMINI_URL, GOOGLE_KEY_RE, GEMINI_MODELS, MAX_TOKENS),
     ('provider.openrouter', OPENROUTER_URL, OPENROUTER_KEY_RE, OPENROUTER_MODELS, OPENROUTER_MAX_TOKENS),
     ('provider.groq', GROQ_URL, GROQ_KEY_RE, GROQ_MODELS, MAX_TOKENS),
+    # paid keys of the two companies already in the pair — last: same company, another model
+    ('provider.anthropic', ANTHROPIC_URL, ANTHROPIC_KEY_RE, ANTHROPIC_MODELS, ANTHROPIC_MAX_TOKENS),
+    ('provider.openai', OPENAI_URL, OPENAI_KEY_RE, OPENAI_MODELS, OPENAI_MAX_TOKENS),
 ]
 
 # What a failed reply means. «Get Contents of URL» gives no status code, so the reply's own words
 # decide: `"code": 402` (Gemini, OpenRouter) or a known phrase (Groq has no numeric code).
 # (kind, dead key?, needles in the reply) — first match wins.
 FAILS = [
-    ('billing', True, ['"code": 402', '"code":402', 'credits', 'billing']),
+    ('billing', True, ['"code": 402', '"code":402', 'credits', 'billing', 'credit balance',
+                       'insufficient_quota', 'Insufficient Balance']),
     ('region', True, ['location is not supported', 'not available in your country']),
     ('key', True, ['"code": 401', '"code":401', '"code": 403', '"code":403', 'API key', 'API Key',
                    'API_KEY', 'User not found', 'invalid_api_key', 'PERMISSION_DENIED',
-                   '"status":401', '"status":403', 'Authorization failed', 'Unauthorized']),
+                   '"status":401', '"status":403', 'Authorization failed', 'Unauthorized',
+                   'authentication_error', 'permission_error', 'Authentication Fails',
+                   'Incorrect API key']),
     ('limit', False, ['"code": 429', '"code":429', 'quota', 'rate_limit', 'rate-limited',
-                      'RESOURCE_EXHAUSTED', 'Rate limit', '"status":429', 'Too Many Requests']),
+                      'RESOURCE_EXHAUSTED', 'Rate limit', '"status":429', 'Too Many Requests',
+                      'rate_limit_error']),
     ('busy', False, ['"code": 503', '"code":503', '"code": 500', '"code":500', '"code": 502',
                      '"code":502', 'UNAVAILABLE', 'over capacity', 'high demand', 'overloaded',
                      '"status":500', '"status":502', '"status":503', '"status":504']),
     ('model', False, ['"code": 404', '"code":404', 'NOT_FOUND', 'model_not_found', 'No endpoints',
-                      '"status":404']),
+                      '"status":404', 'not_found_error']),
 ]
 
 
@@ -319,6 +393,8 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
     post, raw, raw_get, data, choices, first, message, content = (u() for _ in range(8))
     k_get, dead_get, tail_m, tail, label_n, label_m, label = (u() for _ in range(7))
     c_tail, c_clean = u(), u()
+    g_ant, g_oai, post_a, raw_a, post_o, raw_o = (u() for _ in range(6))
+    a_ok, a_has, a_data, a_content, a_first, a_text = (u() for _ in range(6))
     actions += [
         repeat_each(loop, lines, 'Matches'),
         act_set_from_repeat_item(attempts_v),
@@ -334,10 +410,26 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
         # a key that already said «no money» / «invalid» is not asked again
         if_contains_ref(skip_dead, dead_v, k_get, 'Variable'),
         if_else(skip_dead),
+        # three dialects: Anthropic's own, OpenAI's with max_completion_tokens, everyone else
+        if_contains(g_ant, V['url'], 'api.anthropic.com'),
+        act_post_anthropic(f_url, f_key, f_model, prompt_uid, f_max, post_a),
+        act_set_variable(V['data'], post_a, 'Contents of URL'),
+        act_text(text_token('{R}', {'R': (post_a, 'Contents of URL')}), raw_a),
+        act_set_variable(V['raw'], raw_a, 'Text'),
+        if_else(g_ant),
+        if_contains(g_oai, V['url'], 'api.openai.com'),
+        act_post_json(f_url, f_key, f_model, prompt_uid, post_o, max_uid=f_max,
+                      max_field='max_completion_tokens'),
+        act_set_variable(V['data'], post_o, 'Contents of URL'),
+        act_text(text_token('{R}', {'R': (post_o, 'Contents of URL')}), raw_o),
+        act_set_variable(V['raw'], raw_o, 'Text'),
+        if_else(g_oai),
         act_post_json(f_url, f_key, f_model, prompt_uid, post, max_uid=f_max),
         act_set_variable(V['data'], post, 'Contents of URL'),
         act_text(text_token('{R}', {'R': (post, 'Contents of URL')}), raw),
         act_set_variable(V['raw'], raw, 'Text'),
+        if_close(g_oai),
+        if_close(g_ant),
         act_get_variable(V['provider'], label_n),
         act_get_variable(V['model'], label_m),
         act_text(text_token('{N} · {M}', {'N': (label_n, 'Variable'), 'M': (label_m, 'Variable')}), label),
@@ -356,6 +448,20 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
         *set_text(why_v, T['why.empty'], u()),
         if_close(has_text),
         if_else(ok),
+        # Anthropic's answer: {"content":[{"type":"text","text":…}], "stop_reason":…}; its errors
+        # never carry stop_reason
+        if_contains(a_ok, V['raw'], 'stop_reason'),
+        act_get_variable(V['data'], a_data),
+        act_value('content', a_data, 'Variable', a_content),
+        act_first_item(a_content, 'Dictionary Value', a_first),
+        act_value('text', a_first, 'Item from List', a_text),
+        if_output_has_value(a_has, a_text, 'Dictionary Value'),
+        act_set_variable(V['third'], a_text, 'Dictionary Value'),
+        act_set_variable(V['provider'], label, 'Text'),
+        if_else(a_has),
+        *set_text(why_v, T['why.empty'], u()),
+        if_close(a_has),
+        if_else(a_ok),
     ]
 
     groups = []
@@ -373,6 +479,7 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
             actions.append(if_else(group))
     actions += set_text(why_v, T['why.other'], u())
     actions += [if_close(group) for group in reversed(groups)]
+    actions.append(if_close(a_ok))
     actions.append(if_close(ok))
 
     # one line of the honest list: «• Gemini · gemini-3.8-flash (key …x1Ab): overloaded»
