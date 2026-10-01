@@ -1,14 +1,20 @@
 # C1M (Duo)
 
-**Claude and ChatGPT check each other with one button — through your own apps, no server, no API key,
-no new subscription. Nothing like it exists anywhere else.**
+**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No paid keys, no servers, no computer, nothing more to pay.**
 
-**Claude и ChatGPT проверяют друг друга по одной кнопке — через ваши собственные приложения, без
-сервера, без API-ключа, без новой подписки. Такого в мире нет.**
+Have ChatGPT and Claude? Start right away. Have one? It helps you install the other. Have neither? Gemini (Google) or Meta AI (WhatsApp, Facebook) helps you install both, free.
+
+**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без платных ключей, серверов, компьютера и доплат.**
+
+Есть ChatGPT и Claude — начинаете сразу. Есть один — он поможет поставить второй. Нет ни одного — Gemini (Google) или Meta AI (WhatsApp, Facebook) помогут поставить оба, бесплатно.
+
+### How it works
+
+The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours and no API keys, on your own accounts — free ones are enough. Android: the phone calls free AIs (Groq, OpenRouter, Google AI Studio) directly with your free key — no card, no server of ours; or by hand with your ChatGPT and Claude. Nothing like it exists anywhere else.
 
 C1M is the source of **Duo** and **Trio**, two iPhone shortcuts from the
 [Poly A1](https://polyhelper.ai/) family. They run on the ChatGPT and Claude apps already on your
-phone and on the subscriptions you already pay for, through the Shortcuts actions those apps publish
+phone and on your own accounts — free ones are enough — through the Shortcuts actions those apps publish
 themselves. Nothing goes through a server of ours — there isn't one.
 
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -45,7 +51,7 @@ shortcut by that name.
 
 - iPhone on **iOS 18 or later** (iPad on iPadOS 18+ is expected to work, untested).
 - The **ChatGPT** and **Claude** apps, installed and signed in.
-- A **paid Claude plan** — on a free account the Claude action answers "model isn't available".
+- Your own ChatGPT and Claude accounts — free ones are enough (free Claude runs Sonnet 5.5).
 - For **Trio**: any free key (no card) — [Google AI Studio](https://aistudio.google.com/apikey),
   [OpenRouter](https://openrouter.ai/keys) or [Groq](https://console.groq.com/keys); several keys,
   one per line, make it sturdier. On the first run iPhone asks for permission 4–5 times — tap
@@ -216,7 +222,7 @@ journal (`Poly-journal.md`) is a plain text file in your own iCloud Drive; delet
 action or the file if you don't want a history. A paid iCloud plan is not required — without
 iCloud the answer still reaches your screen and clipboard, only the journal is skipped.
 
-Message consumption comes out of your ChatGPT and Claude subscriptions, 1 to 4 per run, from the
+Message consumption comes out of your own ChatGPT and Claude plans (free or paid), 1 to 4 per run, from the
 same allowance as your normal chats — and the ✉ badge in the menu tells you the price before you
 pick a mode. The code is open source under the Apache License 2.0 — see [LICENSE](LICENSE).
 
@@ -225,10 +231,10 @@ pick a mode. The code is open source under the Apache License 2.0 — see [LICEN
 Worth knowing before you install:
 
 - **iPhone only, iOS 18 or later.** iPad is expected to work on iPadOS 18+, but it is untested.
-- **A paid Claude plan is required.** On a free account the Claude action can come back with
-  "model isn't available."
+- **Free plans have limits.** Free Claude runs Sonnet 5.5, with session limits that reset every
+  5 hours; free ChatGPT has its own. See the note at the end of this page.
 - **A run takes about a minute**, closer to two in the multi-step modes.
-- **It spends messages from your subscriptions**, not from an API budget.
+- **It spends messages from your own plans**, not from an API budget.
 - **Touching the screen cancels the run.** That's a limit of Apple's platform, not a choice we
   made. The one exception is **Clarify**, which opens its own window and asks you to answer.
 - **You can't pick the model from inside Poly.** Each app uses whatever is set as its default, so
@@ -292,3 +298,7 @@ Poly is a personal tool — not professional advice and not a fact-checker. Plea
 
 Copyright 2026 Vadym Chernets. Licensed under the [Apache License 2.0](LICENSE); see also
 [NOTICE](NOTICE) and [TRADEMARKS.md](TRADEMARKS.md).
+
+---
+
+<sub>Free Claude runs Sonnet 5.5, with session limits that reset every 5 hours. Ran out and you like Claude? Claude Pro is $20/month ($17 billed yearly), paid to Anthropic, not us — many more messages. Optional: everything works free. Free ChatGPT, Claude and keys have their own limits.</sub>
