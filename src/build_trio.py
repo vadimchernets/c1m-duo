@@ -10,15 +10,17 @@ Trio is the Critique pair plus a third voice from a third company:
   3. a third model, reached with «Get Contents of URL» on a FREE key, names only the errors and gaps
      that BOTH missed (prompt trio.txt). Its words come back as a separate block, never merged.
 
-The third voice speaks the OpenAI chat-completions dialect, so one request template serves both
-providers: Google AI Studio (Gemini Flash, the default) and Groq (Qwen). Keys are told apart by their
-shape: a Groq key starts with «gsk_», any other long token is Google's. With both keys saved, Qwen on
-Groq stands in when Gemini is out for the day (quota) or still overloaded after one retry, and the
-block header says so.
+The third voice speaks the OpenAI chat-completions dialect, so one request template serves every
+free provider: Google AI Studio (Gemini Flash), OpenRouter (its `:free` models) and Groq. The person
+may save any number of free keys; each is recognised by how it begins (AIza/AQ. → Google, sk-or- →
+OpenRouter, gsk_ → Groq). Trio walks every model of every key until one answers: a busy model (503)
+or a spent daily limit (429) moves to the next model, a key with no money (402) or an invalid key (401)
+is not asked again. Only when all of them failed does the block say what each one answered and what
+to do — never «invalid key» for a key that merely ran out of money or was busy.
 
-The keys are NOT in the shortcut. They are read from iCloud Drive → Shortcuts → poly-key.txt; on the
-first run the shortcut asks for them (Gemini, then Groq — optional) and saves them there. A shared
-shortcut therefore never carries a key.
+The keys are NOT in the shortcut. They are read from iCloud Drive → Shortcuts → poly-key.txt (one per
+line); on the first run the shortcut asks for them and saves them there. A shared shortcut therefore
+never carries a key.
 
 Locales without locales/<lang>/trio.json are skipped: Trio ships where its words exist.
 """
@@ -38,19 +40,29 @@ from build_shortcut import (  # noqa: E402
 )
 
 GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'
-GEMINI_MODEL = 'gemini-3.8-flash'      # checked against /v1beta/openai/models on 2026-10-01
+# Free quota is counted per model (~20 a day each), and a model may be «high demand» (503) while the
+# next one answers — so one key walks a chain. Checked live 2026-10-01: 3.8 answered 503, 3.6 and 2.5
+# answered; a key with a spent prepaid balance answers 402 on every model.
+GEMINI_MODELS = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-2.5-flash']
+OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
+# OpenRouter's free models (`:free`, price 0), four companies; checked against /api/v1/models and
+# with real requests on 2026-10-01. `openrouter/free` is OpenRouter's own router over whichever free
+# model is up — the last resort. Nemotron Ultra (empty replies) and Inkling (agent apps only) left out.
+OPENROUTER_MODELS = ['nvidia/nemotron-3-super-120b-a12b:free', 'qwen/qwen3.8-27b:free',
+                     'google/gemma-4-31b-it:free', 'openrouter/free']
 GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
-GROQ_MODEL = 'qwen/qwen3.8-27b'        # checked against /openai/v1/models on 2026-10-01
-# Keys are picked out of poly-key.txt by their shape, so the person may paste one key or both, in any
-# order, with any spaces or line breaks around them. Groq keys start with gsk_; a Google AI Studio key
-# is any other long token (AIza… in the old format, AQ.… in the new one).
+GROQ_MODELS = ['qwen/qwen3.8-27b', 'openai/gpt-oss-120b']   # checked against /openai/v1/models
+# Keys are picked out of poly-key.txt by how they begin, so the person may paste any number of keys,
+# in any order, with any spaces or line breaks around them: AIza… / AQ.… → Google AI Studio,
+# sk-or-… → OpenRouter, gsk_… → Groq.
+GOOGLE_KEY_RE = r'(?:AIza[0-9A-Za-z_-]{30,}|AQ\.[0-9A-Za-z._-]{20,})'
+OPENROUTER_KEY_RE = r'sk-or-[0-9A-Za-z_-]{20,}'
 GROQ_KEY_RE = r'gsk_[A-Za-z0-9]+'
-GOOGLE_KEY_RE = r'(?<![A-Za-z0-9_.-])(?!gsk_)[A-Za-z0-9][A-Za-z0-9._-]{19,}'
-# Gemini answered «no» for reasons that pass by tomorrow or in a minute: the free quota or overload.
-GEMINI_DOWN_RE = r'quota|UNAVAILABLE|RESOURCE_EXHAUSTED'
 # Groq's free tier allows 1000 OUTPUT tokens a minute; a request that may exceed it is refused
 # outright, so the answer is capped below that. 900 is ample for «only what both missed».
 MAX_TOKENS = '900'
+# OpenRouter's free models think before they answer; the thinking counts against max_tokens.
+OPENROUTER_MAX_TOKENS = '4000'
 
 
 # ---------------------------------------------------------------- actions this shortcut adds
@@ -104,23 +116,26 @@ def top_dict(items):
             'WFSerializationType': 'WFDictionaryFieldValue'}
 
 
-def act_post_json(url_uid, key_uid, model_uid, prompt_uid, uid):
+def act_post_json(url_uid, key_uid, model_uid, prompt_uid, uid, max_uid=None):
     """POST {model, messages:[{role:user, content:prompt}], max_tokens} with a Bearer key."""
+    src = 'Item from List' if max_uid else 'Variable'
     body = top_dict([
-        item_text('model', text_token('{M}', {'M': (model_uid, 'Variable')})),
+        item_text('model', text_token('{M}', {'M': (model_uid, src)})),
         {'WFItemType': 2, 'WFKey': plain('messages'),
          'WFValue': {'Value': [{'WFItemType': 1, 'WFValue': nested_dict([
              item_text('role', plain('user')),
              item_text('content', text_token('{P}', {'P': (prompt_uid, 'Text')})),
          ])}], 'WFSerializationType': 'WFArrayParameterState'}},
-        item_number('max_tokens', MAX_TOKENS),
+        (item_number('max_tokens', MAX_TOKENS) if max_uid is None else
+         {'WFItemType': 3, 'WFKey': plain('max_tokens'),
+          'WFValue': text_token('{X}', {'X': (max_uid, 'Item from List')})}),
     ])
     headers = top_dict([
-        item_text('Authorization', text_token('Bearer {K}', {'K': (key_uid, 'Variable')})),
+        item_text('Authorization', text_token('Bearer {K}', {'K': (key_uid, src)})),
         item_text('Content-Type', plain('application/json')),
     ])
     return {'WFWorkflowActionIdentifier': 'is.workflow.actions.downloadurl',
-            'WFWorkflowActionParameters': {'WFURL': text_token('{U}', {'U': (url_uid, 'Variable')}),
+            'WFWorkflowActionParameters': {'WFURL': text_token('{U}', {'U': (url_uid, src)}),
                                            'WFHTTPMethod': 'POST',
                                            'ShowHeaders': True,
                                            'WFHTTPHeaders': headers,
@@ -154,89 +169,222 @@ def act_wait(seconds):
             'WFWorkflowActionParameters': {'WFDelayTime': seconds}}
 
 
-def third_voice(T, V, prompt_uid):
-    """From the finished trio prompt to the variable V['third'] holding the third voice's words.
+def act_replace(src_uid, src_name, find, repl, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.text.replace',
+            'WFWorkflowActionParameters': {'WFInput': text_token('{T}', {'T': (src_uid, src_name)}),
+                                           'WFReplaceTextFind': find,
+                                           'WFReplaceTextReplace': repl,
+                                           'WFReplaceTextRegularExpression': True,
+                                           'WFReplaceTextCaseSensitive': True,
+                                           'UUID': uid}}
 
-    Expects V['url'], V['model'], V['key'] to be set. Shared with the Mac probe, so what is tested
-    on a Mac is exactly what ships.
+
+def act_combine(src_uid, src_name, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.text.combine',
+            'WFWorkflowActionParameters': {'text': attachment(src_uid, src_name),
+                                           'WFTextSeparator': 'New Lines', 'UUID': uid}}
+
+
+def act_split(src_uid, src_name, separator, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.text.split',
+            'WFWorkflowActionParameters': {'text': text_token('{T}', {'T': (src_uid, src_name)}),
+                                           'WFTextSeparator': 'Custom',
+                                           'WFTextCustomSeparator': separator, 'UUID': uid}}
+
+
+def act_item_at(src_uid, src_name, index, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.getitemfromlist',
+            'WFWorkflowActionParameters': {'WFItemSpecifier': 'Item At Index', 'WFItemIndex': index,
+                                           'WFInput': attachment(src_uid, src_name), 'UUID': uid}}
+
+
+def repeat_each(group, src_uid, src_name):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.repeat.each',
+            'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 0,
+                                           'WFInput': attachment(src_uid, src_name)}}
+
+
+def repeat_each_close(group):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.repeat.each',
+            'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 2}}
+
+
+def act_set_from_repeat_item(var_name):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.setvariable',
+            'WFWorkflowActionParameters': {'WFVariableName': var_name,
+                                           'WFInput': {'Value': {'Type': 'Variable',
+                                                                 'VariableName': 'Repeat Item'},
+                                                       'WFSerializationType': 'WFTextTokenAttachment'}}}
+
+
+def if_contains_ref(group, var_name, src_uid, src_name):
+    """If <variable> contains the text of an earlier action's output."""
+    action = if_contains(group, var_name, '')
+    action['WFWorkflowActionParameters']['WFConditionalActionString'] = \
+        text_token('{N}', {'N': (src_uid, src_name)})
+    return action
+
+
+def if_output_has_value(group, src_uid, src_name):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.conditional',
+            'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 0,
+                                           'WFCondition': 100,
+                                           'WFInput': {'Type': 'Variable',
+                                                       'Variable': attachment(src_uid, src_name)}}}
+
+
+def if_no_value(group, var_name):
+    action = if_has_value(group, var_name)
+    action['WFWorkflowActionParameters']['WFCondition'] = 101  # «does not have any value»
+    return action
+
+
+# Every free provider and its model chain. One attempt = one (model, key) pair; the shortcut walks
+# them in this order — every model of a provider over every key of that provider, then the next
+# provider — until someone answers. Names checked live on 2026-10-01 (models lists + real requests).
+PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens)
+    ('provider.gemini', GEMINI_URL, GOOGLE_KEY_RE, GEMINI_MODELS, MAX_TOKENS),
+    ('provider.openrouter', OPENROUTER_URL, OPENROUTER_KEY_RE, OPENROUTER_MODELS, OPENROUTER_MAX_TOKENS),
+    ('provider.groq', GROQ_URL, GROQ_KEY_RE, GROQ_MODELS, MAX_TOKENS),
+]
+
+# What a failed reply means. «Get Contents of URL» gives no status code, so the reply's own words
+# decide: `"code": 402` (Gemini, OpenRouter) or a known phrase (Groq has no numeric code).
+# (kind, dead key?, needles in the reply) — first match wins.
+FAILS = [
+    ('billing', True, ['"code": 402', '"code":402', 'credits', 'billing']),
+    ('region', True, ['location is not supported', 'not available in your country']),
+    ('key', True, ['"code": 401', '"code":401', '"code": 403', '"code":403', 'API key', 'API Key',
+                   'API_KEY', 'User not found', 'invalid_api_key', 'PERMISSION_DENIED']),
+    ('limit', False, ['"code": 429', '"code":429', 'quota', 'rate_limit', 'rate-limited',
+                      'RESOURCE_EXHAUSTED', 'Rate limit']),
+    ('busy', False, ['"code": 503', '"code":503', '"code": 500', '"code":500', '"code": 502',
+                     '"code":502', 'UNAVAILABLE', 'over capacity', 'high demand', 'overloaded']),
+    ('model', False, ['"code": 404', '"code":404', 'NOT_FOUND', 'model_not_found', 'No endpoints']),
+]
+
+
+def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
+    """From the finished trio prompt and the saved keys text to V['third'] holding the third voice.
+
+    Every key the person saved is tried with every model of its provider until one answers; a key
+    that answered «no money» or «invalid» is not asked again. Only when all failed does V['third']
+    get an honest list of what each one said. Shared with the Mac probe, so what is tested on a Mac
+    is exactly what ships.
     """
-    ids = lambda n: [new_uuid() for _ in range(n)]
-    url, model, key, post, raw = ids(5)
-    url2, model2, key2, post2, raw2 = ids(5)
-    data, choices, first, message, content, raw_var = ids(6)
-    g_busy, g_ok, g_down, g_groq = ids(4)
-    url3, model3, key3, post3, raw3, raw_check, down, groq_key = ids(8)
+    u = new_uuid
+    var = lambda name, default: V.get(name, default)
+    attempts_v, log_v, dead_v, why_v = (var('attempts', 'Attempts'), var('log', 'Log'),
+                                         var('dead', 'DeadKeys'), var('why', 'Why'))
+    actions = []
 
-    def request(u_url, u_model, u_key, u_post, u_raw):
-        return [act_get_variable(V['url'], u_url),
-                act_get_variable(V['model'], u_model),
-                act_get_variable(V['key'], u_key),
-                act_post_json(u_url, u_key, u_model, prompt_uid, u_post),
-                act_set_variable(V['data'], u_post, 'Contents of URL'),
-                act_text(text_token('{R}', {'R': (u_post, 'Contents of URL')}), u_raw),
-                act_set_variable(V['raw'], u_raw, 'Text')]
+    # ---- the attempt list: one line «url|model|key|provider|max_tokens» per (model, key)
+    parts = {}
+    for n, (name_key, url, key_re, models, max_tokens) in enumerate(PROVIDERS):
+        found, joined = u(), u()
+        actions += [act_match(key_re, keys_uid, keys_name, found),
+                    act_combine(found, 'Matches', joined)]
+        for m, model in enumerate(models):
+            line = u()
+            actions.append(act_replace(joined, 'Combined Text', r'([^\n]+)',
+                                       f'{url}|{model}|$1|{T[name_key]}|{max_tokens}', line))
+            parts[f'P{n}_{m}'] = (line, 'Updated Text')
+    all_lines, lines = u(), u()
+    actions += [act_text(text_token('\n'.join('{%s}' % k for k in parts), parts), all_lines),
+                act_match(r'[^\n]+', all_lines, 'Text', lines)]
 
-    # error branch: the reply did not carry «choices». Gemini wraps errors in a list, Groq in a dict,
-    # and «Get Contents of URL» hands back no status code — so the reply's own words decide.
-    errors = [  # (needle, message) — first match wins
-        ('quota', T['error.limit']),            # Gemini 429: per-minute or daily free quota
-        ('rate_limit', T['error.limit']),       # Groq 429 / request too large for the free tier
-        ('API key', T['error.key']),            # Gemini 400 «Please pass a valid API key»
-        ('API Key', T['error.key']),            # Groq 401 «Invalid API Key»
-        ('API_KEY', T['error.key']),            # Gemini «API_KEY_INVALID»
-        ('UNAVAILABLE', T['error.busy']),       # Gemini 503 «high demand»
-        ('over capacity', T['error.busy']),     # Groq 503
-        ('NOT_FOUND', T['error.model']),        # model renamed or withdrawn
-        ('model_not_found', T['error.model']),
-    ]
-    error_actions, groups = [], []
-    for needle, text in errors:
-        group = new_uuid()
-        groups.append(group)
-        error_actions += [if_contains(group, V['raw'], needle),
-                          *set_text(V['third'], text, new_uuid()),
-                          if_else(group)]
-    error_actions += [act_get_variable(V['raw'], raw_var),
-                      *set_text(V['third'], T['error.other'] + '\n{R}', new_uuid(),
-                                {'R': (raw_var, 'Variable')})]
-    error_actions += [if_close(group) for group in reversed(groups)]
-
-    return [
-        *request(url, model, key, post, raw),
-        # Gemini's free Flash answers «high demand» (503) often enough in autumn 2026 that one quiet
-        # retry after a pause turns most of those into an answer.
-        if_contains(g_busy, V['raw'], 'UNAVAILABLE'),
-        act_notify(T['name'], T['notify.retry']),
-        act_wait(10),
-        *request(url2, model2, key2, post2, raw2),
-        if_close(g_busy),
-        act_get_variable(V['raw'], raw_check),
-        # Gemini is out for today (quota) or still overloaded, and the person also saved a Groq key:
-        # the third voice moves to Qwen on Groq instead of falling silent, and says so in its header.
-        act_match(GEMINI_DOWN_RE, raw_check, 'Variable', down),
-        act_set_variable(V['gemini_down'], down, 'Matches'),
-        if_has_value(g_down, V['gemini_down']),
-        if_has_value(g_groq, V['groq_key']),
-        act_notify(T['name'], T['notify.fallback']),
-        act_get_variable(V['groq_key'], groq_key),
-        *set_text(V['key'], '{K}', new_uuid(), {'K': (groq_key, 'Variable')}),
-        *set_text(V['url'], GROQ_URL, new_uuid()),
-        *set_text(V['model'], GROQ_MODEL, new_uuid()),
-        *set_text(V['provider'], T['provider.groq_fallback'], new_uuid()),
-        *request(url3, model3, key3, post3, raw3),
-        if_close(g_groq),
-        if_close(g_down),
-        if_contains(g_ok, V['raw'], 'choices'),
+    loop, skip_done, skip_dead, ok, has_text = u(), u(), u(), u(), u()
+    attempt, split = u(), u()
+    f_url, f_model, f_key, f_name, f_max = u(), u(), u(), u(), u()
+    post, raw, raw_get, data, choices, first, message, content = (u() for _ in range(8))
+    k_get, dead_get, tail_m, tail, label_n, label_m, label = (u() for _ in range(7))
+    actions += [
+        repeat_each(loop, lines, 'Matches'),
+        act_set_from_repeat_item(attempts_v),
+        if_no_value(skip_done, V['third']),
+        act_get_variable(attempts_v, attempt),
+        act_split(attempt, 'Variable', '|', split),
+        act_item_at(split, 'Split Text', 1, f_url), act_set_variable(V['url'], f_url, 'Item from List'),
+        act_item_at(split, 'Split Text', 2, f_model), act_set_variable(V['model'], f_model, 'Item from List'),
+        act_item_at(split, 'Split Text', 3, f_key), act_set_variable(V['key'], f_key, 'Item from List'),
+        act_item_at(split, 'Split Text', 4, f_name), act_set_variable(V['provider'], f_name, 'Item from List'),
+        act_item_at(split, 'Split Text', 5, f_max),
+        act_get_variable(V['key'], k_get),
+        # a key that already said «no money» / «invalid» is not asked again
+        if_contains_ref(skip_dead, dead_v, k_get, 'Variable'),
+        if_else(skip_dead),
+        act_post_json(f_url, f_key, f_model, prompt_uid, post, max_uid=f_max),
+        act_set_variable(V['data'], post, 'Contents of URL'),
+        act_text(text_token('{R}', {'R': (post, 'Contents of URL')}), raw),
+        act_set_variable(V['raw'], raw, 'Text'),
+        act_get_variable(V['provider'], label_n),
+        act_get_variable(V['model'], label_m),
+        act_text(text_token('{N} · {M}', {'N': (label_n, 'Variable'), 'M': (label_m, 'Variable')}), label),
+        if_contains(ok, V['raw'], '"choices"'),
         act_get_variable(V['data'], data),
         act_value('choices', data, 'Variable', choices),
         act_first_item(choices, 'Dictionary Value', first),
         act_value('message', first, 'Item from List', message),
         act_value('content', message, 'Dictionary Value', content),
+        if_output_has_value(has_text, content, 'Dictionary Value'),
         act_set_variable(V['third'], content, 'Dictionary Value'),
-        if_else(g_ok),
-        *error_actions,
-        if_close(g_ok),
+        act_set_variable(V['provider'], label, 'Text'),
+        if_else(has_text),
+        *set_text(why_v, T['why.empty'], u()),
+        if_close(has_text),
+        if_else(ok),
     ]
+
+    groups = []
+    for kind, dead, needles in FAILS:
+        for needle in needles:
+            group = u()
+            groups.append(group)
+            actions += [if_contains(group, V['raw'], needle), *set_text(why_v, T[f'why.{kind}'], u())]
+            if dead:
+                d_old, d_new = u(), u()
+                actions += [act_get_variable(dead_v, d_old),
+                            act_text(text_token('{D}\n{K}', {'D': (d_old, 'Variable'),
+                                                            'K': (k_get, 'Variable')}), d_new),
+                            act_set_variable(dead_v, d_new, 'Text')]
+            actions.append(if_else(group))
+    actions += set_text(why_v, T['why.other'], u())
+    actions += [if_close(group) for group in reversed(groups)]
+    actions.append(if_close(ok))
+
+    # one line of the honest list: «• Gemini · gemini-3.8-flash (key …x1Ab): overloaded»
+    why_get, log_old, log_new = u(), u(), u()
+    actions += [
+        if_has_value(has_why := u(), why_v),
+        act_match(r'.{4}$', k_get, 'Variable', tail_m),
+        act_first_item(tail_m, 'Matches', tail),
+        act_get_variable(why_v, why_get),
+        act_get_variable(log_v, log_old),
+        act_text(text_token('{L}\n• {P} (…{K}): {W}', {'L': (log_old, 'Variable'), 'P': (label, 'Text'),
+                                                       'K': (tail, 'Item from List'),
+                                                       'W': (why_get, 'Variable')}), log_new),
+        act_set_variable(log_v, log_new, 'Text'),
+        *set_text(why_v, '', u()),
+        if_close(has_why),
+        if_close(skip_dead),
+        if_close(skip_done),
+        repeat_each_close(loop),
+    ]
+
+    # ---- nobody answered: say what each one said and what to do
+    none, any_log, log_get = u(), u(), u()
+    actions += [
+        if_no_value(none, V['third']),
+        if_has_value(any_log, log_v),
+        act_get_variable(log_v, log_get),
+        *set_text(V['third'], T['error.all'], u(), {'L': (log_get, 'Variable')}),
+        if_else(any_log),
+        *set_text(V['third'], T['error.nokeys'], u()),
+        if_close(any_log),
+        *set_text(V['provider'], T['provider.none'], u()),
+        if_close(none),
+    ]
+    return actions
 
 
 # ---------------------------------------------------------------- build
@@ -252,56 +400,29 @@ def build(lang):
     V = T['variables']
 
     ids = lambda n: [new_uuid() for _ in range(n)]
-    k_get, k_file, k_ask, k_ask2, k_both, k_save, k_var = ids(7)
-    k_groq_m, k_groq_1, k_groq, k_gem_m, k_gem_1, k_gem = ids(6)
-    p_g_key, p_g_key2, p_q_key, p_q_key2 = ids(4)
-    p_g_url, p_g_model, p_g_name, p_q_url, p_q_model, p_q_name = ids(6)
+    k_get, k_file, k_ask, k_save, k_var = ids(5)
     question, wrap, gpt, critique, claude = ids(5)
     t_prompt, = ids(1)
     f_third, f_provider, f_claude, f_out = ids(4)
-    g_key, g_provider = ids(2)
+    g_key, = ids(1)
     Q = {'Q': (question, 'Provided Input')}
 
     actions = [
         act_comment(T['comment']),
 
         # ---- the keys: from iCloud Drive → Shortcuts → poly-key.txt, or asked once and saved there.
-        # The first run offers both free keys: Gemini (the third voice) and, if the person wants,
-        # Groq (the stand-in when Gemini is out for the day or overloaded).
+        # Any number of free keys, one per line; each is recognised by how it begins.
         act_get_file(T['files.key'], k_get),
         act_set_variable(V['key_file'], k_get, 'File'),
         if_has_value(g_key, V['key_file']),
         *set_text(V['keys'], '{F}', k_file, {'F': (k_get, 'File')}),
         if_else(g_key),
-        act_ask(T['ask.key'], k_ask),
-        act_ask(T['ask.key2'], k_ask2, default='-'),
-        act_text(text_token('{A}\n{B}\n', {'A': (k_ask, 'Provided Input'),
-                                            'B': (k_ask2, 'Provided Input')}), k_both),
-        act_save_file(T['files.key'], k_both, k_save),
-        act_set_variable(V['keys'], k_both, 'Text'),
+        dict(act_ask(T['ask.key'], k_ask), WFWorkflowActionParameters={
+            **act_ask(T['ask.key'], k_ask)['WFWorkflowActionParameters'], 'WFAllowsMultilineText': True}),
+        act_save_file(T['files.key'], k_ask, k_save),
+        act_set_variable(V['keys'], k_ask, 'Provided Input'),
         if_close(g_key),
         act_get_variable(V['keys'], k_var),
-        act_match(GROQ_KEY_RE, k_var, 'Variable', k_groq_m),
-        act_first_item(k_groq_m, 'Matches', k_groq_1),
-        *set_text(V['groq_key'], '{K}', k_groq, {'K': (k_groq_1, 'Item from List')}),
-        act_match(GOOGLE_KEY_RE, k_var, 'Variable', k_gem_m),
-        act_first_item(k_gem_m, 'Matches', k_gem_1),
-        *set_text(V['gemini_key'], '{K}', k_gem, {'K': (k_gem_1, 'Item from List')}),
-
-        # ---- Gemini speaks third when its key is there; with only a Groq key, Qwen does
-        if_has_value(g_provider, V['gemini_key']),
-        act_get_variable(V['gemini_key'], p_g_key),
-        *set_text(V['key'], '{K}', p_g_key2, {'K': (p_g_key, 'Variable')}),
-        *set_text(V['url'], GEMINI_URL, p_g_url),
-        *set_text(V['model'], GEMINI_MODEL, p_g_model),
-        *set_text(V['provider'], T['provider.gemini'], p_g_name),
-        if_else(g_provider),
-        act_get_variable(V['groq_key'], p_q_key),
-        *set_text(V['key'], '{K}', p_q_key2, {'K': (p_q_key, 'Variable')}),
-        *set_text(V['url'], GROQ_URL, p_q_url),
-        *set_text(V['model'], GROQ_MODEL, p_q_model),
-        *set_text(V['provider'], T['provider.groq'], p_q_name),
-        if_close(g_provider),
 
         # ---- the pair, exactly as Critique in Poly: ChatGPT answers, Claude checks
         act_ask(T['ask.question'], question, prefill_from_share=True),
@@ -323,7 +444,7 @@ def build(lang):
                             {'QUESTION': (question, 'Provided Input'),
                              'GPT_ANSWER': (gpt, 'Ask ChatGPT'),
                              'CLAUDE_ANSWER': (claude, 'Ask Claude')}), t_prompt),
-        *third_voice(T, V, t_prompt),
+        *third_voice(T, V, t_prompt, k_var),
 
         # ---- one document: Claude's checked answer, then the third voice as its own block
         act_get_variable(V['third'], f_third),

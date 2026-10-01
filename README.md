@@ -24,11 +24,12 @@ themselves. Nothing goes through a server of ours — there isn't one.
   screen and in the clipboard, in about a minute. That is the default mode, **Critique**; ten more
   modes (debate, side by side, dispute map, decision, …) are one tap away. Spends 1–4 messages from
   your own ChatGPT and Claude plans per run — no keys at all.
-- **Trio** — Duo plus a third voice from a third company. After Claude's check, Gemini Flash on a
-  **free** Google AI Studio key names only the errors and gaps both of them missed; its words come
-  as a separate block under Claude's answer. An optional free Groq key lets Qwen stand in when
-  Gemini's daily quota runs out. Keys are never inside the shortcut: asked once on the first run and
-  kept in your iCloud Drive (`Shortcuts/poly-key.txt`).
+- **Trio** — Duo plus a third voice from a third company. After Claude's check, a free AI names
+  only the errors and gaps both of them missed; its words come as a separate block under Claude's
+  answer. It runs on any **free** key — Google AI Studio (Gemini), OpenRouter (dozens of free
+  models) or Groq — or several of them: Trio tries every key and every free model until one
+  answers. Keys are never inside the shortcut: asked once on the first run and kept in your iCloud
+  Drive (`Shortcuts/poly-key.txt`).
 
 ## Install in 60 seconds
 
@@ -45,8 +46,10 @@ shortcut by that name.
 - iPhone on **iOS 18 or later** (iPad on iPadOS 18+ is expected to work, untested).
 - The **ChatGPT** and **Claude** apps, installed and signed in.
 - A **paid Claude plan** — on a free account the Claude action answers "model isn't available".
-- For **Trio**: a free key from [Google AI Studio](https://aistudio.google.com/apikey) (no card);
-  a [Groq](https://console.groq.com/keys) key is optional.
+- For **Trio**: any free key (no card) — [Google AI Studio](https://aistudio.google.com/apikey),
+  [OpenRouter](https://openrouter.ai/keys) or [Groq](https://console.groq.com/keys); several keys,
+  one per line, make it sturdier. On the first run iPhone asks for permission 4–5 times — tap
+  **Allow** each time.
 - Don't touch the screen while it runs — that cancels the run on Apple's platform.
 
 Docs in ten languages: [English](docs/en/install.md) · [العربية](docs/ar/install.md) · [Deutsch](docs/de/install.md) · [Español](docs/es/install.md) · [Français](docs/fr/install.md) · [हिन्दी](docs/hi/install.md) · [日本語](docs/ja/install.md) · [Português](docs/pt/install.md) · [Русский](docs/ru/install.md) · [中文](docs/zh/install.md)
@@ -128,16 +131,18 @@ so in one line («Agree with the final answer»). Its words come back as a separ
 Claude's answer, never merged into it, and end with a confidence line.
 
 ```
-ChatGPT answers → Claude checks → third voice (Gemini Flash): only what both missed
+ChatGPT answers → Claude checks → third voice (Gemini / OpenRouter / Groq): only what both missed
 ```
 
-- **Free.** The third voice runs on a free Google AI Studio key (Gemini Flash, no card needed;
-  about 20 runs a day). A free Groq key is optional: when Gemini's daily limit is spent or it is
-  overloaded, Qwen on Groq takes over and the block says so.
+- **Free.** The third voice runs on free keys, no card: Google AI Studio (Gemini Flash), OpenRouter
+  (its `:free` models — NVIDIA Nemotron, Qwen, Gemma and OpenRouter's free router) and Groq. Save one
+  or several; Trio walks every model of every key until one answers — a busy model or a spent daily
+  limit moves on to the next, a key with no money or an invalid key is skipped.
 - **The key stays out of the shortcut.** Trio asks for it once and saves it in iCloud Drive →
   Shortcuts → `poly-key.txt`. Sharing `Trio.shortcut` never shares a key.
-- **Errors in plain words.** Daily limit, wrong key, overloaded provider, renamed model — each has
-  its own message; Claude's answer is already in the clipboard before the third voice is asked.
+- **Errors in plain words.** Only if every key and model failed does the block list what each one
+  answered — no money left (402), limit (429), overloaded (503), invalid key (401) — and what to do.
+  Claude's answer is already in the clipboard before the third voice is asked.
 - File: `dist/<lang>/Trio.shortcut` (en, es, pt, ru, uk). Getting the key: [docs/en/install.md](docs/en/install.md#trio--the-third-voice-free-key).
 
 The pair still needs no key at all — Trio is the one place where a free key buys a third company.

@@ -70,20 +70,21 @@ Logo depois de você escolher o modo, chega uma **notificação de status** ("o 
 ## Trio — a terceira voz (chave gratuita)
 
 `Trio.shortcut` acrescenta uma terceira IA à dupla: ela lê a pergunta, a resposta do ChatGPT e a
-resposta final do Claude, e aponta só o que os dois deixaram passar. Precisa de uma chave gratuita,
-pedida uma única vez.
+resposta final do Claude, e aponta só o que os dois deixaram passar. Funciona com **qualquer chave
+gratuita — ou várias**, pedidas uma só vez.
 
-**Chave gratuita do Gemini — 3 passos, sem cartão:**
-1. Abra **aistudio.google.com/apikey** e entre com qualquer conta Google.
-2. Toque em **Create API key** (aceite os termos se pedir) → **Copy**.
-3. Rode o Trio e cole a chave quando ele pedir. Pronto: ela fica em iCloud Drive → Shortcuts →
-   `poly-key.txt`, não dentro do atalho.
+**Chaves gratuitas — um minuto cada, sem cartão** (uma basta; com mais, o Trio quase nunca fica mudo):
+- **aistudio.google.com/apikey** → Create API key (Gemini, começa com `AIza`);
+- **openrouter.ai/keys** → Create key (dezenas de modelos gratuitos de empresas diferentes, começa com `sk-or-`);
+- **console.groq.com/keys** → Create API Key (começa com `gsk_`).
 
-Segunda chave opcional: **console.groq.com/keys** → **Create API Key** (começa com `gsk_`, sem cartão).
-O Trio pede logo depois da chave do Gemini; com ela, o Qwen no Groq assume quando o limite diário do
-Gemini (cerca de 20 execuções) acaba ou ele está sobrecarregado. Sem chave do Groq? Toque em OK.
+Rode o Trio e cole a(s) chave(s) quando ele pedir — várias, cada uma numa linha nova. Elas ficam em
+iCloud Drive → Shortcuts → `poly-key.txt`, não dentro do atalho. Na primeira execução o iPhone pede
+permissão 4–5 vezes: toque em **Permitir** toda vez, na hora.
 
-Chave errada ou nova: apague `poly-key.txt` em Arquivos → iCloud Drive → Shortcuts e rode o Trio de novo.
+O Trio tenta todas as chaves com todos os modelos gratuitos até um responder; só se todos falharem
+ele diz o que cada um respondeu (sem saldo, limite, sobrecarregado, chave inválida) e o que fazer.
+Para adicionar uma chave depois, cole-a numa linha nova do `poly-key.txt` ou apague o arquivo e rode o Trio.
 
 ## Sobre o iCloud — nenhum plano pago é necessário
 

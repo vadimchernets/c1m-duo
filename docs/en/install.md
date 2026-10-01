@@ -70,19 +70,23 @@ Right after you pick a mode, a **status notification** arrives ("what's happenin
 ## Trio — the third voice (free key)
 
 `Trio.shortcut` adds a third AI to the pair: it reads the question, ChatGPT's answer and Claude's
-final answer, and names only what both missed. It needs one free key, asked once.
+final answer, and names only what both missed. It runs on **any free key — or several**, asked once.
 
-**Get a free Gemini key — 3 steps, no card:**
-1. Open **aistudio.google.com/apikey** and sign in with any Google account.
-2. Tap **Create API key** (accept the terms if asked) → **Copy**.
-3. Run Trio and paste the key when it asks. Done — it is saved in iCloud Drive → Shortcuts →
-   `poly-key.txt`, not inside the shortcut.
+**Free keys — a minute each, no card** (one is enough; more keys = Trio almost never goes quiet):
+- **aistudio.google.com/apikey** → Create API key (Gemini, starts with `AIza`);
+- **openrouter.ai/keys** → Create key (dozens of free models from different companies, starts with `sk-or-`);
+- **console.groq.com/keys** → Create API Key (starts with `gsk_`).
 
-Optional second key: **console.groq.com/keys** → **Create API Key** (starts with `gsk_`, no card).
-Trio asks for it right after the Gemini key; with it, Qwen on Groq stands in when Gemini's daily
-limit (about 20 runs) is spent or it is overloaded. No Groq key — just tap Done.
+Run Trio and paste the key(s) when it asks — several keys, each on a new line. They are saved in
+iCloud Drive → Shortcuts → `poly-key.txt`, not inside the shortcut. On the first run iPhone asks for
+permission 4–5 times — tap **Allow** each time, right away (an unanswered prompt closes and the
+shortcut then says it can't access).
 
-Wrong key or a new one: delete `poly-key.txt` in Files → iCloud Drive → Shortcuts and run Trio again.
+Trio tries every key with every free model until one answers: an overloaded model or a spent daily
+limit moves on to the next model, a key with no money left or an invalid key is skipped. Only if all
+of them fail does it list what each one answered (no money, limit, overloaded, invalid key) and what
+to do. To add a key later, paste it on a new line in `poly-key.txt` (Files → iCloud Drive →
+Shortcuts), or delete the file and run Trio again.
 
 ## About iCloud — no paid plan needed
 
