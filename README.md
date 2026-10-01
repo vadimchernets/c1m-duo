@@ -1,16 +1,20 @@
 # C1M (Duo)
 
-**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No paid keys, no servers, no computer, nothing more to pay.**
+**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No paid keys, no server of ours, no computer, nothing more to pay.**
+
+The Duo and Trio shortcuts below are free and open source. The $5 is for the **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)): it installs Duo and Trio for you, walks you through every step, and on Android runs the same pair automatically on a free key.
 
 Have ChatGPT and Claude? Start right away. Have one? It helps you install the other. Have neither? Gemini (Google) or Meta AI (WhatsApp, Facebook) helps you install both, free.
 
-**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без платных ключей, серверов, компьютера и доплат.**
+**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без платных ключей, нашего сервера, компьютера и доплат.**
+
+Сами ярлыки Duo и Трио для iPhone — бесплатные и открытые. $5 — за приложение **Poly A1** ([App Store / Google Play](https://polyhelper.ai/)): оно ставит Duo и Трио за вас, ведёт по шагам, а на Android делает то же автоматически по бесплатному ключу.
 
 Есть ChatGPT и Claude — начинаете сразу. Есть один — он поможет поставить второй. Нет ни одного — Gemini (Google) или Meta AI (WhatsApp, Facebook) помогут поставить оба, бесплатно.
 
 ### How it works
 
-The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours and no API keys, on your own accounts — free ones are enough. Android: the phone calls free AIs (Groq, OpenRouter, Google AI Studio) directly with your free key — no card, no server of ours; or by hand with your ChatGPT and Claude. Nothing like it exists anywhere else.
+The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours and no API keys, on your own accounts — free ones are enough. Android: inside the Poly A1 app ($5, Google Play) the phone itself calls the strongest free AIs from different companies with your free key — one answers, one from another company checks. NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then Google AI Studio (Gemini Flash), Groq (Qwen, gpt-oss) and OpenRouter `:free` models — no card, no server of ours; or by hand with your ChatGPT and Claude. Verified on an Android emulator on 2026-10-01. Nothing like it exists anywhere else.
 
 C1M is the source of **Duo** and **Trio**, two iPhone shortcuts from the
 [Poly A1](https://polyhelper.ai/) family. They run on the ChatGPT and Claude apps already on your
@@ -32,18 +36,19 @@ themselves. Nothing goes through a server of ours — there isn't one.
   your own ChatGPT and Claude plans per run — no keys at all.
 - **Trio** — Duo plus a third voice from a third company. After Claude's check, a free AI names
   only the errors and gaps both of them missed; its words come as a separate block under Claude's
-  answer. It runs on any **free** key — Google AI Studio (Gemini), OpenRouter (dozens of free
-  models) or Groq — or several of them: Trio tries every key and every free model until one
-  answers. Keys are never inside the shortcut: asked once on the first run and kept in your iCloud
+  answer. It runs on any **free** key — NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then
+  Google AI Studio (Gemini), Groq or OpenRouter (dozens of free models) — or several of them: Trio
+  tries every key and every free model until one answers. Limits are counted per account, not per
+  key, so extra keys help only when they come from different companies. Keys are never inside the shortcut: asked once on the first run and kept in your iCloud
   Drive (`Shortcuts/poly-key.txt`).
 
 ## Install in 60 seconds
 
 1. On your iPhone, open [`releases/`](releases) and pick your language — `en`, `es`, `pt`, `ru` or `uk`.
 2. Tap **`Duo.shortcut`** (or **`Trio.shortcut`**) → **Add Shortcut**.
-3. Run it once and tap **Always Allow** when it asks about ChatGPT, Claude and the clipboard.
+3. Run it once and tap **Always Allow** each time it asks about ChatGPT, Claude and the clipboard (4–6 times on the first run).
 
-The same signed files are on [polyhelper.ai/duo](https://polyhelper.ai/duo/). Keep the file name
+The same signed files are on [polyhelper.ai/duo](https://polyhelper.ai/duo/) (site update of 2026-10-01). Keep the file name
 `Duo.shortcut`: the name in Shortcuts comes from it, and «another mode — same question» finds the
 shortcut by that name.
 
@@ -51,12 +56,17 @@ shortcut by that name.
 
 - iPhone on **iOS 18 or later** (iPad on iPadOS 18+ is expected to work, untested).
 - The **ChatGPT** and **Claude** apps, installed and signed in.
-- Your own ChatGPT and Claude accounts — free ones are enough: free Claude runs Sonnet 5.5, the same
-  model as the paid plan, and the Ask Claude action uses the model chosen in the Claude app.
-- For **Trio**: any free key (no card) — [Google AI Studio](https://aistudio.google.com/apikey),
-  [OpenRouter](https://openrouter.ai/keys) or [Groq](https://console.groq.com/keys); several keys,
-  one per line, make it sturdier. On the first run iPhone asks for permission 4–5 times — tap
-  **Allow** each time.
+- Your own ChatGPT and Claude accounts — free ones are enough: free Claude runs Sonnet 5.5 — the same
+  Sonnet 5.5 as on the paid plan (paid plans also have stronger models); the Ask Claude action uses
+  whichever model is set in your Claude app.
+- For **Trio**: any free key (no card) — [NVIDIA](https://build.nvidia.com/settings/api-keys) first
+  (email, password, then an SMS code); no SMS? [Groq](https://console.groq.com/keys) or
+  [Google AI Studio](https://aistudio.google.com/apikey) — sign in with your Google account, no
+  phone needed; or [OpenRouter](https://openrouter.ai/keys) (turn on free models once in
+  [privacy settings](https://openrouter.ai/settings/privacy), otherwise they answer «No endpoints
+  found»). Several keys, one per line, help when they are from different companies — limits are
+  per account, not per key. On the first run iPhone asks for permission 4–6 times — tap
+  **Always Allow** each time.
 - Don't touch the screen while it runs — that cancels the run on Apple's platform.
 
 Docs in ten languages: [English](docs/en/install.md) · [العربية](docs/ar/install.md) · [Deutsch](docs/de/install.md) · [Español](docs/es/install.md) · [Français](docs/fr/install.md) · [हिन्दी](docs/hi/install.md) · [日本語](docs/ja/install.md) · [Português](docs/pt/install.md) · [Русский](docs/ru/install.md) · [中文](docs/zh/install.md)
@@ -138,12 +148,12 @@ so in one line («Agree with the final answer»). Its words come back as a separ
 Claude's answer, never merged into it, and end with a confidence line.
 
 ```
-ChatGPT answers → Claude checks → third voice (Gemini / OpenRouter / Groq): only what both missed
+ChatGPT answers → Claude checks → third voice (NVIDIA → Gemini → Groq → OpenRouter): only what both missed
 ```
 
-- **Free.** The third voice runs on free keys, no card: Google AI Studio (Gemini Flash), OpenRouter
-  (its `:free` models — NVIDIA Nemotron, Qwen, Gemma and OpenRouter's free router) and Groq. Save one
-  or several; Trio walks every model of every key until one answers — a busy model or a spent daily
+- **Free.** The third voice runs on free keys, no card, in this order: NVIDIA (Kimi K3, GLM-5.3,
+  DeepSeek V4.1 Flash — the strongest free models), Google AI Studio (Gemini Flash), Groq (Qwen,
+  gpt-oss) and OpenRouter (its `:free` models and OpenRouter's free router). Save one or several; Trio walks every model of every key until one answers — a busy model or a spent daily
   limit moves on to the next, a key with no money or an invalid key is skipped.
 - **The key stays out of the shortcut.** Trio asks for it once and saves it in iCloud Drive →
   Shortcuts → `poly-key.txt`. Sharing `Trio.shortcut` never shares a key.
@@ -172,9 +182,12 @@ Small single-purpose shortcuts that share the same engine:
 > free, nothing to install, on any device. Poly Multi already merges by its canon.
 > → ask whoever gave you this folder for **PolyHelper C1**.
 
-## Android — experimental, and we could use your help
+## Android — old Tasker path (unverified)
 
-Poly proper is an iPhone shortcut. But the same idea runs on Android through **Tasker** and the
+*The current Android path is the automatic Duo inside the Poly A1 app (see «How it works» above).
+This section describes an older, separate path.*
+
+Poly proper is an iPhone shortcut. The same idea also runs on Android through **Tasker** and the
 clipboard, because neither Claude nor ChatGPT publishes an action there that another app can call.
 Tasker prepares the prompt, opens each app in turn and picks the answer up the moment you copy it;
 you do the tapping, it does the choreography and the merge.
@@ -250,7 +263,7 @@ answer in the last frame is the real output of the run shown, copied from the ph
 modes were run end to end on a live iPhone with paid ChatGPT and Claude accounts —
 both menu levels, the finale menu, the result screen, clipboard delivery, the journal and the
 permission flow. That was one phone in two of the ten languages; the other eight are built from
-the same sources and machine-checked against them, and the Android path has never been run at all.
+the same sources and machine-checked against them, and the old Tasker path for Android has never been run on a phone (the Poly A1 Android Duo was run on an emulator on 2026-10-01). Duo was also run end to end on free ChatGPT and Claude accounts (free Claude, Sonnet 5.5) on 2026-10-01.
 Everything known to be unverified is in Limitations above and in the [FAQ](docs/en/faq.md).
 
 ## Build from source
@@ -309,4 +322,4 @@ Copyright 2026 Vadym Chernets. Licensed under the [Apache License 2.0](LICENSE);
 
 ---
 
-<sub>Free Claude has a daily limit. Ran out and you like Claude? Claude Pro ($20/month, $17 billed yearly; paid to Anthropic, not us) lifts it. While you wait, a free AI on a key does the checking (Trio).</sub>
+<sub>Free Claude has a daily limit. Ran out and you like Claude? Claude Pro ($20/month, $17 billed yearly; paid to Anthropic, not us) raises it a lot — at least five times more; Pro has a limit too. While you wait, a free AI from another company can check by hand: Gemini or Meta AI.</sub>
