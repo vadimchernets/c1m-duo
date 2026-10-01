@@ -11,9 +11,9 @@ Trio is the Critique pair plus a third voice from a third company:
      that BOTH missed (prompt trio.txt). Its words come back as a separate block, never merged.
 
 The third voice speaks the OpenAI chat-completions dialect, so one request template serves every
-free provider: Google AI Studio (Gemini Flash), OpenRouter (its `:free` models) and Groq. The person
-may save any number of free keys; each is recognised by how it begins (AIza/AQ. → Google, sk-or- →
-OpenRouter, gsk_ → Groq). Trio walks every model of every key until one answers: a busy model (503)
+free provider: NVIDIA build (Kimi K3, DeepSeek V4.1, GLM-5.3), Google AI Studio (Gemini Flash),
+OpenRouter (its `:free` models) and Groq. The person may save any number of free keys; each is
+recognised by how it begins (nvapi- → NVIDIA, AIza/AQ. → Google, sk-or- → OpenRouter, gsk_ → Groq). Trio walks every model of every key until one answers: a busy model (503)
 or a spent daily limit (429) moves to the next model, a key with no money (402) or an invalid key (401)
 is not asked again. Only when all of them failed does the block say what each one answered and what
 to do — never «invalid key» for a key that merely ran out of money or was busy.
@@ -39,11 +39,20 @@ from build_shortcut import (  # noqa: E402
     if_has_value, if_else, if_close,
 )
 
+# NVIDIA build first: the strongest free models today, three companies on one key without a card
+# (Kimi K3 — Moonshot, DeepSeek V4.1 — DeepSeek, GLM-5.3 — Zhipu; integrate.api.nvidia.com/v1/models,
+# 2026-10-01). About 40 requests a minute per key, no daily cap. Sign-up asks for a phone (SMS).
+NVIDIA_URL = 'https://integrate.api.nvidia.com/v1/chat/completions'
+NVIDIA_MODELS = ['moonshotai/kimi-k3', 'deepseek-ai/deepseek-v4.1-flash', 'z-ai/glm-5.3']
+NVIDIA_KEY_RE = r'nvapi-[0-9A-Za-z_-]{20,}'
 GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'
 # Free quota is counted per model (~20 a day each), and a model may be «high demand» (503) while the
 # next one answers — so one key walks a chain. Checked live 2026-10-01: 3.8 answered 503, 3.6 and 2.5
 # answered; a key with a spent prepaid balance answers 402 on every model.
-GEMINI_MODELS = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-2.5-flash']
+# Gemini Pro is not free any more (3.1-pro: 429 «limit 0», 2.5-pro: 404 «no longer available to new
+# users» — live, 2026-10-01), so every free Flash, each with its own daily quota.
+GEMINI_MODELS = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash',
+                 'gemini-2.5-flash']
 OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 # OpenRouter's free models (`:free`, price 0), four companies; checked against /api/v1/models and
 # with real requests on 2026-10-01. `openrouter/free` is OpenRouter's own router over whichever free
@@ -53,8 +62,8 @@ OPENROUTER_MODELS = ['nvidia/nemotron-3-super-120b-a12b:free', 'qwen/qwen3.8-27b
 GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
 GROQ_MODELS = ['qwen/qwen3.8-27b', 'openai/gpt-oss-120b']   # checked against /openai/v1/models
 # Keys are picked out of poly-key.txt by how they begin, so the person may paste any number of keys,
-# in any order, with any spaces or line breaks around them: AIza… / AQ.… → Google AI Studio,
-# sk-or-… → OpenRouter, gsk_… → Groq.
+# in any order, with any spaces or line breaks around them: nvapi-… → NVIDIA, AIza… / AQ.… → Google
+# AI Studio, sk-or-… → OpenRouter, gsk_… → Groq.
 GOOGLE_KEY_RE = r'(?:AIza[0-9A-Za-z_-]{30,}|AQ\.[0-9A-Za-z._-]{20,})'
 OPENROUTER_KEY_RE = r'sk-or-[0-9A-Za-z_-]{20,}'
 GROQ_KEY_RE = r'gsk_[A-Za-z0-9]+'
@@ -242,7 +251,8 @@ def if_no_value(group, var_name):
 # Every free provider and its model chain. One attempt = one (model, key) pair; the shortcut walks
 # them in this order — every model of a provider over every key of that provider, then the next
 # provider — until someone answers. Names checked live on 2026-10-01 (models lists + real requests).
-PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens)
+PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens) — strongest free first
+    ('provider.nvidia', NVIDIA_URL, NVIDIA_KEY_RE, NVIDIA_MODELS, OPENROUTER_MAX_TOKENS),
     ('provider.gemini', GEMINI_URL, GOOGLE_KEY_RE, GEMINI_MODELS, MAX_TOKENS),
     ('provider.openrouter', OPENROUTER_URL, OPENROUTER_KEY_RE, OPENROUTER_MODELS, OPENROUTER_MAX_TOKENS),
     ('provider.groq', GROQ_URL, GROQ_KEY_RE, GROQ_MODELS, MAX_TOKENS),
@@ -255,12 +265,15 @@ FAILS = [
     ('billing', True, ['"code": 402', '"code":402', 'credits', 'billing']),
     ('region', True, ['location is not supported', 'not available in your country']),
     ('key', True, ['"code": 401', '"code":401', '"code": 403', '"code":403', 'API key', 'API Key',
-                   'API_KEY', 'User not found', 'invalid_api_key', 'PERMISSION_DENIED']),
+                   'API_KEY', 'User not found', 'invalid_api_key', 'PERMISSION_DENIED',
+                   '"status":401', '"status":403', 'Authorization failed', 'Unauthorized']),
     ('limit', False, ['"code": 429', '"code":429', 'quota', 'rate_limit', 'rate-limited',
-                      'RESOURCE_EXHAUSTED', 'Rate limit']),
+                      'RESOURCE_EXHAUSTED', 'Rate limit', '"status":429', 'Too Many Requests']),
     ('busy', False, ['"code": 503', '"code":503', '"code": 500', '"code":500', '"code": 502',
-                     '"code":502', 'UNAVAILABLE', 'over capacity', 'high demand', 'overloaded']),
-    ('model', False, ['"code": 404', '"code":404', 'NOT_FOUND', 'model_not_found', 'No endpoints']),
+                     '"code":502', 'UNAVAILABLE', 'over capacity', 'high demand', 'overloaded',
+                     '"status":500', '"status":502', '"status":503', '"status":504']),
+    ('model', False, ['"code": 404', '"code":404', 'NOT_FOUND', 'model_not_found', 'No endpoints',
+                      '"status":404']),
 ]
 
 

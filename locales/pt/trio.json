@@ -1,16 +1,17 @@
 {
   "_note": "Words of the Trio shortcut. Placeholders {C} {P} {T} {R} {L} are wired by src/build_trio.py — keep them.",
   "name": "Trio",
-  "comment": "Trio — o ChatGPT responde, o Claude confere e uma terceira IA de outra empresa aponta só o que os dois deixaram passar. A terceira voz funciona com chaves GRATUITAS — Google AI Studio (Gemini), OpenRouter ou Groq, quantas quiser — guardadas em iCloud Drive → Shortcuts → poly-key.txt, uma por linha, nunca dentro do atalho, então compartilhar o atalho não compartilha nenhuma chave. O Trio tenta todas as chaves e todos os modelos gratuitos até um responder. ChatGPT: «Nova conversa» LIGADO, «Contínuo» DESLIGADO.",
+  "comment": "Trio — o ChatGPT responde, o Claude confere e uma terceira IA de outra empresa aponta só o que os dois deixaram passar. A terceira voz funciona com chaves GRATUITAS — NVIDIA (Kimi, DeepSeek, GLM), Google AI Studio (Gemini), OpenRouter ou Groq, quantas quiser — guardadas em iCloud Drive → Shortcuts → poly-key.txt, uma por linha, nunca dentro do atalho, então compartilhar o atalho não compartilha nenhuma chave. O Trio tenta todas as chaves e todos os modelos gratuitos até um responder. ChatGPT: «Nova conversa» LIGADO, «Contínuo» DESLIGADO.",
   "files.key": "poly-key.txt",
   "ask.question": "O que você quer perguntar ao trio?",
-  "ask.key": "Cole qualquer chave de IA GRATUITA — pode colar várias, cada uma numa linha nova. O Trio tenta todas até uma responder (pedido uma vez, salvo em iCloud Drive → Shortcuts → poly-key.txt, nunca dentro do atalho).\n\nCada uma em um minuto e sem cartão:\n• aistudio.google.com/apikey → Create API key (Gemini, começa com AIza)\n• openrouter.ai/keys → Create key (dezenas de modelos gratuitos, começa com sk-or-)\n• console.groq.com/keys → Create API Key (começa com gsk_)\n\nNa primeira execução o iPhone vai pedir permissão 4–5 vezes — toque em «Permitir» toda vez, na hora (uma janela sem resposta se fecha e o atalho diz que «não consegue acessar»).",
+  "ask.key": "Cole qualquer chave de IA GRATUITA — pode colar várias, cada uma numa linha nova. O Trio tenta todas até uma responder (pedido uma vez, salvo em iCloud Drive → Shortcuts → poly-key.txt, nunca dentro do atalho).\n\nCada uma em um minuto e sem cartão:\n• build.nvidia.com/settings/api-keys → Generate API Key (as mais fortes: Kimi, DeepSeek, GLM; começa com nvapi-; pede um número de celular)\n• aistudio.google.com/apikey → Create API key (Gemini, começa com AIza)\n• openrouter.ai/keys → Create key (dezenas de modelos gratuitos, começa com sk-or-)\n• console.groq.com/keys → Create API Key (começa com gsk_)\n\nNa primeira execução o iPhone vai pedir permissão 4–5 vezes — toque em «Permitir» toda vez, na hora (uma janela sem resposta se fecha e o atalho diz que «não consegue acessar»).",
   "notify.start": "🎻 Trio [1/3]: o ChatGPT está respondendo… ≈1,5 min, não toque no celular. Se o ChatGPT disser «sessão encerrada», abra o app dele e rode o Trio de novo.",
   "notify.step2": "[2/3] O Claude está conferindo e escrevendo a resposta final…",
   "notify.step3": "[3/3] A terceira voz procura o que os dois deixaram passar — testando suas chaves gratuitas uma a uma… (a resposta do Claude já está na área de transferência)",
   "notify.done": "✅ Trio: a resposta e a terceira voz estão na área de transferência",
   "provider.gemini": "Gemini",
   "provider.groq": "Groq",
+  "provider.nvidia": "NVIDIA",
   "output": "{C}\n\n— Terceira voz ({P}):\n{T}",
   "variables": {
     "key": "Chave",
@@ -38,5 +39,5 @@
   "why.empty": "respondeu com um texto vazio",
   "why.other": "sem resposta (sem internet ou o provedor recusou)",
   "error.all": "⚠️ Desta vez nenhuma das suas chaves gratuitas respondeu — a resposta do Claude acima está completa. O que cada uma disse:{L}\n\nO que fazer: «sobrecarregado» e «limite» passam em um minuto ou amanhã — rode o Trio de novo. Se «acabou o saldo» ou «inválida», adicione outra chave gratuita: Arquivos → iCloud Drive → Shortcuts → poly-key.txt e cole-a numa linha nova (ou apague o arquivo — o Trio vai pedir de novo). O mais confiável é adicionar uma chave do OpenRouter: openrouter.ai/keys — dezenas de modelos gratuitos de empresas diferentes.",
-  "error.nokeys": "⚠️ O poly-key.txt não tem nenhuma chave que o Trio reconheça (começam com AIza, sk-or- ou gsk_). Abra Arquivos → iCloud Drive → Shortcuts, apague o poly-key.txt e rode o Trio de novo — ele vai pedir as chaves. A resposta do Claude acima está completa."
+  "error.nokeys": "⚠️ O poly-key.txt não tem nenhuma chave que o Trio reconheça (começam com nvapi-, AIza, sk-or- ou gsk_). Abra Arquivos → iCloud Drive → Shortcuts, apague o poly-key.txt e rode o Trio de novo — ele vai pedir as chaves. A resposta do Claude acima está completa."
 }
