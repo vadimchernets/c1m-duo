@@ -1,5 +1,11 @@
 # C1M (Duo)
 
+**Такого в мире телефонов еще нет. ChatGPT и Claude работают в паре. Смартфонная оркестрация сильнейших ИИ - без подписок, без доплат, без сервера, без ключей, без карты.**
+
+**Nothing like this exists on phones yet. ChatGPT and Claude work as a pair. Smartphone orchestration of the strongest AIs — no subscriptions, no extra fees, no server, no keys, no card.**
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23089503.svg)](https://doi.org/10.5281/zenodo.23089503) Archived on Zenodo — concept DOI (all versions): [10.5281/zenodo.23089503](https://doi.org/10.5281/zenodo.23089503)
+
 **Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No paid keys, no server of ours, no computer, nothing more to pay.**
 
 The Duo and Trio shortcuts below are free and open source. The $5 is for the **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)): it installs Duo and Trio for you, walks you through every step, and on Android runs the same pair automatically on a free key.
