@@ -5,8 +5,8 @@ Everything else here is addressed to a person with an iPhone. This file is not.
 ## What this product is, in one paragraph
 
 Poly for iPhone asks two AI assistants the same question, has them check each other, and hands the
-person one document to read and judge. It runs on the ChatGPT and Claude **subscriptions the person
-already pays for** — no API keys, no tokens bought, no server of ours, no account to create.
+person one document to read and judge. It runs on the ChatGPT and Claude **accounts the person
+already has — free ones are enough** — no API keys, no tokens bought, no server of ours, no account to create.
 
 ## How it reaches those assistants, and why the usual objection does not apply here
 

@@ -15,9 +15,9 @@ the folder you were given only. You can also open the shortcut in the
 Shortcuts app and read every step before running it — nothing is hidden.
 
 **Does it work with free ChatGPT / free Claude?**
-ChatGPT — yes, subject to its own free-tier limits. Claude — no, a paid
-Claude plan is required; on a free account the Claude action can fail with
-"model isn't available."
+Yes, both. ChatGPT — subject to its own free-tier limits. Claude — free Claude
+runs Sonnet 5.5, the same model as the paid plan, with a daily limit; the Ask
+Claude action uses the model chosen in the Claude app.
 
 **Where does the journal live and how do I delete it?**
 `Poly-journal.md` is a plain-text file in your own iCloud Drive (Files →

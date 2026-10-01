@@ -14,7 +14,7 @@ Ce n’est pas une app de l’App Store. C’est un **raccourci** pour l’app R
 
 - **Poly en lui-même est gratuit.** C’est un fichier, pas un service — aucun abonnement à Poly, aucune publicité, aucune collecte de données.
 - **Le coût est prélevé sur tes abonnements ChatGPT et Claude.** Chaque exécution dépense de 1 à 4 messages (le prix est affiché dans le menu avec l’icône ✉). Elle partage les mêmes limites que tes conversations habituelles dans ces apps.
-- **Un abonnement Claude est indispensable** — sur un compte gratuit, l’action peut répondre « model isn't available ». ChatGPT fonctionne dans les deux cas, dans la limite de ses propres quotas.
+- **Les comptes gratuits fonctionnent** — Claude gratuit utilise Sonnet 5.5, le même modèle que l’offre payante ; il a une limite quotidienne. ChatGPT fonctionne dans les deux cas, dans la limite de ses propres quotas.
 - **Pas besoin d’iCloud payant :** le journal pèse quelques kilo-octets ; les 5 Go gratuits en couvrent des décennies. Coupe iCloud et la réponse arrive quand même — seule l’entrée du journal est ignorée.
 
 ## Ce qu’il te faut avant d’installer

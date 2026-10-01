@@ -5,7 +5,7 @@ Poly 是 iPhone 上的一条“快捷指令”：你问一个问题，两个 AI 
 ## 安装之前（只做一次）
 
 1. **一台 iOS 18 或更新系统的 iPhone。** 这是 Poly 所依赖的“Ask Claude”操作的官方最低要求（Anthropic 自己的文档写的就是“iOS 18 and later”）。另外，在 iOS 26 下，Apple 列出的支持机型是 iPhone 11 及更新款、SE 第二代及更新款。Poly 本身并不需要 Apple Intelligence —— 有 iOS 18+ 就够了。iPad 预计在 iPadOS 18+/26 上可用，但没有在实际使用中验证过。只有 **Poly Compress** 这个搭档明确需要 Apple Intelligence 的硬件：A17 Pro / M 系列或更新的芯片（iPhone 15 Pro/Pro Max，16/16e 及以后的任意机型，M1+ 的 iPad 或 A17 Pro 的 mini）。
-2. **ChatGPT 和 Claude 两个 App**，从 App Store 装好并且都已登录。Claude 需要付费订阅 —— 在免费账号上，这个操作可能以“model isn't available”失败。
+2. **ChatGPT 和 Claude 两个 App**，从 App Store 装好并且都已登录。免费账号就够了：免费 Claude 用的是 Sonnet 5.5，和付费方案同一个模型；“Ask Claude”操作使用 Claude App 里选定的模型。
 
 ## 安装（一次点击）
 
@@ -78,7 +78,7 @@ Poly 不需要付费 iCloud。核心流程（问题 → 两个 AI → 屏幕和�
 ## 出问题的时候
 
 - **ChatGPT 说“You are logged out”**（而你明明是登录着的）—— 打开 ChatGPT App，关掉，再跑一次 Poly。这是个已知的小毛病，每次都这样就能解决。
-- **Claude 说“This model isn't available right now”** —— 说明你的 Claude 账号没有订阅，或者你已经用到额度上限了。请在 Claude App 里登录付费账号。
+- **Claude 说“This model isn't available right now”** —— 免费 Claude 的每日额度用完了，或者 Claude App 里选的模型不在你的方案里。在 Claude App 里选 Sonnet，或等额度重置；在此期间，Trio 用免费密钥的 AI 来复核。
 - **Claude 没声音了 / 长问题得到空答案** —— Claude 的这个操作有超时：它可能在 Claude 写完之前就把控制权交回来，而 Claude 仍在自己的 App 里继续写答案。打开 Claude，答案就在那儿 —— 用 App 自己的按钮拷走它。下次注意：问题短一点，返回得更可靠。如果它干脆彻底失败了，就在多任务界面把快捷指令划掉，再跑一次。
 - **把 Poly 分享给别人时：** 请把 `Poly.shortcut` 作为一个单独的文件发出去，不要打包成 zip（手机上解 zip 意味着多好几步）。在 Telegram 里：长按文件 → 共享/存储到文件，而不是单击。
 - **不要给 Poly 这条快捷指令改名。** Photo 和 Compress 两个搭档，以及“🔁 换个模式”按钮，都是按“Poly”这个准确的名字来调用它的。一旦改名（或者重新导入后多出一个“Poly 1”），这三条路径就会悄无声息地失效。如果重装后出现了重复，请删掉旧的那条，只保留一条叫“Poly”的。

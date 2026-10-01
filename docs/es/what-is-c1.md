@@ -13,8 +13,8 @@ No es una app de la App Store. Es un **atajo** para la app Atajos que viene de s
 ## Qué cuesta
 
 - **Poly en sí es gratis.** Es un archivo, no un servicio — no hay suscripción a Poly, ni anuncios, ni recogida de datos.
-- **El coste sale de tus suscripciones a ChatGPT y Claude.** Cada ejecución gasta de 1 a 4 mensajes (el precio se ve en el propio menú con el icono ✉). Comparte los mismos límites que tus chats normales en esas apps.
-- **Se necesita una suscripción a Claude** — en una cuenta gratuita la acción puede responder «model isn't available». ChatGPT funciona de las dos maneras, sujeto a sus propios límites.
+- **El coste sale de tus cuentas de ChatGPT y Claude, gratuitas o de pago.** Cada ejecución gasta de 1 a 4 mensajes (el precio se ve en el propio menú con el icono ✉). Comparte los mismos límites que tus chats normales en esas apps.
+- **Las cuentas gratuitas funcionan** — Claude gratis usa Sonnet 5.5, el mismo modelo que el plan de pago; tiene un límite diario. ChatGPT funciona de las dos maneras, sujeto a sus propios límites.
 - **No hace falta iCloud de pago:** el diario ocupa unos pocos kilobytes; los 5 GB gratuitos cubren décadas. Desactiva iCloud y la respuesta sigue llegando — solo se salta la entrada del diario.
 
 ## Qué necesitas antes de instalar
@@ -57,4 +57,4 @@ Hacia ahí va el proyecto: más coro y menos parte manual, a medida que las apps
 
 ## En una frase
 
-Un botón gratuito que pone a trabajar juntas dos suscripciones que ya pagas, comprobándose la una a la otra: un solo precio — de 1 a 4 mensajes por ejecución — y una sola costumbre: tocar y después dejar el teléfono en paz durante minuto y medio.
+Un botón gratuito que pone a trabajar juntas dos IAs que ya tienes, comprobándose la una a la otra: un solo precio — de 1 a 4 mensajes por ejecución — y una sola costumbre: tocar y después dejar el teléfono en paz durante minuto y medio.

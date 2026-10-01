@@ -5,7 +5,7 @@ Poly es un «atajo» para iPhone: haces una sola pregunta y la trabajan dos IA a
 ## Antes de instalar (una sola vez)
 
 1. **Un iPhone con iOS 18 o posterior.** Ese es el mínimo oficial de la acción «Ask Claude» sobre la que se construye Poly (la propia documentación de Anthropic dice «iOS 18 and later»). Aparte de eso, en iOS 26 Apple da como compatibles el iPhone 11 y posteriores y el SE de 2.ª generación y posteriores. Poly en sí no necesita Apple Intelligence — solo iOS 18+. Se espera que el iPad funcione con iPadOS 18+/26, pero no se ha probado en la práctica. El complemento **Poly Compress** sí necesita hardware de Apple Intelligence: un chip A17 Pro / de la serie M o más reciente (iPhone 15 Pro/Pro Max, cualquier 16/16e y posteriores, iPad con M1+ o el mini con A17 Pro).
-2. **Las apps de ChatGPT y Claude**, instaladas desde la App Store y con la sesión iniciada en ambas. Claude necesita una suscripción de pago — en una cuenta gratuita la acción puede fallar con «model isn't available».
+2. **Las apps de ChatGPT y Claude**, instaladas desde la App Store y con la sesión iniciada en ambas. Bastan las cuentas gratuitas: Claude gratis usa Sonnet 5.5, el mismo modelo que el plan de pago, y la acción Ask Claude usa el modelo elegido en la app de Claude.
 
 ## Instalación (un toque)
 
@@ -97,7 +97,7 @@ Poly no requiere un iCloud de pago. El flujo principal (pregunta → las dos IA 
 ## Si algo va mal
 
 - **ChatGPT dice «You are logged out»** (cuando está claro que has iniciado sesión) — abre la app de ChatGPT, ciérrala y vuelve a ejecutar Poly. Es un fallo conocido que siempre se arregla así.
-- **Claude dice «This model isn't available right now»** — tu cuenta de Claude no tiene suscripción o has llegado a un límite. Inicia sesión con una cuenta de pago en la app de Claude.
+- **Claude dice «This model isn't available right now»** — se acabó el límite diario de Claude gratis o en la app de Claude está elegido un modelo que tu plan no incluye. Elige Sonnet en la app de Claude o espera a que se reinicie el límite; mientras tanto, Trio revisa con una IA gratuita con clave.
 - **Claude se queda mudo / respuesta vacía en una pregunta larga** — la acción de Claude tiene un tiempo límite: puede devolver el control antes de que Claude termine, mientras Claude sigue escribiendo la respuesta dentro de su propia app. Abre Claude, la respuesta está ahí — cópiala con el botón de la propia app. Para la próxima vez: una pregunta más corta vuelve de forma más fiable. Si directamente ha fallado, cierra Atajos deslizándolo fuera de las apps recientes y vuelve a ejecutarlo.
 - **Compartir Poly con alguien:** envía `Poly.shortcut` como archivo suelto, no comprimido (un zip en el teléfono significa pasos de más). En Telegram: mantén pulsado el archivo → Compartir/Guardar en Archivos, no un solo toque.
 - **No renombres el atajo Poly.** Los complementos Photo y Compress, y el botón «🔁 Otro modo», lo llaman por el nombre exacto «Poly». Si lo renombras (o lo vuelves a importar y acabas con un «Poly 1»), esos tres caminos dejan de funcionar sin avisar. Si al reinstalar te sale un duplicado, borra el atajo antiguo y quédate exactamente con uno llamado «Poly».

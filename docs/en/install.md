@@ -5,7 +5,7 @@ Poly is a "shortcut" for iPhone: ask one question, and it's handled by two AIs a
 ## Before you install (one-time)
 
 1. **An iPhone with iOS 18 or later.** That's the official minimum for the "Ask Claude" action Poly is built on (Anthropic's own docs say "iOS 18 and later"). Separately, under iOS 26, Apple lists iPhone 11 and later, SE 2nd generation and later, as supported devices. Poly itself does not require Apple Intelligence — only iOS 18+. iPad is expected to work on iPadOS 18+/26 but hasn't been tested in the wild. The **Poly Compress** companion needs Apple Intelligence hardware specifically: an A17 Pro / M-series chip or newer (iPhone 15 Pro/Pro Max, any 16/16e and later, iPad with M1+ or the A17 Pro mini).
-2. **The ChatGPT and Claude apps**, installed from the App Store and signed in on both. Claude needs a paid subscription — on a free account the action can fail with "model isn't available."
+2. **The ChatGPT and Claude apps**, installed from the App Store and signed in on both. Free accounts are enough: free Claude runs Sonnet 5.5, the same model as the paid plan, and the Ask Claude action uses the model chosen in the Claude app.
 
 ## Installing (one tap)
 
@@ -99,7 +99,7 @@ Poly does not require paid iCloud. The core flow (question → both AIs → answ
 ## If something's wrong
 
 - **ChatGPT says "You are logged out"** (while you're clearly logged in) — open the ChatGPT app, close it, run Poly again. A known glitch that always clears up this way.
-- **Claude says "This model isn't available right now"** — your Claude account has no subscription, or you've hit a limit. Sign into a paid account in the Claude app.
+- **Claude says "This model isn't available right now"** — you've hit the free daily limit, or the model chosen in the Claude app isn't on your plan. Pick Sonnet in the Claude app or wait for the limit to reset; meanwhile Trio checks with a free AI on a key.
 - **Claude goes silent / an empty answer on a long question** — the Claude action has a timeout: it can hand control back before Claude finishes, while Claude keeps writing the answer inside its own app. Open Claude, the answer is there — copy it with the app's own button. For next time: a shorter question returns more reliably. If it just failed outright, swipe Shortcuts away from Recents and run it again.
 - **Sharing Poly with someone:** send `Poly.shortcut` as a standalone file, not zipped (a zip on a phone means extra steps). In Telegram: long-press the file → Share/Save to Files, not a single tap.
 - **Don't rename the Poly shortcut.** The Photo and Compress companions, and the "🔁 Another mode" button, all call it by the exact name "Poly." Rename it (or re-import it and end up with "Poly 1") and those three paths silently stop working. If you get a duplicate on reinstall, delete the old shortcut and keep exactly one named "Poly."

@@ -51,7 +51,8 @@ shortcut by that name.
 
 - iPhone on **iOS 18 or later** (iPad on iPadOS 18+ is expected to work, untested).
 - The **ChatGPT** and **Claude** apps, installed and signed in.
-- Your own ChatGPT and Claude accounts — free ones are enough (free Claude runs Sonnet 5.5).
+- Your own ChatGPT and Claude accounts — free ones are enough: free Claude runs Sonnet 5.5, the same
+  model as the paid plan, and the Ask Claude action uses the model chosen in the Claude app.
 - For **Trio**: any free key (no card) — [Google AI Studio](https://aistudio.google.com/apikey),
   [OpenRouter](https://openrouter.ai/keys) or [Groq](https://console.groq.com/keys); several keys,
   one per line, make it sturdier. On the first run iPhone asks for permission 4–5 times — tap
@@ -231,8 +232,8 @@ pick a mode. The code is open source under the Apache License 2.0 — see [LICEN
 Worth knowing before you install:
 
 - **iPhone only, iOS 18 or later.** iPad is expected to work on iPadOS 18+, but it is untested.
-- **Free plans have limits.** Free Claude runs Sonnet 5.5, with session limits that reset every
-  5 hours; free ChatGPT has its own. See the note at the end of this page.
+- **Free plans have limits.** Free Claude has a daily limit; free ChatGPT has its own. See the
+  note at the end of this page.
 - **A run takes about a minute**, closer to two in the multi-step modes.
 - **It spends messages from your own plans**, not from an API budget.
 - **Touching the screen cancels the run.** That's a limit of Apple's platform, not a choice we
@@ -301,4 +302,4 @@ Copyright 2026 Vadym Chernets. Licensed under the [Apache License 2.0](LICENSE);
 
 ---
 
-<sub>Free Claude runs Sonnet 5.5, with session limits that reset every 5 hours. Ran out and you like Claude? Claude Pro is $20/month ($17 billed yearly), paid to Anthropic, not us — many more messages. Optional: everything works free. Free ChatGPT, Claude and keys have their own limits.</sub>
+<sub>Free Claude has a daily limit. Ran out and you like Claude? Claude Pro ($20/month, $17 billed yearly; paid to Anthropic, not us) lifts it. While you wait, a free AI on a key does the checking (Trio).</sub>

@@ -5,7 +5,7 @@ Poly ist ein Kurzbefehl fürs iPhone: Du stellst eine Frage, und zwei KIs kümme
 ## Vor der Installation (einmalig)
 
 1. **Ein iPhone mit iOS 18 oder neuer.** Das ist das offizielle Minimum für die Aktion „Ask Claude“, auf der Poly aufbaut (Anthropic schreibt in der eigenen Dokumentation „iOS 18 and later“). Davon unabhängig führt Apple unter iOS 26 iPhone 11 und neuer sowie SE der 2. Generation und neuer als unterstützte Geräte. Poly selbst braucht kein Apple Intelligence — nur iOS 18+. Auf dem iPad ist der Betrieb unter iPadOS 18+/26 zu erwarten, wurde aber nicht im Alltag erprobt. Der Begleiter **Poly Compress** braucht ausdrücklich Apple-Intelligence-Hardware: einen Chip der A17-Pro-/M-Reihe oder neuer (iPhone 15 Pro/Pro Max, alle 16/16e und neuer, iPad mit M1+ oder das mini mit A17 Pro).
-2. **Die Apps ChatGPT und Claude**, aus dem App Store installiert und in beiden angemeldet. Claude braucht ein kostenpflichtiges Abo — auf einem kostenlosen Konto kann die Aktion mit „model isn't available“ scheitern.
+2. **Die Apps ChatGPT und Claude**, aus dem App Store installiert und in beiden angemeldet. Kostenlose Konten reichen: Das kostenlose Claude nutzt Sonnet 5.5, dasselbe Modell wie das bezahlte Abo, und die Aktion „Ask Claude“ nutzt das in der Claude-App gewählte Modell.
 
 ## Installieren (ein Tipp)
 
@@ -78,7 +78,7 @@ Poly braucht kein kostenpflichtiges iCloud. Der Kernablauf (Frage → beide KIs 
 ## Wenn etwas klemmt
 
 - **ChatGPT sagt „You are logged out“** (obwohl du eindeutig angemeldet bist) — öffne die ChatGPT-App, schließ sie, starte Poly neu. Ein bekannter Aussetzer, der sich immer so beheben lässt.
-- **Claude sagt „This model isn't available right now“** — dein Claude-Konto hat kein Abo, oder du hast ein Limit erreicht. Melde dich in der Claude-App mit einem bezahlten Konto an.
+- **Claude sagt „This model isn't available right now“** — das Tageslimit des kostenlosen Claude ist erreicht, oder in der Claude-App ist ein Modell gewählt, das dein Tarif nicht enthält. Wähle Sonnet in der Claude-App oder warte, bis das Limit zurückgesetzt wird; bis dahin prüft Trio mit einer kostenlosen KI per Schlüssel.
 - **Claude schweigt / leere Antwort bei einer langen Frage** — die Claude-Aktion hat einen Timeout: Sie kann die Kontrolle zurückgeben, bevor Claude fertig ist, während Claude die Antwort in der eigenen App weiterschreibt. Öffne Claude, dort steht die Antwort — kopiere sie mit der Taste der App. Fürs nächste Mal: Eine kürzere Frage kommt zuverlässiger zurück. Ist es schlicht fehlgeschlagen, wisch Shortcuts aus der App-Übersicht und starte neu.
 - **Poly weitergeben:** Verschick `Poly.shortcut` als einzelne Datei, nicht gezippt (ein Zip bedeutet auf dem Handy zusätzliche Schritte). In Telegram: Datei lange drücken → Teilen/In Dateien sichern, nicht ein einzelner Tipp.
 - **Benenn den Poly-Kurzbefehl nicht um.** Die Begleiter Photo und Compress sowie die Taste „🔁 Anderer Modus“ rufen ihn alle unter dem exakten Namen „Poly“ auf. Benennst du ihn um (oder importierst ihn erneut und endest bei „Poly 1“), hören diese drei Wege stillschweigend auf zu funktionieren. Entsteht bei einer Neuinstallation ein Duplikat, lösch den alten Kurzbefehl und behalte genau einen namens „Poly“.

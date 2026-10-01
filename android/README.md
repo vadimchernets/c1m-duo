@@ -33,7 +33,7 @@ Guides: [English](../docs/en/android.md) · [Русский](../docs/ru/android.
 
 Tasker (a one-time purchase of about $4 on Google Play, with a 7-day trial from the developer's
 site; included in Play Pass). AutoInput as a separate plugin only if you go past the relay. The
-ChatGPT and Claude apps installed and signed in, with a paid Claude plan.
+ChatGPT and Claude apps installed and signed in — free accounts are enough.
 
 ## Honest limitations
 

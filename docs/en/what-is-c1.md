@@ -13,8 +13,8 @@ It isn't an App Store app. It's a **shortcut** for Apple's built-in Shortcuts ap
 ## What it costs
 
 - **Poly itself is free.** It's a file, not a service — no subscription to Poly, no ads, no data collection.
-- **The cost comes out of your ChatGPT and Claude subscriptions.** Each run spends 1 to 4 messages (the price is shown right in the menu with a ✉ icon). It shares the same limits as your regular chats in those apps.
-- **A Claude subscription is required** — on a free account the action can respond with "model isn't available." ChatGPT works either way, subject to its own limits.
+- **The cost comes out of your own ChatGPT and Claude accounts, free or paid.** Each run spends 1 to 4 messages (the price is shown right in the menu with a ✉ icon). It shares the same limits as your regular chats in those apps.
+- **Free accounts work** — free Claude runs Sonnet 5.5, the same model as the paid plan; it has a daily limit. ChatGPT works either way, subject to its own limits.
 - **No paid iCloud needed:** the journal is a few kilobytes; the free 5 GB covers decades of it. Turn iCloud off and the answer still arrives — only the journal entry is skipped.
 
 ## What you need before installing
@@ -70,4 +70,4 @@ pair feels natural.
 
 ## In one sentence
 
-A free button that puts two of your paid subscriptions to work together, checking each other: one price — 1 to 4 messages per run — and one habit — tap, then leave your phone alone for a minute and a half.
+A free button that puts two AIs you already have to work together, checking each other: one price — 1 to 4 messages per run — and one habit — tap, then leave your phone alone for a minute and a half.

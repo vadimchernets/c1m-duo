@@ -60,11 +60,11 @@ body:
   - type: dropdown
     id: paid-claude
     attributes:
-      label: Do you have a paid Claude plan?
-      description: Poly's Claude actions require a paid subscription.
+      label: Which Claude plan do you use?
+      description: Free accounts work (free Claude runs Sonnet 5.5, with a daily limit). This helps tell a limit from a bug.
       options:
-        - "Yes"
-        - "No"
+        - "Free"
+        - "Paid (Pro or higher)"
     validations:
       required: true
 

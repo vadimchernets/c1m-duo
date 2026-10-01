@@ -14,7 +14,7 @@ Es ist keine App aus dem App Store. Es ist ein **Kurzbefehl** für Apples eingeb
 
 - **Poly selbst ist kostenlos.** Es ist eine Datei, kein Dienst — kein Abo für Poly, keine Werbung, keine Datensammlung.
 - **Die Kosten gehen von deinen ChatGPT- und Claude-Abos ab.** Jeder Lauf verbraucht 1 bis 4 Nachrichten (der Preis steht mit einem ✉-Zeichen direkt im Menü). Er teilt sich die Limits mit deinen normalen Chats in diesen Apps.
-- **Ein Claude-Abo ist Pflicht** — auf einem kostenlosen Konto kann die Aktion mit „model isn't available“ antworten. ChatGPT funktioniert so oder so, im Rahmen der eigenen Limits.
+- **Kostenlose Konten funktionieren** — das kostenlose Claude nutzt Sonnet 5.5, dasselbe Modell wie das bezahlte Abo; es hat ein Tageslimit. ChatGPT funktioniert so oder so, im Rahmen der eigenen Limits.
 - **Kein bezahltes iCloud nötig:** Das Journal ist ein paar Kilobyte groß; die kostenlosen 5 GB decken Jahrzehnte davon ab. Schalte iCloud ab, und die Antwort kommt trotzdem — nur der Journaleintrag entfällt.
 
 ## Was du vor der Installation brauchst

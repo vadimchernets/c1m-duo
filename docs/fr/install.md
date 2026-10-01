@@ -5,7 +5,7 @@ Poly est un « raccourci » pour iPhone : tu poses une seule question et elle es
 ## Avant d’installer (une seule fois)
 
 1. **Un iPhone sous iOS 18 ou ultérieur.** C’est le minimum officiel de l’action « Ask Claude » sur laquelle Poly est bâti (la documentation d’Anthropic dit elle-même « iOS 18 and later »). Par ailleurs, sous iOS 26, Apple donne comme compatibles l’iPhone 11 et ultérieurs, ainsi que le SE de 2ᵉ génération et ultérieurs. Poly lui-même n’exige pas Apple Intelligence — seulement iOS 18+. L’iPad devrait fonctionner sous iPadOS 18+/26, mais cela n’a pas été vérifié sur le terrain. Le compagnon **Poly Compress**, lui, réclame du matériel Apple Intelligence : une puce A17 Pro / série M ou plus récente (iPhone 15 Pro/Pro Max, tous les 16/16e et ultérieurs, iPad avec M1+ ou le mini à A17 Pro).
-2. **Les apps ChatGPT et Claude**, installées depuis l’App Store, avec la session ouverte dans les deux. Claude exige un abonnement payant — sur un compte gratuit, l’action peut échouer avec « model isn't available ».
+2. **Les apps ChatGPT et Claude**, installées depuis l’App Store, avec la session ouverte dans les deux. Les comptes gratuits suffisent : Claude gratuit utilise Sonnet 5.5, le même modèle que l’offre payante, et l’action « Ask Claude » utilise le modèle choisi dans l’app Claude.
 
 ## Installation (une seule pression)
 
@@ -78,7 +78,7 @@ Poly n’exige pas d’iCloud payant. Le flux principal (question → les deux I
 ## Si quelque chose cloche
 
 - **ChatGPT dit « You are logged out »** (alors que tu es manifestement connecté) — ouvre l’app ChatGPT, ferme-la, relance Poly. Un bug connu qui se règle toujours ainsi.
-- **Claude dit « This model isn't available right now »** — ton compte Claude n’a pas d’abonnement, ou tu as atteint une limite. Connecte-toi à un compte payant dans l’app Claude.
+- **Claude dit « This model isn't available right now »** — la limite quotidienne de Claude gratuit est atteinte, ou le modèle choisi dans l’app Claude n’est pas inclus dans ton offre. Choisis Sonnet dans l’app Claude ou attends que la limite se réinitialise ; en attendant, Trio vérifie avec une IA gratuite via une clé.
 - **Claude reste muet / réponse vide sur une longue question** — l’action Claude a un délai d’expiration : elle peut rendre la main avant que Claude ait fini, pendant que Claude continue d’écrire la réponse dans sa propre app. Ouvre Claude, la réponse y est — copie-la avec le bouton de l’app. Pour la prochaine fois : une question plus courte revient plus sûrement. Si l’exécution a carrément échoué, balaie Raccourcis hors des apps récentes et relance.
 - **Partager Poly avec quelqu’un :** envoie `Poly.shortcut` comme fichier autonome, pas dans un zip (un zip sur téléphone, ce sont des étapes en plus). Dans Telegram : appui long sur le fichier → Partager/Enregistrer dans Fichiers, pas une simple pression.
 - **Ne renomme pas le raccourci Poly.** Les compagnons Photo et Compress, ainsi que le bouton « 🔁 Autre mode », l’appellent par son nom exact « Poly ». Renomme-le (ou réimporte-le et tu te retrouves avec « Poly 1 ») et ces trois chemins cessent silencieusement de fonctionner. Si une réinstallation crée un doublon, supprime l’ancien raccourci et garde exactement un « Poly ».
