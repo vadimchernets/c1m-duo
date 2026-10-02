@@ -71,4 +71,4 @@ in the prompt and `menu.*_items` together, so the recommendation matches a real 
 present, menu arrays the right length, and — for anything already built — that the signed files
 match what the sources produce and stay structurally valid.
 
-iCloud-ссылки (README, docs/*/install.md, poly-a1 src/shortcutLinks.ts, сайт /duo) сделаны с текущих подписанных файлов Duo/Trio; если файл команды изменится — ссылки пересоздать (Поделиться → Скопировать ссылку iCloud) и заменить везде.
+iCloud links (README, docs/*/install.md, poly-a1 src/shortcutLinks.ts, the /duo site) are made from the current signed Duo/Trio files; if the shortcut file changes, recreate the links (Share → Copy iCloud Link) and replace them everywhere.

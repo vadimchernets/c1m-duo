@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+- Project language is English: the Russian duplicates in README.md and
+  .zenodo.json were removed (English copies already present) and the BUILD.md
+  note on iCloud links translated. Russian stays only in its localization places
+  (locales/ru, docs/ru, android/ru), on par with the other languages. No shortcut
+  was rebuilt or re-signed; iCloud links are unchanged.
+
 ### Added
 - **Trio** (`Trio.shortcut`, en/es/pt/ru/uk): ChatGPT answers, Claude checks
   (the Critique pair, prompt `critique.txt`), then a third AI from a third

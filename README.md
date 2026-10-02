@@ -1,7 +1,5 @@
 # C1M (Duo)
 
-**Такого в мире телефонов еще нет. ChatGPT и Claude работают в паре. Смартфонная оркестрация сильнейших ИИ - без подписок, без доплат, без сервера, без карты.**
-
 **Nothing like this exists on phones yet. ChatGPT and Claude work as a pair. Smartphone orchestration of the strongest AIs — no subscriptions, no extra fees, no server, no card.**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23089503.svg)](https://doi.org/10.5281/zenodo.23089503) Archived on Zenodo — concept DOI (all versions): [10.5281/zenodo.23089503](https://doi.org/10.5281/zenodo.23089503)
@@ -11,12 +9,6 @@
 The Duo and Trio shortcuts below are free and open source. The $5 is for the **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)): it installs Duo and Trio for you, walks you through every step, and on Android runs the same pair automatically on a free key.
 
 Have ChatGPT and Claude? Start right away. Have one? It helps you install the other. Have neither? Gemini (Google) or Meta AI (WhatsApp, Facebook) helps you install both, free.
-
-**Купили за $5 — и всё: два ИИ разных компаний работают вместе прямо в вашем телефоне. ChatGPT отвечает, Claude проверяет. Без нашего сервера, компьютера и доплат.**
-
-Сами ярлыки Duo и Трио для iPhone — бесплатные и открытые. $5 — за приложение **Poly A1** ([App Store / Google Play](https://polyhelper.ai/)): оно ставит Duo и Трио за вас, ведёт по шагам, а на Android делает то же автоматически по бесплатному ключу.
-
-Есть ChatGPT и Claude — начинаете сразу. Есть один — он поможет поставить второй. Нет ни одного — Gemini (Google) или Meta AI (WhatsApp, Facebook) помогут поставить оба, бесплатно.
 
 ### How it works
 
