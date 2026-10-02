@@ -47,7 +47,7 @@ themselves. Nothing goes through a server of ours — there isn't one.
 | Language | Duo | Trio |
 |---|---|---|
 | English | [Duo](https://www.icloud.com/shortcuts/f94d1ca513944d3fa5024f7ac9687d99) | [Trio](https://www.icloud.com/shortcuts/a57cbb1b968743dd8b219f7961818048) |
-| Español | [Duo](https://www.icloud.com/shortcuts/bc77f1e8d16c44b3b4baaa5f213f96c6) | [Trio](https://www.icloud.com/shortcuts/d72de687e3c34819b62d71dbed3e24eb) |
+| Español | [Duo](https://www.icloud.com/shortcuts/b2d55d6b067f4d728bd27bfe0604d99d) | [Trio](https://www.icloud.com/shortcuts/6f773a9b8ea04963b53d989d6907c9ab) |
 | Português | [Duo](https://www.icloud.com/shortcuts/97b961ef17324dbd84f50e10ef546001) | [Trio](https://www.icloud.com/shortcuts/f0c350ab865a4422aa93e6c53c979c83) |
 | Русский | [Duo](https://www.icloud.com/shortcuts/cc73ffa25a2a407fbe932ecf82f0b599) | [Trio](https://www.icloud.com/shortcuts/d5f88df0b33b46c185ad3182f628f2c9) |
 | Українська | [Duo](https://www.icloud.com/shortcuts/40df9ea8b1084cd0ac2ab0f7d616f4f5) | [Trio](https://www.icloud.com/shortcuts/20594c36c5224f1eb7992a1bf41d319f) |
