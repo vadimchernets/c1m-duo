@@ -13,8 +13,8 @@ Poly is a "shortcut" for iPhone: ask one question, and it's handled by two AIs a
 
 On your iPhone, tap the link → the Shortcuts app opens → **Add**. On the first run the shortcut asks for permission 4–6 times — tap **Always Allow** each time.
 
-- **Duo:** https://www.icloud.com/shortcuts/f94d1ca513944d3fa5024f7ac9687d99
-- **Trio** (the third voice, see below): https://www.icloud.com/shortcuts/a57cbb1b968743dd8b219f7961818048
+- **Duo:** https://www.icloud.com/shortcuts/80a91be31b2644af828076a50ad96f00
+- **Trio** (the third voice, see below): https://www.icloud.com/shortcuts/4006167cb55b4cf2bf36868389318ed2
 
 ### Backup — the file
 
