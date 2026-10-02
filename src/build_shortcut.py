@@ -258,9 +258,9 @@ def if_close(group):
 # and in the journal — it reads releases/version.json: GitHub raw first, the site copy second. If the
 # number there is higher than the one built in, one line asks «a new version is out — install?» and
 # «Install» opens the iCloud link for this language from the same file. The day of the last check is
-# the modification date of a small file next to poly-key.txt (iCloud Drive → Shortcuts), written
-# BEFORE the network call: offline, the person sees at most one system error a week, never more,
-# and nothing of the run is lost because the run is already over.
+# the modification date of a small file next to poly-key.txt (iCloud Drive → Shortcuts). The network
+# is checked first by actions that cannot throw (Wi-Fi name, else cellular radio): offline, the check
+# is silently skipped and tried again on the next run; an empty or non-JSON answer means «no update».
 
 VERSION_FILE = ROOT / 'releases' / 'version.json'
 VERSION_URLS = ('https://raw.githubusercontent.com/vadimchernets/c1m-duo/main/releases/version.json',
@@ -298,14 +298,21 @@ def if_output(group, src_uid, src_name, condition, **numbers):
             'WFWorkflowActionParameters': params}
 
 
+def if_no_value(group, var_name):
+    action = if_has_value(group, var_name)
+    action['WFWorkflowActionParameters']['WFCondition'] = 101  # «does not have any value»
+    return action
+
+
 def version_check(L, key, name, lang):
     """Actions of the weekly version check for the shortcut `key` ('duo' or 'trio') in `lang`."""
     ids = lambda n: [new_uuid() for _ in range(n)]
     (f_get, f_date, now, age, far, age_get, stamp_now, stamp, stamp_save,
-     gh, gh_ver, site, json_get, remote, link) = ids(15)
-    g_file, g_due, g_gh, g_new, g_menu = ids(5)
-    age_var, json_var = f'{name}VersionAge', f'{name}VersionJson'
+     wifi, cell, net_get, gh, site, json_get, remote, link) = ids(17)
+    g_file, g_due, g_wifi, g_net, g_gh, g_site, g_json, g_new, g_menu = ids(9)
+    age_var, json_var, net_var = f'{name}VersionAge', f'{name}VersionJson', f'{name}Network'
     stamp_file = f'{name}-version-check.txt'
+    needle = f'"{key}":'
     install, later = L['update.install'], L['update.later']
     return [
         act_comment(f'Version check: at most once in {VERSION_DAYS} days, '
@@ -334,18 +341,37 @@ def version_check(L, key, name, lang):
         if_output(g_due, age_get, 'Variable', 1003,
                   WFNumberValue=-VERSION_DAYS, WFAnotherNumber=VERSION_DAYS),
         if_else(g_due),
+        # Offline, «Get Contents of URL» stops the shortcut with a system error, and Shortcuts has
+        # no try/catch. So the network goes first, by actions that never throw: a Wi-Fi network
+        # name, else a cellular radio technology. Neither → no check this run, no stamp, no error.
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.getwifi',
+         'WFWorkflowActionParameters': {'WFNetworkDetailsNetwork': 'Wi-Fi',
+                                        'WFWiFiDetail': 'Network Name', 'UUID': wifi}},
+        act_set_variable(net_var, wifi, 'Network Details'),
+        if_no_value(g_wifi, net_var),
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.getwifi',
+         'WFWorkflowActionParameters': {'WFNetworkDetailsNetwork': 'Cellular',
+                                        'WFCellularDetail': 'Radio Technology', 'UUID': cell}},
+        act_set_variable(net_var, cell, 'Network Details'),
+        if_close(g_wifi),
+        act_get_variable(net_var, net_get),
+        if_output(g_net, net_get, 'Variable', 100),
         act_date(stamp_now),
         act_text(text_token('{D}', {'D': (stamp_now, 'Date')}), stamp),
         act_save_file(stamp_file, stamp, stamp_save),
+        # An empty answer, a 404 page or HTML from a proxy is «no update»: only a text that
+        # contains the key is ever read as a dictionary.
         act_download(VERSION_URLS[0], gh),
+        if_output(g_gh, gh, 'Contents of URL', 99, WFConditionalActionString=needle),
         act_set_variable(json_var, gh, 'Contents of URL'),
-        act_dict_value(key, gh, 'Contents of URL', gh_ver),
-        if_output(g_gh, gh_ver, 'Dictionary Value', 100),
         if_else(g_gh),
         act_download(VERSION_URLS[1], site),
+        if_output(g_site, site, 'Contents of URL', 99, WFConditionalActionString=needle),
         act_set_variable(json_var, site, 'Contents of URL'),
+        if_close(g_site),
         if_close(g_gh),
         act_get_variable(json_var, json_get),
+        if_output(g_json, json_get, 'Variable', 99, WFConditionalActionString=needle),
         act_dict_value(key, json_get, 'Variable', remote),
         if_output(g_new, remote, 'Dictionary Value', 2, WFNumberValue=built_version(key)),
         act_dict_value(f'{key}_{lang}', json_get, 'Variable', link),
@@ -357,6 +383,8 @@ def version_check(L, key, name, lang):
         menu_case(g_menu, later),
         menu_close(g_menu),
         if_close(g_new),
+        if_close(g_json),
+        if_close(g_net),
         if_close(g_due),
     ]
 

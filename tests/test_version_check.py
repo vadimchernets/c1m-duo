@@ -48,6 +48,15 @@ def test_shortcut_checks_its_version(tmp_path, lang, builder, name, key):
     keys = [p['WFDictionaryKey'] for p in params(actions, 'getvalueforkey')]
     assert f'{key}_{lang}' in keys
     assert len(params(actions, 'openurl')) == 1
+    # the network goes first, by actions that never throw; a non-JSON answer is «no update»
+    nets = [p['WFNetworkDetailsNetwork'] for p in params(actions, 'getwifi')]
+    assert nets == ['Wi-Fi', 'Cellular']
+    first_net = next(i for i, a in enumerate(actions) if a['WFWorkflowActionIdentifier'].endswith('getwifi'))
+    first_get = next(i for i, a in enumerate(actions) if a['WFWorkflowActionIdentifier'].endswith('downloadurl')
+                     and isinstance(a['WFWorkflowActionParameters']['WFURL'], str))
+    assert first_net < first_get
+    guards = [p for p in params(actions, 'conditional') if p.get('WFConditionalActionString') == f'"{key}":']
+    assert len(guards) == 3
     # the check is the last thing a run does: nothing of the answer waits on the network
     assert actions[-1]['WFWorkflowActionIdentifier'] == 'is.workflow.actions.conditional'
 
