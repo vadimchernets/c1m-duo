@@ -309,7 +309,6 @@ def main():
     check_sources_build(langs)
     check_shortcuts(langs)
     check_kits(langs)
-    built = [l for l in langs if (ROOT / 'dist' / l).glob('*.shortcut')]
     if not any((ROOT / 'dist' / l).exists() for l in langs):
         print('\n(no dist/ here — release artifacts live in GitHub Releases, '
               'so only the source build was checked)')
