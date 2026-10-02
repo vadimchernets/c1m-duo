@@ -20,18 +20,18 @@
     "pc_notice": "Poly-pc-notice.txt"
   },
   "comment": {
-    "main": "Poly — el dúo ChatGPT + Claude. Si las acciones de Claude/ChatGPT aparecen en gris: bórralas, busca «Ask Claude» (o «Preguntar a Claude») / «Ask ChatGPT» y vuelve a ponerlas en los mismos sitios. En Claude el texto va al campo message. En ChatGPT: Start new chat ACTIVADO, Continuous DESACTIVADO, «Mostrar al ejecutar» DESACTIVADO. Guía completa: install.md, en el kit.",
+    "main": "Poly — el dúo ChatGPT + Claude. Si las acciones de Claude/ChatGPT aparecen en gris: bórrelas, busque «Ask Claude» (o «Preguntar a Claude») / «Ask ChatGPT» y vuelva a ponerlas en los mismos sitios. En Claude el texto va al campo message. En ChatGPT: Start new chat ACTIVADO, Continuous DESACTIVADO, «Mostrar al ejecutar» DESACTIVADO. Guía completa: install.md, en el kit.",
     "photo": "Poly Photo: comparte aquí una foto o un PDF — el texto se reconoce en el propio dispositivo y pasa a Poly.",
-    "multi": "EXTENSIÓN PRO (coro manual). Esto NO es la Poly principal: primero domina el dúo automático. Poly Multi: un coro de IA. ChatGPT y Claude responden solos (acciones de app); a las demás (Gemini, Grok, DeepSeek…) las consultas a mano — el prompt ya está en el portapapeles, vuelve y pulsa OK después de cada Copy. Al final Claude lo funde todo."
+    "multi": "EXTENSIÓN PRO (coro manual). Esto NO es la Poly principal: primero domine el dúo automático. Poly Multi: un coro de IA. ChatGPT y Claude responden solos (acciones de app); a las demás (Gemini, Grok, DeepSeek…) las consulta usted a mano — el prompt ya está en el portapapeles, vuelva y pulse OK después de cada Copy. Al final Claude lo funde todo."
   },
   "ask": {
-    "question": "¿Qué quieres preguntarle a Poly?",
-    "clarify_suffix": "\n\nResponde a todo esto en un solo mensaje (o escribe «saltar»):",
+    "question": "¿Qué quiere preguntarle a Poly?",
+    "clarify_suffix": "\n\nResponda a todo esto en un solo mensaje (o escriba «saltar»):",
     "clarify_default": "saltar",
-    "voice_question": "Dicta tu pregunta para Poly",
+    "voice_question": "Dicte su pregunta para Poly",
     "quiet_question": "Pregunta (modo silencioso — el resultado va al portapapeles y al diario)",
-    "multi_question": "¿Qué quieres preguntarle al coro de IA?",
-    "multi_count": "El prompt ya está en tu PORTAPAPELES. ¿A cuántas IA más vas a consultar a mano (Gemini, Grok, DeepSeek…)? 0 — solo la pareja automática."
+    "multi_question": "¿Qué quiere preguntarle al coro de IA?",
+    "multi_count": "El prompt ya está en su PORTAPAPELES. ¿A cuántas IA más va a consultar a mano (Gemini, Grok, DeepSeek…)? 0 — solo la pareja automática."
   },
   "menu": {
     "main_title": "Modo de Poly (ℹ️ la ayuda está en «📂 Más…»)",
@@ -58,7 +58,7 @@
       "Claude — hechos y estructura",
       "ChatGPT — tono y creatividad"
     ],
-    "image_title": "¿Cómo te los muestro?",
+    "image_title": "¿Cómo se los muestro?",
     "image_items": [
       "Solo bocetos · 2✉",
       "Bocetos + veredicto del juez · 3✉"
@@ -75,49 +75,49 @@
     ]
   },
   "notify": {
-    "critique_start": "⚖️ Crítica: ChatGPT responde → Claude lo verifica. ≈1 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
+    "critique_start": "⚖️ Crítica: ChatGPT responde → Claude lo verifica. ≈1 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
     "critique_step2": "[2/2] Claude verifica y monta la respuesta final…",
-    "advisor_start": "🩺 Asesor: Claude revisa tu texto sin reescribirlo. ≈40 s, no toques la pantalla.",
-    "survey_start": "👀 En paralelo: pregunto a los dos por separado. ≈1 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
-    "synthesis_claude_start": "🔀 Síntesis (ancla: Claude): dos respuestas a ciegas → montaje. ≈1,5 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
-    "synthesis_gpt_start": "🔀 Síntesis (ancla: ChatGPT): dos respuestas a ciegas → montaje. ≈1,5 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
-    "auto_start": "🧭 Auto: buscando el modo adecuado para tu pregunta… (+1 mensaje de ChatGPT)",
-    "decision_start": "⚔️ Decisión: mirada rápida → mirada prudente → árbitro. ≈1,5 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
+    "advisor_start": "🩺 Asesor: Claude revisa su texto sin reescribirlo. ≈40 s, no toque la pantalla.",
+    "survey_start": "👀 En paralelo: pregunto a los dos por separado. ≈1 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
+    "synthesis_claude_start": "🔀 Síntesis (ancla: Claude): dos respuestas a ciegas → montaje. ≈1,5 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
+    "synthesis_gpt_start": "🔀 Síntesis (ancla: ChatGPT): dos respuestas a ciegas → montaje. ≈1,5 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
+    "auto_start": "🧭 Auto: buscando el modo adecuado para su pregunta… (+1 mensaje de ChatGPT)",
+    "decision_start": "⚔️ Decisión: mirada rápida → mirada prudente → árbitro. ≈1,5 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
     "decision_step2": "[2/3] Claude — la mirada prudente…",
     "decision_step3": "[3/3] El Claude árbitro redacta la recomendación…",
     "disputemap_start": "🗺 Mapa de discrepancias: dos respuestas a ciegas → un mapa de acuerdos y desacuerdos. ≈1,5 min.",
-    "debate_start": "🥊 Debate: borrador → crítica → revisión → juez. ≈2 min, no toques el teléfono. Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
+    "debate_start": "🥊 Debate: borrador → crítica → revisión → juez. ≈2 min, no toque el teléfono. Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
     "debate_step2": "[2/4] El Claude oponente busca puntos débiles…",
     "debate_step3": "[3/4] ChatGPT revisa el borrador…",
     "debate_step4": "[4/4] El Claude juez dicta su veredicto…",
     "clarify_step1": "❓ Aclaración [1/2]: ChatGPT averigua qué falta…",
-    "clarify_step2": "[2/2] Claude responde con tus aclaraciones…",
-    "image_step1": "🎨 Imagen [1/2]: ChatGPT dibuja el SVG a ciegas… Si ChatGPT dice «logged out» — abre su app y vuelve a lanzar Poly.",
+    "clarify_step2": "[2/2] Claude responde con sus aclaraciones…",
+    "image_step1": "🎨 Imagen [1/2]: ChatGPT dibuja el SVG a ciegas… Si ChatGPT dice «logged out» — abra su app y vuelva a lanzar Poly.",
     "image_step2": "[2/2] Claude dibuja su propia versión…",
     "image_judge": "[3/3] El Claude juez compara los bocetos…",
     "delta_step1": "➕ Delta [1/2]: Claude escribe la respuesta ancla…",
-    "delta_step2": "[2/2] ChatGPT busca qué añadir… Si dice «logged out» — abre su app y vuelve a lanzar Poly.",
+    "delta_step2": "[2/2] ChatGPT busca qué añadir… Si dice «logged out» — abra su app y vuelva a lanzar Poly.",
     "help": "ℹ️ Ayuda de Poly — sin llamadas a la IA, gratis.",
-    "tail_done": "✅ La respuesta final está en tu portapapeles (también en Mac/iPad con el Portapapeles Universal); el diario se escribe después de mostrarla. Si el resultado final sale vacío — la acción se agotó por tiempo: la respuesta completa te espera en la app de Claude.",
-    "tail_empty": "⚠️ La respuesta final está vacía — la acción se agotó por tiempo. Busca la respuesta completa en la app de Claude; los borradores están en el diario.",
-    "voice_start": "🎧 Poly Voice: ChatGPT → Claude, te leeré la respuesta final en voz alta. ≈1 min. Si ChatGPT dice «logged out» — abre su app y empieza otra vez.",
+    "tail_done": "✅ La respuesta final está en su portapapeles (también en Mac/iPad con el Portapapeles Universal); el diario se escribe después de mostrarla. Si el resultado final sale vacío — la acción se agotó por tiempo: la respuesta completa le espera en la app de Claude.",
+    "tail_empty": "⚠️ La respuesta final está vacía — la acción se agotó por tiempo. Busque la respuesta completa en la app de Claude; los borradores están en el diario.",
+    "voice_start": "🎧 Poly Voice: ChatGPT → Claude, le leeré la respuesta final en voz alta. ≈1 min. Si ChatGPT dice «logged out» — abra su app y empiece otra vez.",
     "photo_done": "📸 Texto reconocido — abriendo Poly.",
     "multi_step1": "🎼 Coro [1/3]: ChatGPT y Claude responden por su cuenta…",
     "multi_step3": "[3/3] Claude funde el coro…"
   },
   "alert": {
     "multi_next_title": "Poly Multi — siguiente IA",
-    "multi_next_body": "Abre tú mismo la app de la siguiente IA → pega el prompt del portapapeles → envía → COPIA su respuesta → vuelve aquí → OK.",
+    "multi_next_body": "Abra usted mismo la app de la siguiente IA → pegue el prompt del portapapeles → envíe → COPIE su respuesta → vuelva aquí → OK.",
     "pc_notice_title": "Más en un portátil o PC",
     "pc_notice_body": "💻 En un portátil o PC, PolyHelper hace más: carpetas, agentes, canales, horarios, un consejo de varias IA. Poly en el teléfono es la versión ligera, sin las funciones de PC."
   },
   "output": {
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ ANCLA (Claude)\n{C}\n\n➕ AÑADIDOS (ChatGPT)\n{G}",
-    "auto": "🧭 Poly recomienda este modo para tu pregunta: «{R}» (el nombre puede llegarte en inglés).\n\nEn la pantalla siguiente elige «🔁 Otro modo — misma pregunta»: Poly se reinicia con la misma pregunta; escoge en el menú el modo recomendado.",
+    "auto": "🧭 Poly recomienda este modo para su pregunta: «{R}» (el nombre puede llegarle en inglés).\n\nEn la pantalla siguiente elija «🔁 Otro modo — misma pregunta»: Poly se reinicia con la misma pregunta; escoja en el menú el modo recomendado.",
     "image_codes": "■ BOCETO DE CLAUDE (código SVG)\n{C}\n\n■ BOCETO DE CHATGPT (código SVG)\n{G}",
     "image_codes_judged": "⚖️ VEREDICTO DEL JUEZ\n{J}\n\n■ BOCETO DE CLAUDE (código SVG)\n{C}\n\n■ BOCETO DE CHATGPT (código SVG)\n{G}",
-    "image_html_title": "🎨 Dos bocetos — elige el tuyo",
+    "image_html_title": "🎨 Dos bocetos — elija el suyo",
     "image_html_claude": "◆ CLAUDE",
     "image_html_gpt": "◆ CHATGPT"
   },
@@ -132,7 +132,7 @@
     "synthesis_gpt": "MODO: 🔀 Síntesis (ancla: ChatGPT)\n—— en bruto: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
     "disputemap": "MODO: 🗺 Mapa de discrepancias\n—— en bruto: ChatGPT ——\n{X}\n—— Claude ——\n{Y}",
     "debate": "MODO: 🥊 Debate\n—— borrador (ChatGPT) ——\n{X}\n—— crítica (Claude) ——\n{Y}\n—— revisión (ChatGPT) ——\n{Z}",
-    "clarify": "MODO: ❓ Aclaración\n—— preguntas (ChatGPT) ——\n{X}\n—— tus respuestas ——\n{Y}",
+    "clarify": "MODO: ❓ Aclaración\n—— preguntas (ChatGPT) ——\n{X}\n—— sus respuestas ——\n{Y}",
     "image": "MODO: 🎨 Imagen (las dos imágenes: Archivos → iCloud Drive → Atajos → Poly-image.html; el código SVG está en el resultado)",
     "delta": "MODO: ➕ Delta",
     "auto": "MODO: 🧭 Auto (recomendación)",
@@ -148,5 +148,5 @@
     "final_prompt": "PromptFinal",
     "pc_notice_seen": "AvisoPC"
   },
-  "help": "ℹ️ QUÉ ES POLY\n\nUna sola pregunta — y dos IA (ChatGPT y Claude) trabajan en ella en pareja. Funciona con tus propias suscripciones; la insignia ✉ de cada modo te dice cuántos mensajes va a gastar.\n\nMODOS HABITUALES (menú principal):\n⚖️ Crítica — ChatGPT responde, Claude lo verifica y lo mejora. Tu modo por defecto.\n🩺 Asesor — Claude revisa TU texto sin reescribirlo. El modo más barato.\n👀 En paralelo — dos opiniones independientes, sin mezclarlas.\n🔀 Síntesis — los dos responden a ciegas y después se monta lo mejor. Para lo que importa.\n🧭 Auto — ¿no sabes qué elegir? Poly escoge el modo por ti.\n\nEn «📂 Más…»:\n⚔️ Decisión — primeros pasos y riesgos. 🗺 Mapa de discrepancias — en qué coinciden las IA y en qué no.\n🥊 Debate — borrador → el oponente ataca → revisión → juez. Para las preguntas más difíciles; caro.\n❓ Aclaración — primero te hace preguntas de seguimiento (el único modo en el que tienes que tocar la pantalla a media ejecución — solo en su diálogo).\n➕ Delta — un sustituto barato de Síntesis: ancla + lista de añadidos. 🎨 Imagen — dos bocetos vectoriales para elegir.\n\nEl resultado llega siempre por tres vías: en pantalla, en el portapapeles (pégalo donde quieras) y en el diario Poly-journal.md (Archivos → iCloud Drive → Atajos).\nMientras Poly trabaja — no toques el teléfono: un toque cancela el atajo. Detalles y solución de problemas: install.md, en el kit.\n\n💻 En un portátil o PC, PolyHelper hace más: carpetas, agentes, canales, horarios, un consejo de varias IA. Poly en el teléfono es la versión ligera, sin las funciones de PC.\n\nPulsa «Listo» abajo y en la pantalla siguiente elige «🔁 Otro modo — misma pregunta»: Poly se reinicia con tu pregunta y tú eliges el modo."
+  "help": "ℹ️ QUÉ ES POLY\n\nUna sola pregunta — y dos IA (ChatGPT y Claude) trabajan en ella en pareja. Funciona con sus propias suscripciones; la insignia ✉ de cada modo le dice cuántos mensajes va a gastar.\n\nMODOS HABITUALES (menú principal):\n⚖️ Crítica — ChatGPT responde, Claude lo verifica y lo mejora. Su modo por defecto.\n🩺 Asesor — Claude revisa SU texto sin reescribirlo. El modo más barato.\n👀 En paralelo — dos opiniones independientes, sin mezclarlas.\n🔀 Síntesis — los dos responden a ciegas y después se monta lo mejor. Para lo que importa.\n🧭 Auto — ¿no sabe qué elegir? Poly escoge el modo por usted.\n\nEn «📂 Más…»:\n⚔️ Decisión — primeros pasos y riesgos. 🗺 Mapa de discrepancias — en qué coinciden las IA y en qué no.\n🥊 Debate — borrador → el oponente ataca → revisión → juez. Para las preguntas más difíciles; caro.\n❓ Aclaración — primero le hace preguntas de seguimiento (el único modo en el que tiene que tocar la pantalla a media ejecución — solo en su diálogo).\n➕ Delta — un sustituto barato de Síntesis: ancla + lista de añadidos. 🎨 Imagen — dos bocetos vectoriales para elegir.\n\nEl resultado llega siempre por tres vías: en pantalla, en el portapapeles (péguelo donde quiera) y en el diario Poly-journal.md (Archivos → iCloud Drive → Atajos).\nMientras Poly trabaja — no toque el teléfono: un toque cancela el atajo. Detalles y solución de problemas: install.md, en el kit.\n\n💻 En un portátil o PC, PolyHelper hace más: carpetas, agentes, canales, horarios, un consejo de varias IA. Poly en el teléfono es la versión ligera, sin las funciones de PC.\n\nPulse «Listo» abajo y en la pantalla siguiente elija «🔁 Otro modo — misma pregunta»: Poly se reinicia con su pregunta y usted elige el modo."
 }

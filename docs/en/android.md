@@ -76,11 +76,11 @@ The prompt itself travels through the clipboard rather than being typed directly
 
 The bundled **`DuoDebugUI`** task is the calibration tool: it dumps the text of every element on the current screen, in whatever language your phone is showing it, so you can see what a click should be aimed at.
 
-Both the `en/` and `ru/` builds of this file look for English button labels — "Message Claude", "Message", "Send" — baked in regardless of which locale folder you picked, because these are element selectors, not prompt text. **If your Claude or ChatGPT app's interface isn't in English, this level will not start without calibration first** — use `DuoDebugUI` to find the actual on-screen text and update the selectors to match.
+Every language build of this file (`en/`, `es/`, `pt/`, `ru/`, `uk/`) looks for English button labels — "Message Claude", "Message", "Send" — baked in regardless of which locale folder you picked, because these are element selectors, not prompt text. **If your Claude or ChatGPT app's interface isn't in English, this level will not start without calibration first** — use `DuoDebugUI` to find the actual on-screen text and update the selectors to match.
 
 ## PRO: choirs of 10 AIs
 
-`poly-choirs.prj.xml` runs the same clipboard-relay mechanic across up to ten AI apps in one pass, instead of just Claude and ChatGPT. Generate it with `generate_choirs.py en` or `generate_choirs.py ru` (it reads `poly-clipboard-relay.prj.xml` from the matching language folder and writes `poly-choirs.prj.xml` next to it). Four tasks come out of it:
+`poly-choirs.prj.xml` runs the same clipboard-relay mechanic across up to ten AI apps in one pass, instead of just Claude and ChatGPT. Generate it with `generate_choirs.py <lang>` — `en`, `es`, `pt`, `ru` or `uk` (it reads `poly-clipboard-relay.prj.xml` from the matching language folder and writes `poly-choirs.prj.xml` next to it). Four tasks come out of it:
 
 - **Poly All AIs** — all ten.
 - **Poly West** — the US lineup: ChatGPT, Claude, Gemini, Grok, Meta AI.
@@ -114,4 +114,4 @@ Before your first run: a handful of these packages haven't been confirmed as the
 - **Keep the screen on** for the whole run. A locked screen kills the clipboard wait and any AutoInput accessibility action in progress.
 - **`Wait Until` has no timeout in Tasker — none, anywhere, in the XML or the GUI.** Its time fields set the recheck interval, not a deadline. So: a step that looks stuck means Copy hasn't been tapped yet on the current app. Tap it, or kill the task from Tasker's notification. This applies to every level built on the clipboard relay, choirs included.
 - **No project file contains a Tasker profile or trigger.** Every task starts manually, from Tasker's list or a widget/tile you set up yourself — nothing runs itself on a schedule.
-- **Calibrating on-screen text to your interface language is mandatory for Levels 3 and 4.** The `en/` AutoInput selectors are set for an English interface; the `ru/` build's selectors already recognize English, Russian, and Ukrainian button text. The autoclicker's selectors are English-only in both language folders, since they're matching on-screen labels, not translating prompts. Either way, use the bundled debug task to see what's actually on screen and adjust from there.
+- **Calibrating on-screen text to your interface language is mandatory for Levels 3 and 4.** The `en/` AutoInput selectors are set for an English interface; the `ru/` and `uk/` builds' selectors also recognize Russian and Ukrainian button text, `es/` Spanish and `pt/` Portuguese (best-guess labels, not yet checked on a device). The autoclicker's selectors are English-only in both language folders, since they're matching on-screen labels, not translating prompts. Either way, use the bundled debug task to see what's actually on screen and adjust from there.

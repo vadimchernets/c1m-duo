@@ -315,10 +315,36 @@ def check_language():
         ok('no Cyrillic outside a language place')
 
 
+def check_android():
+    """Tasker projects: every language that has locales/<lang>/tasker.json carries the same
+    five projects as English, and the four hand-shaped ones match what the generator makes."""
+    print('android')
+    import xml.etree.ElementTree as ET
+    sys.path.insert(0, str(ROOT / 'android'))
+    import generate_tasker
+    base = sorted(p.name for p in (ROOT / 'android' / 'en').glob('*.prj.xml'))
+    for lang in generate_tasker.tasker_langs():
+        have = sorted(p.name for p in (ROOT / 'android' / lang).glob('*.prj.xml'))
+        if have != base:
+            fail(f'android/{lang}: projects {have} differ from en {base}')
+            continue
+        for name in have:
+            try:
+                ET.parse(ROOT / 'android' / lang / name)
+            except ET.ParseError as exc:
+                fail(f'android/{lang}/{name}: invalid XML: {exc}')
+        stale = generate_tasker.generate(lang, check=True)
+        if stale:
+            fail(f'android/{lang}: out of date with locales/{lang}/tasker.json: {stale}')
+        else:
+            ok(f'android/{lang}: {len(have)} projects, in sync with locales/{lang}/tasker.json')
+
+
 def main():
     langs = sys.argv[1:] or [d.name for d in sorted((ROOT / 'locales').iterdir()) if d.is_dir()]
     check_locales()
     check_language()
+    check_android()
     check_sources_build(langs)
     check_shortcuts(langs)
     check_kits(langs)

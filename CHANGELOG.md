@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed (2026-10-02)
+- Spanish speaks «usted» everywhere, like Poly A1 (pt «você», uk and ru formal «you»):
+  `locales/es/ui.json` and `trio.json` (menus, notifications, help, key
+  prompts), `docs/es/*`. Signed **es Duo and Trio rebuilt** — their iCloud links
+  must be re-created. Russian docs (`docs/ru/*`) and the Russian Tasker flashes
+  and choir steps moved from the informal to the formal «you» as well; Russian/Ukrainian/Portuguese
+  shortcut strings were already formal and are unchanged.
+
+### Added (2026-10-02)
+- Android Tasker projects in all five languages (en, es, pt, ru, uk): new
+  `android/generate_tasker.py` builds `android/<lang>/` from the English
+  projects and `locales/<lang>/tasker.json`; ru is now generated the same way
+  (its old hand-made files are reproduced byte for byte). `generate_choirs.py`
+  takes any language with `locales/<lang>/choirs.json`. `tools/verify.py` checks
+  that every language has the five projects and that they are up to date;
+  `tests/test_tasker_locales.py`.
+
 ### Changed
 - Project language is English: the Russian duplicates in README.md and
   .zenodo.json were removed (English copies already present) and the BUILD.md

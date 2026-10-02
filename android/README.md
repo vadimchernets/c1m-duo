@@ -24,8 +24,9 @@ around it. Semi-manual by design, not by omission.
 | `en/poly-autoinput.prj.xml` | Automation via AutoInput with honest waiting — it watches for the Copy button rather than guessing with timers. Needs calibration. |
 | `en/poly-autoclicker.prj.xml` | An older automation approach, kept for reference. |
 | `en/poly-choirs.prj.xml` | The ten-AI choirs: West, East, and an East–West merge. |
-| `generate_choirs.py` | Regenerates the choir file — `python3 generate_choirs.py en` or `ru`. Edit the AI list inside if yours differ. |
-| `ru/` | The same five projects in Russian. |
+| `generate_choirs.py` | Regenerates the choir file — `python3 generate_choirs.py <lang>` (strings in `locales/<lang>/choirs.json`). Edit the AI list inside if yours differ. |
+| `generate_tasker.py` | Makes `<lang>/` from the English projects and `locales/<lang>/tasker.json` (English text → translation), then the choirs — `python3 generate_tasker.py --all`; `--check` fails if a folder is stale. |
+| `es/` `pt/` `ru/` `uk/` | The same five projects in Spanish, Portuguese, Russian and Ukrainian — generated, never edited by hand. |
 
 Guides: [English](../docs/en/android.md) · [Русский](../docs/ru/android.md)
 

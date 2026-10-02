@@ -131,7 +131,7 @@ QUESTION:
 		</Action>
 		<Action sr="act2" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Claude: вставь, отправь, Copy под ответом, затем Duo Catch Claude</Str>
+			<Str sr="arg0" ve="3">Claude: вставьте, отправьте, Copy под ответом, затем Duo Catch Claude</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 	</Task>
@@ -169,7 +169,7 @@ QUESTION:
 		</Action>
 		<Action sr="act3" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Якорь схвачен. ChatGPT: вставь тот же промпт, отправь, Copy, затем Duo Catch GPT</Str>
+			<Str sr="arg0" ve="3">Якорь схвачен. ChatGPT: вставьте тот же промпт, отправьте, Copy, затем Duo Catch GPT</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 	</Task>
@@ -228,7 +228,7 @@ QUESTION:
 		</Action>
 		<Action sr="act4" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Синтез в буфере. Вставь в Claude, отправь, Copy, затем Duo Catch Final</Str>
+			<Str sr="arg0" ve="3">Синтез в буфере. Вставьте в Claude, отправьте, Copy, затем Duo Catch Final</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 	</Task>
@@ -342,7 +342,7 @@ QUESTION:
 		</Action>
 		<Action sr="act4" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Быстрый режим: вставь в ChatGPT, Copy, затем Duo Catch Final</Str>
+			<Str sr="arg0" ve="3">Быстрый режим: вставьте в ChatGPT, Copy, затем Duo Catch Final</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 	</Task>
@@ -514,7 +514,7 @@ QUESTION:
 		</Action>
 		<Action sr="act9" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Claude: вставь, отправь, Copy. Не возвращайся — жду буфер.</Str>
+			<Str sr="arg0" ve="3">Claude: вставьте, отправьте, Copy. Не возвращайтесь — жду буфер.</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 		<Action sr="act10" ve="7">
@@ -558,7 +558,7 @@ QUESTION:
 		</Action>
 		<Action sr="act14" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">ChatGPT: вставь, отправь, Copy. Жду буфер.</Str>
+			<Str sr="arg0" ve="3">ChatGPT: вставьте, отправьте, Copy. Жду буфер.</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 		<Action sr="act15" ve="7">
@@ -627,7 +627,7 @@ QUESTION:
 		</Action>
 		<Action sr="act20" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Синтез в Claude. Вставь, отправь, Copy.</Str>
+			<Str sr="arg0" ve="3">Синтез в Claude. Вставьте, отправьте, Copy.</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 		<Action sr="act21" ve="7">
@@ -769,7 +769,7 @@ QUESTION:
 		</Action>
 		<Action sr="act6" ve="7">
 			<code>550</code>
-			<Str sr="arg0" ve="3">Советник: вставь в ChatGPT, Copy. Жду буфер.</Str>
+			<Str sr="arg0" ve="3">Советник: вставьте в ChatGPT, Copy. Жду буфер.</Str>
 			<Int sr="arg1" val="1" />
 		</Action>
 		<Action sr="act7" ve="7">

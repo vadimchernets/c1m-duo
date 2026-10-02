@@ -172,6 +172,6 @@ def build(lang: str):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2 or sys.argv[1] not in ("en", "ru"):
-        sys.exit("usage: python3 generate_choirs.py en|ru")
+    if len(sys.argv) != 2 or not (Path(__file__).resolve().parent.parent / "locales" / sys.argv[1] / "choirs.json").is_file():
+        sys.exit("usage: python3 generate_choirs.py <lang>  (needs locales/<lang>/choirs.json)")
     build(sys.argv[1])
