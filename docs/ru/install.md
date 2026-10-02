@@ -14,7 +14,7 @@ Poly — это команда для iPhone: задаёшь один вопро
 На iPhone тапни ссылку → откроются «Быстрые команды» → **«Добавить»**. При первом запуске команда 4–6 раз спросит разрешения — каждый раз жми **«Разрешать всегда»**.
 
 - **Duo:** https://www.icloud.com/shortcuts/cc73ffa25a2a407fbe932ecf82f0b599
-- **Trio** (третий голос, см. ниже): https://www.icloud.com/shortcuts/e1cfbf3d53da4ba6b6cab5e9d93c4655
+- **Trio** (третий голос, см. ниже): https://www.icloud.com/shortcuts/d5f88df0b33b46c185ad3182f628f2c9
 
 ### Запасные способы — файл
 

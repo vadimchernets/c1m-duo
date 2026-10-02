@@ -14,7 +14,7 @@ O Poly é um "atalho" para iPhone: você faz uma pergunta e ela é trabalhada po
 No iPhone, toque no link → o app Atalhos abre → **Adicionar**. Na primeira execução o atalho pede permissão 4–6 vezes — toque em **Sempre Permitir** todas as vezes.
 
 - **Duo:** https://www.icloud.com/shortcuts/97b961ef17324dbd84f50e10ef546001
-- **Trio** (a terceira voz, veja abaixo): https://www.icloud.com/shortcuts/d16f65cac91542309dcbe351def9b6df
+- **Trio** (a terceira voz, veja abaixo): https://www.icloud.com/shortcuts/f0c350ab865a4422aa93e6c53c979c83
 
 ### Alternativa — o arquivo
 
