@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added (2026-10-02, version check)
+- **Duo and Trio look for a newer version at most once in 7 days.** At the very end of a run they
+  read `releases/version.json` (GitHub raw, then `polyhelper.ai/duo/version.json`); if its number
+  is higher than the one built in, one line asks «A new version of Duo is out — install it?» and
+  «Install» opens that language's iCloud link from the same file. The day of the last check is the
+  modification date of `Duo-version-check.txt` / `Trio-version-check.txt` next to `poly-key.txt`
+  (iCloud Drive → Shortcuts). Strings `update.*` in every `locales/<lang>/ui.json`; code in
+  `src/build_shortcut.py` (`version_check`), used by `src/build_trio.py`; test
+  `tests/test_version_check.py`. This build is **duo 2, trio 2**. Signed en/es/pt/ru/uk Duo and
+  Trio rebuilt — their iCloud links must be re-created.
+
+### Fixed (2026-10-02)
+- «🔁 Another mode — same question» in Duo called the shortcut «Poly», but the release installs
+  as «Duo» (file name and iCloud record): it now calls «Duo».
+
 ### Changed (2026-10-02)
 - Spanish speaks «usted» everywhere, like Poly A1 (pt «você», uk and ru formal «you»):
   `locales/es/ui.json` and `trio.json` (menus, notifications, help, key

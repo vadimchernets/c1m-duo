@@ -48,7 +48,7 @@ from build_shortcut import (  # noqa: E402
     ROOT, Locale, new_uuid, text_token, attachment, variable, validate,
     act_ask, act_gpt, act_claude, act_text, act_set_variable, act_get_variable,
     act_comment, act_clipboard, act_quick_look, act_get_file, act_save_file,
-    if_has_value, if_else, if_close,
+    if_has_value, if_else, if_close, version_check,
 )
 
 # NVIDIA build first: the strongest free models today, three companies on one key without a card
@@ -630,6 +630,9 @@ def build(lang):
         act_clipboard(attachment(f_out, 'Text')),
         act_notify(NAME, T['notify.done']),
         act_quick_look(attachment(f_out, 'Text')),
+
+        # ---- Last of all, at most once a week: is there a newer Trio? (build_shortcut.version_check)
+        *version_check(L, 'trio', NAME, lang),
     ]
 
     validate(actions)

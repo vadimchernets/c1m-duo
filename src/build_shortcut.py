@@ -251,6 +251,116 @@ def if_close(group):
             'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 2}}
 
 
+# ---------------------------------------------------------------- weekly version check
+#
+# A shortcut cannot replace itself, so it only offers the new one (distribution decision of 2026-10-02, item e).
+# At most once in 7 days, at the very END of a run — after the answer is on screen, in the clipboard
+# and in the journal — it reads releases/version.json: GitHub raw first, the site copy second. If the
+# number there is higher than the one built in, one line asks «a new version is out — install?» and
+# «Install» opens the iCloud link for this language from the same file. The day of the last check is
+# the modification date of a small file next to poly-key.txt (iCloud Drive → Shortcuts), written
+# BEFORE the network call: offline, the person sees at most one system error a week, never more,
+# and nothing of the run is lost because the run is already over.
+
+VERSION_FILE = ROOT / 'releases' / 'version.json'
+VERSION_URLS = ('https://raw.githubusercontent.com/vadimchernets/c1m-duo/main/releases/version.json',
+                'https://polyhelper.ai/duo/version.json')
+VERSION_DAYS = 7
+# The name the main shortcut is released under (releases/<lang>/Duo.shortcut, the iCloud record, the
+# site). iOS names an imported shortcut after it, so «another mode — same question» calls this name.
+RELEASE_NAME = 'Duo'
+
+
+def built_version(key):
+    """The number this build carries: the one in releases/version.json at build time."""
+    return int(json.loads(VERSION_FILE.read_text(encoding='utf-8'))[key])
+
+
+def act_download(url, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.downloadurl',
+            'WFWorkflowActionParameters': {'WFURL': url, 'UUID': uid}}
+
+
+def act_dict_value(key, src_uid, src_name, uid):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.getvalueforkey',
+            'WFWorkflowActionParameters': {'WFGetDictionaryValueType': 'Value',
+                                           'WFDictionaryKey': key,
+                                           'WFInput': attachment(src_uid, src_name),
+                                           'UUID': uid}}
+
+
+def if_output(group, src_uid, src_name, condition, **numbers):
+    """If <an earlier action's output> <condition> — 100 has any value, 2 greater than, 1003 between."""
+    params = {'GroupingIdentifier': group, 'WFControlFlowMode': 0, 'WFCondition': condition,
+              'WFInput': {'Type': 'Variable', 'Variable': attachment(src_uid, src_name)}}
+    params.update(numbers)
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.conditional',
+            'WFWorkflowActionParameters': params}
+
+
+def version_check(L, key, name, lang):
+    """Actions of the weekly version check for the shortcut `key` ('duo' or 'trio') in `lang`."""
+    ids = lambda n: [new_uuid() for _ in range(n)]
+    (f_get, f_date, now, age, far, age_get, stamp_now, stamp, stamp_save,
+     gh, gh_ver, site, json_get, remote, link) = ids(15)
+    g_file, g_due, g_gh, g_new, g_menu = ids(5)
+    age_var, json_var = f'{name}VersionAge', f'{name}VersionJson'
+    stamp_file = f'{name}-version-check.txt'
+    install, later = L['update.install'], L['update.later']
+    return [
+        act_comment(f'Version check: at most once in {VERSION_DAYS} days, '
+                    f'{VERSION_URLS[0]} then {VERSION_URLS[1]}; this build is '
+                    f'{key} {built_version(key)}.'),
+        act_get_file(stamp_file, f_get),
+        if_output(g_file, f_get, 'File', 100),
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.properties.files',
+         'WFWorkflowActionParameters': {'WFInput': attachment(f_get, 'File'),
+                                        'WFContentItemPropertyName': 'Last Modified Date',
+                                        'UUID': f_date}},
+        act_date(now),
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.gettimebetweendates',
+         'WFWorkflowActionParameters': {'WFInput': attachment(now, 'Date'),
+                                        'WFTimeUntilFromDate': text_token(
+                                            '{D}', {'D': (f_date, 'Last Modified Date')}),
+                                        'WFTimeUntilUnit': 'Days', 'UUID': age}},
+        act_set_variable(age_var, age, 'Time Between Dates'),
+        if_else(g_file),
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.number',
+         'WFWorkflowActionParameters': {'WFNumberActionNumber': 999, 'UUID': far}},
+        act_set_variable(age_var, far, 'Number'),
+        if_close(g_file),
+        act_get_variable(age_var, age_get),
+        # «between −7 and 7 days» reads the same whichever way the system counts the difference
+        if_output(g_due, age_get, 'Variable', 1003,
+                  WFNumberValue=-VERSION_DAYS, WFAnotherNumber=VERSION_DAYS),
+        if_else(g_due),
+        act_date(stamp_now),
+        act_text(text_token('{D}', {'D': (stamp_now, 'Date')}), stamp),
+        act_save_file(stamp_file, stamp, stamp_save),
+        act_download(VERSION_URLS[0], gh),
+        act_set_variable(json_var, gh, 'Contents of URL'),
+        act_dict_value(key, gh, 'Contents of URL', gh_ver),
+        if_output(g_gh, gh_ver, 'Dictionary Value', 100),
+        if_else(g_gh),
+        act_download(VERSION_URLS[1], site),
+        act_set_variable(json_var, site, 'Contents of URL'),
+        if_close(g_gh),
+        act_get_variable(json_var, json_get),
+        act_dict_value(key, json_get, 'Variable', remote),
+        if_output(g_new, remote, 'Dictionary Value', 2, WFNumberValue=built_version(key)),
+        act_dict_value(f'{key}_{lang}', json_get, 'Variable', link),
+        menu_open(g_menu, L['update.prompt'].replace('{NAME}', name), [install, later]),
+        menu_case(g_menu, install),
+        {'WFWorkflowActionIdentifier': 'is.workflow.actions.openurl',
+         'WFWorkflowActionParameters': {'WFInput': text_token('{L}', {'L': (link, 'Dictionary Value')}),
+                                        'Show-WFInput': True}},
+        menu_case(g_menu, later),
+        menu_close(g_menu),
+        if_close(g_new),
+        if_close(g_due),
+    ]
+
+
 IMAGE_GALLERY_HTML = (
     '<!DOCTYPE html><html><head><meta charset="utf-8">'
     '<meta name="viewport" content="width=device-width, initial-scale=1"><style>'
@@ -574,8 +684,11 @@ def build(lang):
         menu_open(g_finale, L['menu.finale_title'], L['menu.finale_items']),
         menu_case(g_finale, L['menu.finale_items'][0]),
         menu_case(g_finale, L['menu.finale_items'][1]),
-        act_run_shortcut(L['shortcut_names.main'], question, 'Provided Input'),
+        act_run_shortcut(RELEASE_NAME, question, 'Provided Input'),
         menu_close(g_finale),
+
+        # ---- Last of all, at most once a week: is there a newer Duo? (see version_check)
+        *version_check(L, 'duo', RELEASE_NAME, lang),
     ]
 
     validate(actions)
