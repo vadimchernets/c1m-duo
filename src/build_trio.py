@@ -14,7 +14,8 @@ The third voice speaks the OpenAI chat-completions dialect, so one request templ
 free provider: NVIDIA build (Kimi K3, GLM-5.3, DeepSeek V4.1), Google AI Studio (Gemini Flash),
 OpenRouter (its `:free` models) and Groq. The person may save any number of free keys; each is
 recognised by how it begins (nvapi- → NVIDIA, AIza/AQ. → Google, sk-or- → OpenRouter, gsk_ → Groq). Trio walks every model of every key until one answers: a busy model (503)
-or a spent daily limit (429) moves to the next model, a key with no money (402) or an invalid key (401)
+moves to the next model; a limit (429) never sends it to another key of the same provider — the free limit
+belongs to the project/account, not to the key (see PER_MODEL_LIMIT below), a key with no money (402) or an invalid key (401)
 is not asked again. Only when all of them failed does the block say what each one answered and what
 to do — never «invalid key» for a key that merely ran out of money or was busy.
 
@@ -52,7 +53,7 @@ from build_shortcut import (  # noqa: E402
 
 # NVIDIA build first: the strongest free models today, three companies on one key without a card
 # (Kimi K3 — Moonshot, DeepSeek V4.1 — DeepSeek, GLM-5.3 — Zhipu; integrate.api.nvidia.com/v1/models,
-# 2026-10-01). About 40 requests a minute per key, no daily cap. Sign-up asks for a phone (SMS).
+# 2026-10-01). About 40 requests a minute per account, no daily cap. Sign-up asks for a phone (SMS).
 NVIDIA_URL = 'https://integrate.api.nvidia.com/v1/chat/completions'
 # Order Kimi → GLM → DeepSeek: live on 2026-10-01 GLM-5.3 answered in 12 s, DeepSeek V4.1 stayed
 # silent for 90–120 s — the slow one goes last. «Get Contents of URL» has no timeout setting, so a
@@ -335,10 +336,23 @@ PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens)
     ('provider.openai', OPENAI_URL, OPENAI_KEY_RE, OPENAI_MODELS, OPENAI_MAX_TOKENS),
 ]
 
+# A 429 (owner, 2026-10-02; providers' docs checked that day): the free limit is per project or account,
+# not per key — Google: «Rate limits are applied per project, not per API key»
+# (ai.google.dev/gemini-api/docs/rate-limits); Groq: «at the organization level»
+# (console.groq.com/docs/rate-limits); OpenRouter: «Making additional accounts or API keys will not affect
+# your rate limits» (openrouter.ai/docs/api/reference/limits); NVIDIA: per account. Keys of different
+# accounts cannot be told apart, so a 429 pauses that provider for the rest of the run instead of trying
+# its other keys: only that model at Google and Groq (their quota is per model too — the next Flash still
+# has its own), the whole provider elsewhere (OpenRouter's free-models-per-day covers every :free model;
+# NVIDIA's ~40 a minute is per account). One run is one question, so a per-minute limit is not retried.
+PER_MODEL_LIMIT = ('generativelanguage.googleapis.com', 'api.groq.com')
+
 # What a failed reply means. «Get Contents of URL» gives no status code, so the reply's own words
 # decide: `"code": 402` (Gemini, OpenRouter) or a known phrase (Groq has no numeric code).
 # (kind, dead key?, needles in the reply) — first match wins.
 FAILS = [
+    # a free-tier 429 first: Gemini's says «check your plan and billing details» — not «no money»
+    ('limit', False, ['"code": 429', '"code":429', 'RESOURCE_EXHAUSTED']),
     ('billing', True, ['"code": 402', '"code":402', 'credits', 'billing', 'credit balance',
                        'insufficient_quota', 'Insufficient Balance']),
     ('region', True, ['location is not supported', 'not available in your country']),
@@ -358,6 +372,23 @@ FAILS = [
 ]
 
 
+def pause_actions(u, V, paused_v):
+    """Append «url|model#» (Google, Groq: quota per model) or «url#all» (everyone else) to the paused list."""
+    pu, pm, old, m, mg, new_one, new_all = (u() for _ in range(7))
+    return [
+        act_get_variable(V['url'], pu), act_get_variable(V['model'], pm), act_get_variable(paused_v, old),
+        act_match('|'.join(h.replace('.', r'\.') for h in PER_MODEL_LIMIT), pu, 'Variable', m),
+        if_output_has_value(mg, m, 'Matches'),
+        act_text(text_token('{D}\n{U}|{M}#', {'D': (old, 'Variable'), 'U': (pu, 'Variable'),
+                                               'M': (pm, 'Variable')}), new_one),
+        act_set_variable(paused_v, new_one, 'Text'),
+        if_else(mg),
+        act_text(text_token('{D}\n{U}#all', {'D': (old, 'Variable'), 'U': (pu, 'Variable')}), new_all),
+        act_set_variable(paused_v, new_all, 'Text'),
+        if_close(mg),
+    ]
+
+
 def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
     """From the finished trio prompt and the saved keys text to V['third'] holding the third voice.
 
@@ -370,6 +401,7 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
     var = lambda name, default: V.get(name, default)
     attempts_v, log_v, dead_v, why_v = (var('attempts', 'Attempts'), var('log', 'Log'),
                                          var('dead', 'DeadKeys'), var('why', 'Why'))
+    paused_v = var('paused', 'Paused')
     actions = []
 
     # ---- the attempt list: one line «url|model|key|provider|max_tokens» per (model, key)
@@ -395,6 +427,7 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
     c_tail, c_clean = u(), u()
     g_ant, g_oai, post_a, raw_a, post_o, raw_o = (u() for _ in range(6))
     a_ok, a_has, a_data, a_content, a_first, a_text = (u() for _ in range(6))
+    p_url, p_model, p_all, p_one, skip_all, skip_one = (u() for _ in range(6))
     actions += [
         repeat_each(loop, lines, 'Matches'),
         act_set_from_repeat_item(attempts_v),
@@ -410,6 +443,14 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
         # a key that already said «no money» / «invalid» is not asked again
         if_contains_ref(skip_dead, dead_v, k_get, 'Variable'),
         if_else(skip_dead),
+        # a provider (or, at Google and Groq, a model) that answered 429 is not asked again this run
+        act_get_variable(V['url'], p_url), act_get_variable(V['model'], p_model),
+        act_text(text_token('{U}#all', {'U': (p_url, 'Variable')}), p_all),
+        if_contains_ref(skip_all, paused_v, p_all, 'Text'),
+        if_else(skip_all),
+        act_text(text_token('{U}|{M}#', {'U': (p_url, 'Variable'), 'M': (p_model, 'Variable')}), p_one),
+        if_contains_ref(skip_one, paused_v, p_one, 'Text'),
+        if_else(skip_one),
         # three dialects: Anthropic's own, OpenAI's with max_completion_tokens, everyone else
         if_contains(g_ant, V['url'], 'api.anthropic.com'),
         act_post_anthropic(f_url, f_key, f_model, prompt_uid, f_max, post_a),
@@ -470,6 +511,8 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
             group = u()
             groups.append(group)
             actions += [if_contains(group, V['raw'], needle), *set_text(why_v, T[f'why.{kind}'], u())]
+            if kind == 'limit':
+                actions += pause_actions(u, V, paused_v)
             if dead:
                 d_old, d_new = u(), u()
                 actions += [act_get_variable(dead_v, d_old),
@@ -496,6 +539,8 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
         act_set_variable(log_v, log_new, 'Text'),
         *set_text(why_v, '', u()),
         if_close(has_why),
+        if_close(skip_one),
+        if_close(skip_all),
         if_close(skip_dead),
         if_close(skip_done),
         repeat_each_close(loop),
