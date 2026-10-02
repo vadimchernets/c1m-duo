@@ -32,6 +32,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Ukrainian locale `locales/uk/ui.json` — the main shortcut and companions
   now build in uk too.
 - Install docs (en, es, pt, ru): how to get the free key in three steps.
+- `tools/check_language.py` — a gate that fails if Cyrillic appears anywhere
+  outside a language place (a `ru/`/`uk/` path part, a `*.ru.*`/`*.uk.*` file,
+  or a language's own self-name in a list where every language is named in
+  its own script). Covered by `tests/test_check_language.py`; wired into
+  `tools/verify.py`, which CI already runs on every push.
+- `android/generate_choirs.py` now loads its per-language strings from
+  `locales/<lang>/choirs.json` instead of an inline Python dict (en and ru
+  carry the exact same text as before — the generated `android/en` and
+  `android/ru` `poly-choirs.prj.xml` are byte-identical to what shipped
+  previously). `locales/es/choirs.json`, `locales/pt/choirs.json` and
+  `locales/uk/choirs.json` were added alongside, translated to match the
+  wording already used in each locale's `ui.json`/`trio.json`; the Android
+  generator itself still only builds en/ru (there is no `android/es`,
+  `android/pt` or `android/uk` donor project yet to clone from), but the
+  tables are ready for when one exists. Covered by
+  `tests/test_choirs_locales.py` — every `locales/*/choirs.json` carries the
+  same key set as the English base and every `.format()` template in it
+  formats without error.
 
 ### Checked
 - On a Mac (not on a phone), 01.10.2026: the third-voice block — the same

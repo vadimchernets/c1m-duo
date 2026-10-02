@@ -303,9 +303,22 @@ def check_kits(langs):
                 ok(f'{lang}: {len(names)} entries, in sync')
 
 
+def check_language():
+    print('language')
+    sys.path.insert(0, str(ROOT / 'tools'))
+    import check_language as language_mod
+    found = language_mod.violations(ROOT, language_mod.git_files(ROOT))
+    if found:
+        for line in found:
+            fail(f'language: {line}')
+    else:
+        ok('no Cyrillic outside a language place')
+
+
 def main():
     langs = sys.argv[1:] or [d.name for d in sorted((ROOT / 'locales').iterdir()) if d.is_dir()]
     check_locales()
+    check_language()
     check_sources_build(langs)
     check_shortcuts(langs)
     check_kits(langs)
