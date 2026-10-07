@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added (2026-10-07, debate until agreement)
+- **Duo: a new mode «🤝 Debate until agreement · 3–8✉»**, second in the main menu, right after
+  Critique. For life choices with no right answer («which to choose», «should I agree»): ChatGPT
+  takes a side, Claude objects, ChatGPT answers the objections — up to three rounds. A side that is
+  genuinely convinced starts its reply with `[[CONCEDE]]`, and the shortcut stops the rounds there
+  (`If <debate log> contains [[CONCEDE]]` before every turn). Then Claude, as a neutral recorder,
+  writes three sections: where they agreed / where the dispute remains / what you decide; the whole
+  debate follows the outcome. Prompts `locales/en/prompts/argue-1-open … argue-4-verdict.txt`
+  (shared by every language); strings in all eleven `locales/<lang>/ui.json` (menu, notifications,
+  output, journal, variable, help line); the auto-router knows the mode (en, ru). `menu.main_items`
+  now holds 7 entries (verify.py, BUILD.md, CONTRIBUTING.md). Test `tests/test_argue_mode.py`.
+  This build is **duo 3**; signed en/es/pt/ru/uk Duo rebuilt — their iCloud links must be
+  re-created (`duo_<lang>` in `releases/version.json`, README, docs/*/install.md, poly-a1).
+
 ### Added (2026-10-02, version check)
 - **Duo and Trio look for a newer version at most once in 7 days.** At the very end of a run they
   read `releases/version.json` (GitHub raw, then `polyhelper.ai/duo/version.json`); if its number

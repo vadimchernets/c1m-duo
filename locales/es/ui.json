@@ -37,6 +37,7 @@
     "main_title": "Modo de Poly (ℹ️ la ayuda está en «📂 Más…»)",
     "main_items": [
       "⚖️ Crítica · 2✉",
+      "🤝 Debate hasta el acuerdo · 3–8✉",
       "🩺 Asesor · 1✉",
       "👀 En paralelo · 2✉",
       "🔀 Síntesis · 3✉",
@@ -103,7 +104,11 @@
     "voice_start": "🎧 Poly Voice: ChatGPT → Claude, le leeré la respuesta final en voz alta. ≈1 min. Si ChatGPT dice «logged out» — abra su app y empiece otra vez.",
     "photo_done": "📸 Texto reconocido — abriendo Poly.",
     "multi_step1": "🎼 Coro [1/3]: ChatGPT y Claude responden por su cuenta…",
-    "multi_step3": "[3/3] Claude funde el coro…"
+    "multi_step3": "[3/3] Claude funde el coro…",
+    "argue_start": "🤝 Debate hasta el acuerdo: ChatGPT toma una postura, Claude la objeta, hasta 3 rondas hasta que uno ceda. ≈2–4 min, no toque el teléfono. Si ChatGPT dice «sesión cerrada», abra su app y vuelva a ejecutar Poly.",
+    "argue_object": "[{N}/3] Claude está objetando…",
+    "argue_reply": "[{N}/3] ChatGPT responde a las objeciones…",
+    "argue_verdict": "Claude redacta el resultado: en qué coinciden / qué sigue en disputa / qué decide usted…"
   },
   "alert": {
     "multi_next_title": "Poly Multi — siguiente IA",
@@ -119,7 +124,11 @@
     "image_codes_judged": "⚖️ VEREDICTO DEL JUEZ\n{J}\n\n■ BOCETO DE CLAUDE (código SVG)\n{C}\n\n■ BOCETO DE CHATGPT (código SVG)\n{G}",
     "image_html_title": "🎨 Dos bocetos — elija el suyo",
     "image_html_claude": "◆ CLAUDE",
-    "image_html_gpt": "◆ CHATGPT"
+    "image_html_gpt": "◆ CHATGPT",
+    "argue": "{V}\n\n■■ CÓMO FUE EL DEBATE\n{L}",
+    "argue_side_a": "■ ChatGPT (lado A)",
+    "argue_side_b_round": "■ Claude (lado B), ronda {N}",
+    "argue_side_a_round": "■ ChatGPT (lado A), ronda {N}"
   },
   "journal": {
     "entry": "\n════════ {D} ════════\n{JX}\nPREGUNTA: {Q}\n\n{R}\n",
@@ -139,16 +148,18 @@
     "help": "MODO: ℹ️ Ayuda (sin llamadas a la IA)",
     "voice": "MODO: 🎧 Voz",
     "quiet": "MODO: 🤫 Silencioso (crítica)",
-    "multi": "MODO: 🎼 Coro múltiple"
+    "multi": "MODO: 🎼 Coro múltiple",
+    "argue": "MODO: 🤝 Debate hasta el acuerdo (el debate completo está en el resultado)"
   },
   "variables": {
     "result": "Resultado",
     "journal_extra": "DiarioExtra",
     "extra_answers": "RespuestasExtra",
     "final_prompt": "PromptFinal",
-    "pc_notice_seen": "AvisoPC"
+    "pc_notice_seen": "AvisoPC",
+    "argue_log": "CursoDebate"
   },
-  "help": "ℹ️ QUÉ ES POLY\n\nUna sola pregunta — y dos IA (ChatGPT y Claude) trabajan en ella en pareja. Funciona con sus propias suscripciones; la insignia ✉ de cada modo le dice cuántos mensajes va a gastar.\n\nMODOS HABITUALES (menú principal):\n⚖️ Crítica — ChatGPT responde, Claude lo verifica y lo mejora. Su modo por defecto.\n🩺 Asesor — Claude revisa SU texto sin reescribirlo. El modo más barato.\n👀 En paralelo — dos opiniones independientes, sin mezclarlas.\n🔀 Síntesis — los dos responden a ciegas y después se monta lo mejor. Para lo que importa.\n🧭 Auto — ¿no sabe qué elegir? Poly escoge el modo por usted.\n\nEn «📂 Más…»:\n⚔️ Decisión — primeros pasos y riesgos. 🗺 Mapa de discrepancias — en qué coinciden las IA y en qué no.\n🥊 Debate — borrador → el oponente ataca → revisión → juez. Para las preguntas más difíciles; caro.\n❓ Aclaración — primero le hace preguntas de seguimiento (el único modo en el que tiene que tocar la pantalla a media ejecución — solo en su diálogo).\n➕ Delta — un sustituto barato de Síntesis: ancla + lista de añadidos. 🎨 Imagen — dos bocetos vectoriales para elegir.\n\nEl resultado llega siempre por tres vías: en pantalla, en el portapapeles (péguelo donde quiera) y en el diario Poly-journal.md (Archivos → iCloud Drive → Atajos).\nMientras Poly trabaja — no toque el teléfono: un toque cancela el atajo. Detalles y solución de problemas: install.md, en el kit.\n\n💻 En un portátil o PC, PolyHelper hace más: carpetas, agentes, canales, horarios, un consejo de varias IA. Poly en el teléfono es la versión ligera, sin las funciones de PC.\n\nPulse «Listo» abajo y en la pantalla siguiente elija «🔁 Otro modo — misma pregunta»: Poly se reinicia con su pregunta y usted elige el modo.",
+  "help": "ℹ️ QUÉ ES POLY\n\nUna sola pregunta — y dos IA (ChatGPT y Claude) trabajan en ella en pareja. Funciona con sus propias suscripciones; la insignia ✉ de cada modo le dice cuántos mensajes va a gastar.\n\nMODOS HABITUALES (menú principal):\n⚖️ Crítica — ChatGPT responde, Claude lo verifica y lo mejora. Su modo por defecto.\n🤝 Debate hasta el acuerdo — para decisiones de vida sin respuesta correcta («qué elegir», «si aceptar»): ChatGPT toma una postura, Claude la objeta, hasta 3 rondas hasta que uno ceda; al final: en qué coinciden, qué sigue en disputa y qué le toca decidir a usted.\n🩺 Asesor — Claude revisa SU texto sin reescribirlo. El modo más barato.\n👀 En paralelo — dos opiniones independientes, sin mezclarlas.\n🔀 Síntesis — los dos responden a ciegas y después se monta lo mejor. Para lo que importa.\n🧭 Auto — ¿no sabe qué elegir? Poly escoge el modo por usted.\n\nEn «📂 Más…»:\n⚔️ Decisión — primeros pasos y riesgos. 🗺 Mapa de discrepancias — en qué coinciden las IA y en qué no.\n🥊 Debate — borrador → el oponente ataca → revisión → juez. Para las preguntas más difíciles; caro.\n❓ Aclaración — primero le hace preguntas de seguimiento (el único modo en el que tiene que tocar la pantalla a media ejecución — solo en su diálogo).\n➕ Delta — un sustituto barato de Síntesis: ancla + lista de añadidos. 🎨 Imagen — dos bocetos vectoriales para elegir.\n\nEl resultado llega siempre por tres vías: en pantalla, en el portapapeles (péguelo donde quiera) y en el diario Poly-journal.md (Archivos → iCloud Drive → Atajos).\nMientras Poly trabaja — no toque el teléfono: un toque cancela el atajo. Detalles y solución de problemas: install.md, en el kit.\n\n💻 En un portátil o PC, PolyHelper hace más: carpetas, agentes, canales, horarios, un consejo de varias IA. Poly en el teléfono es la versión ligera, sin las funciones de PC.\n\nPulse «Listo» abajo y en la pantalla siguiente elija «🔁 Otro modo — misma pregunta»: Poly se reinicia con su pregunta y usted elige el modo.",
   "update": {
     "prompt": "Hay una nueva versión de {NAME}. ¿Desea instalarla?",
     "install": "Instalar",

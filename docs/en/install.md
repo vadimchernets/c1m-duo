@@ -33,13 +33,14 @@ The signed `Duo.shortcut` and `Trio.shortcut` files are on [polyhelper.ai/duo/en
 
 ## How to use it
 
-Tap the icon → "Question for Poly?" → type your question → "Done" → pick a mode. The menu has two levels: five common modes up top, everything else tucked into **📂 More…** (nothing is removed — a rare mode just costs one extra tap). More… also holds **ℹ️ What is Poly** — a free, on-device explainer for every mode. Lost at the mode picker? Open it — it doesn't spend a single message.
+Tap the icon → "Question for Poly?" → type your question → "Done" → pick a mode. The menu has two levels: six common modes up top, everything else tucked into **📂 More…** (nothing is removed — a rare mode just costs one extra tap). More… also holds **ℹ️ What is Poly** — a free, on-device explainer for every mode. Lost at the mode picker? Open it — it doesn't spend a single message.
 
 **Main menu (common modes):**
 
 | Mode | What happens | Cost |
 |---|---|---|
 | **⚖️ Critique · 2✉** | ChatGPT answers, Claude checks it and delivers an improved final version. Your everyday driver. | 2 messages |
+| **🤝 Debate until agreement · 3–8✉** | For life choices with no right answer («which to choose», «should I agree»). ChatGPT takes a side, Claude objects, ChatGPT answers — up to 3 rounds, until one of them honestly concedes. Then: where they agreed, what is still disputed, what is yours to decide. | 3–8 messages |
 | **🩺 Advisor · 1✉** | Claude reviews YOUR finished text without rewriting it: a one-line verdict, the strongest objection first, what to double-check. The cheapest mode. | 1 message |
 | **👀 Side by side · 2✉** | Both answer independently; the answers sit next to each other. | 2 messages |
 | **🔀 Synthesis · 3✉** | Both answer blind, then get merged into an "anchor + delta" result. You'll be asked who anchors: Claude (facts/structure) or ChatGPT (tone/creativity). For anything that matters. | 3 messages |

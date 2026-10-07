@@ -37,6 +37,7 @@
     "main_title": "Poly-Modus (ℹ️ Hilfe steckt in „📂 Mehr…“)",
     "main_items": [
       "⚖️ Kritik · 2✉",
+      "🤝 Streit bis zur Einigung · 3–8✉",
       "🩺 Berater · 1✉",
       "👀 Nebeneinander · 2✉",
       "🔀 Synthese · 3✉",
@@ -103,7 +104,11 @@
     "voice_start": "🎧 Poly Voice: ChatGPT → Claude, die finale Antwort lese ich dir vor. ≈1 Min. Meldet ChatGPT „logged out“ — öffne seine App und starte noch einmal.",
     "photo_done": "📸 Text erkannt — ich öffne Poly.",
     "multi_step1": "🎼 Chor [1/3]: ChatGPT und Claude antworten von selbst…",
-    "multi_step3": "[3/3] Claude führt den Chor zusammen…"
+    "multi_step3": "[3/3] Claude führt den Chor zusammen…",
+    "argue_start": "🤝 Streit bis zur Einigung: ChatGPT bezieht Position, Claude widerspricht, bis zu 3 Runden, bis einer nachgibt. ≈2–4 Min., Telefon nicht berühren. Meldet ChatGPT «abgemeldet» — App öffnen und Poly neu starten.",
+    "argue_object": "[{N}/3] Claude widerspricht…",
+    "argue_reply": "[{N}/3] ChatGPT antwortet auf die Einwände…",
+    "argue_verdict": "Claude schreibt das Ergebnis: einig / noch strittig / Ihre Entscheidung…"
   },
   "alert": {
     "multi_next_title": "Poly Multi — nächste KI",
@@ -119,7 +124,11 @@
     "image_codes_judged": "⚖️ URTEIL DES RICHTERS\n{J}\n\n■ SKIZZE VON CLAUDE (SVG-Code)\n{C}\n\n■ SKIZZE VON CHATGPT (SVG-Code)\n{G}",
     "image_html_title": "🎨 Zwei Skizzen — such dir eine aus",
     "image_html_claude": "◆ CLAUDE",
-    "image_html_gpt": "◆ CHATGPT"
+    "image_html_gpt": "◆ CHATGPT",
+    "argue": "{V}\n\n■■ SO VERLIEF DER STREIT\n{L}",
+    "argue_side_a": "■ ChatGPT (Seite A)",
+    "argue_side_b_round": "■ Claude (Seite B), Runde {N}",
+    "argue_side_a_round": "■ ChatGPT (Seite A), Runde {N}"
   },
   "journal": {
     "entry": "\n════════ {D} ════════\n{JX}\nFRAGE: {Q}\n\n{R}\n",
@@ -139,16 +148,18 @@
     "help": "MODUS: ℹ️ Hilfe (keine KI-Aufrufe)",
     "voice": "MODUS: 🎧 Voice",
     "quiet": "MODUS: 🤫 Quiet (Kritik)",
-    "multi": "MODUS: 🎼 Multi-Chor"
+    "multi": "MODUS: 🎼 Multi-Chor",
+    "argue": "MODUS: 🤝 Streit bis zur Einigung (der ganze Streit steht im Ergebnis)"
   },
   "variables": {
     "result": "Ergebnis",
     "journal_extra": "JournalZusatz",
     "extra_answers": "ZusatzAntworten",
     "final_prompt": "EndPrompt",
-    "pc_notice_seen": "PCHinweis"
+    "pc_notice_seen": "PCHinweis",
+    "argue_log": "Streitverlauf"
   },
-  "help": "ℹ️ WAS IST POLY\n\nEine Frage — und zwei KIs (ChatGPT und Claude) arbeiten als Paar daran. Es läuft über deine eigenen Abos; das ✉-Abzeichen am Modus sagt dir, wie viele Nachrichten er kostet.\n\nMODI FÜR JEDEN TAG (Hauptmenü):\n⚖️ Kritik — ChatGPT antwortet, Claude prüft nach und verbessert. Deine Standardwahl.\n🩺 Berater — Claude prüft DEINEN Text, ohne ihn umzuschreiben. Der günstigste Modus.\n👀 Nebeneinander — zwei unabhängige Meinungen, nichts vermischt.\n🔀 Synthese — beide antworten blind, dann wird das Beste zusammengebaut. Für alles Wichtige.\n🧭 Auto — unsicher, was du wählen sollst? Poly sucht den Modus für dich aus.\n\nIn „📂 Mehr…“:\n⚔️ Entscheidung — erste Schritte und Risiken. 🗺 Streitkarte — wo die KIs übereinstimmen und wo nicht.\n🥊 Debatte — Entwurf → Gegner greift an → Überarbeitung → Richter. Für die härtesten Fragen; teuer.\n❓ Rückfrage — stellt dir erst Rückfragen (der einzige Modus, in dem du mitten im Lauf den Bildschirm berühren musst — nur für seinen Dialog).\n➕ Delta — der günstige Ersatz für die Synthese: Anker + eine Liste der Ergänzungen. 🎨 Bild — zwei Vektorskizzen zur Auswahl.\n\nDas Ergebnis kommt immer dreifach: auf den Bildschirm, in die Zwischenablage (überall einfügbar) und ins Journal Poly-journal.md (Dateien → iCloud Drive → Shortcuts).\nWährend Poly läuft — Finger weg vom Handy: eine Berührung bricht den Kurzbefehl ab. Details und Fehlerbehebung: install.md im Kit.\n\n💻 Auf dem Laptop oder PC kann PolyHelper mehr: Ordner, Agenten, Kanäle, Zeitpläne, ein Rat aus mehreren KIs. Poly auf dem Handy ist die leichte Version, ohne die PC-Funktionen.\n\nTippe unten auf „Fertig“ und wähle auf dem nächsten Bildschirm „🔁 Anderer Modus — dieselbe Frage“ — Poly startet mit deiner Frage neu und du wählst einen Modus.",
+  "help": "ℹ️ WAS IST POLY\n\nEine Frage — und zwei KIs (ChatGPT und Claude) arbeiten als Paar daran. Es läuft über deine eigenen Abos; das ✉-Abzeichen am Modus sagt dir, wie viele Nachrichten er kostet.\n\nMODI FÜR JEDEN TAG (Hauptmenü):\n⚖️ Kritik — ChatGPT antwortet, Claude prüft nach und verbessert. Deine Standardwahl.\n🤝 Streit bis zur Einigung — für Lebensentscheidungen ohne richtige Antwort («was wählen», «zusagen oder nicht»): ChatGPT bezieht Position, Claude widerspricht, bis zu 3 Runden, bis einer nachgibt; am Ende: worin sie sich einig sind, was strittig bleibt und was Sie entscheiden.\n🩺 Berater — Claude prüft DEINEN Text, ohne ihn umzuschreiben. Der günstigste Modus.\n👀 Nebeneinander — zwei unabhängige Meinungen, nichts vermischt.\n🔀 Synthese — beide antworten blind, dann wird das Beste zusammengebaut. Für alles Wichtige.\n🧭 Auto — unsicher, was du wählen sollst? Poly sucht den Modus für dich aus.\n\nIn „📂 Mehr…“:\n⚔️ Entscheidung — erste Schritte und Risiken. 🗺 Streitkarte — wo die KIs übereinstimmen und wo nicht.\n🥊 Debatte — Entwurf → Gegner greift an → Überarbeitung → Richter. Für die härtesten Fragen; teuer.\n❓ Rückfrage — stellt dir erst Rückfragen (der einzige Modus, in dem du mitten im Lauf den Bildschirm berühren musst — nur für seinen Dialog).\n➕ Delta — der günstige Ersatz für die Synthese: Anker + eine Liste der Ergänzungen. 🎨 Bild — zwei Vektorskizzen zur Auswahl.\n\nDas Ergebnis kommt immer dreifach: auf den Bildschirm, in die Zwischenablage (überall einfügbar) und ins Journal Poly-journal.md (Dateien → iCloud Drive → Shortcuts).\nWährend Poly läuft — Finger weg vom Handy: eine Berührung bricht den Kurzbefehl ab. Details und Fehlerbehebung: install.md im Kit.\n\n💻 Auf dem Laptop oder PC kann PolyHelper mehr: Ordner, Agenten, Kanäle, Zeitpläne, ein Rat aus mehreren KIs. Poly auf dem Handy ist die leichte Version, ohne die PC-Funktionen.\n\nTippe unten auf „Fertig“ und wähle auf dem nächsten Bildschirm „🔁 Anderer Modus — dieselbe Frage“ — Poly startet mit deiner Frage neu und du wählst einen Modus.",
   "update": {
     "prompt": "Eine neue Version von {NAME} ist da — installieren?",
     "install": "Installieren",

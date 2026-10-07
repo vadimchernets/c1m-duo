@@ -29,8 +29,8 @@ themselves. Nothing goes through a server of ours — there isn't one.
 ## Duo and Trio
 
 - **Duo** — the pair. ChatGPT answers, Claude checks and corrects it, and you get one answer on the
-  screen and in the clipboard, in about a minute. That is the default mode, **Critique**; ten more
-  modes (debate, side by side, dispute map, decision, …) are one tap away. Spends 1–4 messages from
+  screen and in the clipboard, in about a minute. That is the default mode, **Critique**; eleven more
+  modes (debate until agreement, debate, side by side, dispute map, decision, …) are one tap away. Spends 1–8 messages from
   your own ChatGPT and Claude plans per run.
 - **Trio** — Duo plus a third voice from a third company. After Claude's check, a free AI names
   only the errors and gaps both of them missed; its words come as a separate block under Claude's
@@ -121,7 +121,7 @@ your question
                     └──→  one final answer  →  screen · clipboard · journal
 ```
 
-That's **Critique**, the default mode and the only one you need on the first day. Ten other modes
+That's **Critique**, the default mode and the only one you need on the first day. Eleven other modes
 put the two models against each other in different ways — a debate, a side-by-side, a map of
 where they disagree — and they stay out of your way until you want them.
 
@@ -131,6 +131,7 @@ where they disagree — and they stay out of your way until you want them.
 | Mode | What happens | Cost |
 |---|---|---|
 | ⚖️ **Critique** | ChatGPT answers, Claude verifies and delivers the improved final. Your default. | 2 messages |
+| 🤝 **Debate until agreement** | ChatGPT takes a side, Claude objects, up to 3 rounds until one concedes; then where they agreed, what is still disputed, what is yours to decide. For life choices with no right answer. | 3–8 messages |
 | 🩺 **Advisor** | Claude reviews *your own* text without rewriting it: verdict, strongest objection first. | 1 message |
 | 👀 **Side by side** | Both answer independently, answers shown next to each other, nothing blended. | 2 messages |
 | 🔀 **Synthesis** | Both answer blind, then one answer anchors the assembly and the other adds only what's missing. | 3 messages |

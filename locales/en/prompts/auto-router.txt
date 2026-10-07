@@ -4,6 +4,7 @@ Advisor — a ready-made text has been submitted, it has to be checked.
 Side by side — the user wants to see two independent opinions.
 Synthesis — an important question, the most complete answer is needed.
 Decision — a "do it / don't / how" choice, a plan and risks are needed.
+Debate until agreement — a personal or life choice with no single right answer ("which to choose", "should I agree"), the person wants two views argued out.
 Dispute map — a contested topic, where the sources diverge matters.
 Debate — a hard question, an answer that has survived attack is needed.
 Clarify — the question is vague, it has to be pinned down first.

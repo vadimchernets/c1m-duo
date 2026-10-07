@@ -33,13 +33,14 @@ Os arquivos assinados `Duo.shortcut` e `Trio.shortcut` estão em [polyhelper.ai/
 
 ## Como usar
 
-Toque no ícone → "O que você quer perguntar ao Poly?" → digite sua pergunta → "Concluído" → escolha um modo. O menu tem dois níveis: os cinco modos mais comuns em cima e todo o resto guardado em **📂 Mais…** (nada foi removido — um modo raro custa apenas um toque a mais). Em Mais… fica também **ℹ️ O que é o Poly**, uma explicação gratuita de cada modo, direto no aparelho. Perdido na hora de escolher o modo? Abra essa opção — ela não gasta uma única mensagem.
+Toque no ícone → "O que você quer perguntar ao Poly?" → digite sua pergunta → "Concluído" → escolha um modo. O menu tem dois níveis: os seis modos mais comuns em cima e todo o resto guardado em **📂 Mais…** (nada foi removido — um modo raro custa apenas um toque a mais). Em Mais… fica também **ℹ️ O que é o Poly**, uma explicação gratuita de cada modo, direto no aparelho. Perdido na hora de escolher o modo? Abra essa opção — ela não gasta uma única mensagem.
 
 **Menu principal (modos comuns):**
 
 | Modo | O que acontece | Custo |
 |---|---|---|
 | **⚖️ Crítica · 2✉** | O ChatGPT responde, o Claude confere e entrega uma versão final melhorada. Seu modo do dia a dia. | 2 mensagens |
+| **🤝 Debate até o acordo · 3–8✉** | Para decisões de vida sem resposta certa («o que escolher», «se devo aceitar»). O ChatGPT escolhe um lado, o Claude contesta, o ChatGPT responde — até 3 rodadas, até que um ceda de verdade. No fim: onde concordaram, o que segue em disputa, o que você decide. | 3–8 mensagens |
 | **🩺 Consultor · 1✉** | O Claude analisa o SEU texto pronto sem reescrevê-lo: um veredicto em uma linha, a objeção mais forte primeiro, o que verificar. O modo mais barato. | 1 mensagem |
 | **👀 Lado a lado · 2✉** | Os dois respondem de forma independente; as respostas ficam uma ao lado da outra. | 2 mensagens |
 | **🔀 Síntese · 3✉** | Os dois respondem às cegas e depois as respostas são fundidas em um resultado do tipo "âncora + delta". Você será perguntado sobre quem ancora: Claude (fatos/estrutura) ou ChatGPT (tom/criatividade). Para tudo o que importa. | 3 mensagens |

@@ -37,6 +37,7 @@
     "main_title": "Mode Poly (ℹ️ l’aide est dans « 📂 Plus… »)",
     "main_items": [
       "⚖️ Critique · 2✉",
+      "🤝 Débat jusqu'à l'accord · 3–8✉",
       "🩺 Conseil · 1✉",
       "👀 Côte à côte · 2✉",
       "🔀 Synthèse · 3✉",
@@ -103,7 +104,11 @@
     "voice_start": "🎧 Poly Voice : ChatGPT → Claude, je lirai la réponse finale à voix haute. ≈1 min. Si ChatGPT dit « logged out » — ouvre son app et recommence.",
     "photo_done": "📸 Texte reconnu — j’ouvre Poly.",
     "multi_step1": "🎼 Chœur [1/3] : ChatGPT et Claude répondent d’eux-mêmes…",
-    "multi_step3": "[3/3] Claude fusionne le chœur…"
+    "multi_step3": "[3/3] Claude fusionne le chœur…",
+    "argue_start": "🤝 Débat jusqu'à l'accord : ChatGPT prend position, Claude objecte, jusqu'à 3 tours, jusqu'à ce que l'un cède. ≈2–4 min, ne touchez pas le téléphone. Si ChatGPT indique « déconnecté », ouvrez son app et relancez Poly.",
+    "argue_object": "[{N}/3] Claude objecte…",
+    "argue_reply": "[{N}/3] ChatGPT répond aux objections…",
+    "argue_verdict": "Claude rédige le bilan : accords / désaccords restants / à vous de décider…"
   },
   "alert": {
     "multi_next_title": "Poly Multi — IA suivante",
@@ -119,7 +124,11 @@
     "image_codes_judged": "⚖️ VERDICT DU JUGE\n{J}\n\n■ CROQUIS DE CLAUDE (code SVG)\n{C}\n\n■ CROQUIS DE CHATGPT (code SVG)\n{G}",
     "image_html_title": "🎨 Deux croquis — à toi de choisir",
     "image_html_claude": "◆ CLAUDE",
-    "image_html_gpt": "◆ CHATGPT"
+    "image_html_gpt": "◆ CHATGPT",
+    "argue": "{V}\n\n■■ DÉROULÉ DU DÉBAT\n{L}",
+    "argue_side_a": "■ ChatGPT (camp A)",
+    "argue_side_b_round": "■ Claude (camp B), tour {N}",
+    "argue_side_a_round": "■ ChatGPT (camp A), tour {N}"
   },
   "journal": {
     "entry": "\n════════ {D} ════════\n{JX}\nQUESTION : {Q}\n\n{R}\n",
@@ -139,16 +148,18 @@
     "help": "MODE : ℹ️ Aide (aucun appel à l’IA)",
     "voice": "MODE : 🎧 Voix",
     "quiet": "MODE : 🤫 Discret (critique)",
-    "multi": "MODE : 🎼 Chœur multi"
+    "multi": "MODE : 🎼 Chœur multi",
+    "argue": "MODE : 🤝 Débat jusqu'à l'accord (tout le débat est dans le résultat)"
   },
   "variables": {
     "result": "Résultat",
     "journal_extra": "JournalExtra",
     "extra_answers": "RéponsesExtra",
     "final_prompt": "PromptFinal",
-    "pc_notice_seen": "AvisPC"
+    "pc_notice_seen": "AvisPC",
+    "argue_log": "DerouleDebat"
   },
-  "help": "ℹ️ QU’EST-CE QUE POLY\n\nUne seule question — et deux IA (ChatGPT et Claude) la traitent en duo. Tout passe par tes propres abonnements ; la pastille ✉ d’un mode indique le nombre de messages qu’il va dépenser.\n\nMODES DU QUOTIDIEN (menu principal) :\n⚖️ Critique — ChatGPT répond, Claude vérifie et améliore. Ton mode par défaut.\n🩺 Conseil — Claude relit TON texte sans le réécrire. Le mode le moins cher.\n👀 Côte à côte — deux avis indépendants, sans mélange.\n🔀 Synthèse — les deux répondent à l’aveugle, puis on assemble le meilleur. Pour ce qui compte.\n🧭 Auto — tu hésites ? Poly choisit le mode à ta place.\n\nDans « 📂 Plus… » :\n⚔️ Décision — premières étapes et risques. 🗺 Carte des désaccords — où les IA s’accordent et où elles divergent.\n🥊 Débat — brouillon → l’opposant attaque → révision → juge. Pour les questions les plus dures ; cher.\n❓ Clarification — te pose d’abord des questions complémentaires (le seul mode où tu dois toucher l’écran en cours de route — uniquement dans sa fenêtre).\n➕ Delta — un remplaçant économique de la Synthèse : ancre + liste d’ajouts. 🎨 Image — deux croquis vectoriels au choix.\n\nLe résultat arrive toujours par trois voies : à l’écran, dans le presse-papiers (colle-le où tu veux) et dans le journal Poly-journal.md (Fichiers → iCloud Drive → Raccourcis).\nPendant que Poly tourne — ne touche pas au téléphone : un contact annule le raccourci. Détails et dépannage : install.md, dans le kit.\n\n💻 Sur un ordinateur portable ou un PC, PolyHelper en fait plus : dossiers, agents, canaux, planification, un conseil de plusieurs IA. Poly sur le téléphone est la version légère, sans les fonctions PC.\n\nAppuie sur « Terminé » en bas, puis sur l’écran suivant choisis « 🔁 Autre mode — même question » : Poly redémarre avec ta question et tu choisis un mode.",
+  "help": "ℹ️ QU’EST-CE QUE POLY\n\nUne seule question — et deux IA (ChatGPT et Claude) la traitent en duo. Tout passe par tes propres abonnements ; la pastille ✉ d’un mode indique le nombre de messages qu’il va dépenser.\n\nMODES DU QUOTIDIEN (menu principal) :\n⚖️ Critique — ChatGPT répond, Claude vérifie et améliore. Ton mode par défaut.\n🤝 Débat jusqu'à l'accord — pour les choix de vie sans bonne réponse (« que choisir », « accepter ou non ») : ChatGPT prend position, Claude objecte, jusqu'à 3 tours, jusqu'à ce que l'un cède ; à la fin : où ils s'accordent, ce qui reste en débat et ce que vous seul décidez.\n🩺 Conseil — Claude relit TON texte sans le réécrire. Le mode le moins cher.\n👀 Côte à côte — deux avis indépendants, sans mélange.\n🔀 Synthèse — les deux répondent à l’aveugle, puis on assemble le meilleur. Pour ce qui compte.\n🧭 Auto — tu hésites ? Poly choisit le mode à ta place.\n\nDans « 📂 Plus… » :\n⚔️ Décision — premières étapes et risques. 🗺 Carte des désaccords — où les IA s’accordent et où elles divergent.\n🥊 Débat — brouillon → l’opposant attaque → révision → juge. Pour les questions les plus dures ; cher.\n❓ Clarification — te pose d’abord des questions complémentaires (le seul mode où tu dois toucher l’écran en cours de route — uniquement dans sa fenêtre).\n➕ Delta — un remplaçant économique de la Synthèse : ancre + liste d’ajouts. 🎨 Image — deux croquis vectoriels au choix.\n\nLe résultat arrive toujours par trois voies : à l’écran, dans le presse-papiers (colle-le où tu veux) et dans le journal Poly-journal.md (Fichiers → iCloud Drive → Raccourcis).\nPendant que Poly tourne — ne touche pas au téléphone : un contact annule le raccourci. Détails et dépannage : install.md, dans le kit.\n\n💻 Sur un ordinateur portable ou un PC, PolyHelper en fait plus : dossiers, agents, canaux, planification, un conseil de plusieurs IA. Poly sur le téléphone est la version légère, sans les fonctions PC.\n\nAppuie sur « Terminé » en bas, puis sur l’écran suivant choisis « 🔁 Autre mode — même question » : Poly redémarre avec ta question et tu choisis un mode.",
   "update": {
     "prompt": "Une nouvelle version de {NAME} est disponible — l’installer ?",
     "install": "Installer",

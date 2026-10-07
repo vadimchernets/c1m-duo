@@ -241,6 +241,15 @@ def if_has_value(group, var_name):
                                                        'Variable': variable(var_name)}}}
 
 
+def if_contains(group, var_name, needle):
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.conditional',
+            'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 0,
+                                           'WFCondition': 99,  # «contains»
+                                           'WFConditionalActionString': needle,
+                                           'WFInput': {'Type': 'Variable',
+                                                       'Variable': variable(var_name)}}}
+
+
 def if_else(group):
     return {'WFWorkflowActionIdentifier': 'is.workflow.actions.conditional',
             'WFWorkflowActionParameters': {'GroupingIdentifier': group, 'WFControlFlowMode': 1}}
@@ -269,6 +278,9 @@ VERSION_DAYS = 7
 # The name the main shortcut is released under (releases/<lang>/Duo.shortcut, the iCloud record, the
 # site). iOS names an imported shortcut after it, so «another mode — same question» calls this name.
 RELEASE_NAME = 'Duo'
+# «Debate until agreement»: a side that is genuinely convinced starts its reply with this marker
+# (the prompts argue-2-object / argue-3-reply ask for it); the shortcut stops the rounds when it appears.
+ARGUE_MARKER = '[[CONCEDE]]'
 
 
 def built_version(key):
@@ -427,6 +439,9 @@ def build(lang):
 
     # --- Critique
     cr_wrap, cr_gpt, cr_prompt, cr_claude = ids(4)
+    # --- Debate until agreement (see argue_round below)
+    ar_open, ar_gpt, ar_log0, ar_get, ar_prompt, ar_verdict, ar_out, ar_log_final = ids(8)
+    ARGUE_LOG = L['variables.argue_log']
     # --- Advisor
     ad_prompt, ad_claude = ids(2)
     # --- Side by side
@@ -455,6 +470,39 @@ def build(lang):
     tl_date, tl_extra, tl_result, tl_entry = ids(4)
     # --- The one-time word about the PC version
     pc_get, pc_text, pc_save = ids(3)
+
+    def argue_round(n):
+        """One round of «Debate until agreement»: Claude objects, ChatGPT answers. Each half runs only
+        while nobody has conceded — the debate log does not yet contain the marker."""
+        g_obj, g_rep = ids(2)
+        get1, pr1, cl1, get2, add1, get3, pr2, gp2, get4, add2 = ids(10)
+        rnd = str(n)
+        return [
+            if_contains(g_obj, ARGUE_LOG, ARGUE_MARKER),
+            if_else(g_obj),
+            act_notify(L['notify.argue_object'].replace('{N}', rnd)),
+            act_get_variable(ARGUE_LOG, get1),
+            act_text(text_token(L.prompt('argue-2-object').replace('{ROUND}', rnd),
+                                {**QUESTION, 'LOG': (get1, 'Variable')}), pr1),
+            act_claude(text_token('{P}', {'P': (pr1, 'Text')}), cl1),
+            act_get_variable(ARGUE_LOG, get2),
+            act_text(text_token('{L}\n\n' + L['output.argue_side_b_round'].replace('{N}', rnd) + '\n{B}',
+                                {'L': (get2, 'Variable'), 'B': (cl1, 'Ask Claude')}), add1),
+            act_set_variable(ARGUE_LOG, add1, 'Text'),
+            if_contains(g_rep, ARGUE_LOG, ARGUE_MARKER),
+            if_else(g_rep),
+            act_notify(L['notify.argue_reply'].replace('{N}', rnd)),
+            act_get_variable(ARGUE_LOG, get3),
+            act_text(text_token(L.prompt('argue-3-reply').replace('{ROUND}', rnd),
+                                {**QUESTION, 'LOG': (get3, 'Variable')}), pr2),
+            act_gpt(text_token('{P}', {'P': (pr2, 'Text')}), gp2),
+            act_get_variable(ARGUE_LOG, get4),
+            act_text(text_token('{L}\n\n' + L['output.argue_side_a_round'].replace('{N}', rnd) + '\n{A}',
+                                {'L': (get4, 'Variable'), 'A': (gp2, 'Ask ChatGPT')}), add2),
+            act_set_variable(ARGUE_LOG, add2, 'Text'),
+            if_close(g_rep),
+            if_close(g_obj),
+        ]
 
     actions = [
         act_comment(L['comment.main']),
@@ -487,8 +535,29 @@ def build(lang):
         act_set_variable(RESULT, cr_claude, 'Ask Claude'),
         *journal_note(L['journal.critique'], {'X': (cr_gpt, 'Ask ChatGPT')}),
 
-        # ---- Advisor: Claude reviews the user's own text without rewriting it
+        # ---- Debate until agreement: ChatGPT takes a side, Claude objects, ChatGPT answers… up to three
+        # rounds; a side that is convinced starts its reply with the marker and the debate stops there.
+        # Then Claude, as a neutral recorder: where they agreed / what is still disputed / what you decide.
         menu_case(g_main, MAIN[1]),
+        act_notify(L['notify.argue_start']),
+        act_text(text_token(L.prompt('argue-1-open'), Q), ar_open),
+        act_gpt(text_token('{P}', {'P': (ar_open, 'Text')}), ar_gpt),
+        act_text(text_token(L['output.argue_side_a'] + '\n{A}', {'A': (ar_gpt, 'Ask ChatGPT')}), ar_log0),
+        act_set_variable(ARGUE_LOG, ar_log0, 'Text'),
+        *argue_round(1), *argue_round(2), *argue_round(3),
+        act_notify(L['notify.argue_verdict']),
+        act_get_variable(ARGUE_LOG, ar_get),
+        act_text(text_token(L.prompt('argue-4-verdict'),
+                            {**QUESTION, 'LOG': (ar_get, 'Variable')}), ar_prompt),
+        act_claude(text_token('{P}', {'P': (ar_prompt, 'Text')}), ar_verdict),
+        act_get_variable(ARGUE_LOG, ar_log_final),
+        act_text(text_token(L['output.argue'], {'V': (ar_verdict, 'Ask Claude'),
+                                                'L': (ar_log_final, 'Variable')}), ar_out),
+        act_set_variable(RESULT, ar_out, 'Text'),
+        *journal_note(L['journal.argue']),
+
+        # ---- Advisor: Claude reviews the user's own text without rewriting it
+        menu_case(g_main, MAIN[2]),
         act_notify(L['notify.advisor_start']),
         act_text(text_token(L.prompt('advisor'), Q), ad_prompt),
         act_claude(text_token('{P}', {'P': (ad_prompt, 'Text')}), ad_claude),
@@ -496,7 +565,7 @@ def build(lang):
         *journal_note(L['journal.advisor']),
 
         # ---- Side by side: both answer independently, answers shown together
-        menu_case(g_main, MAIN[2]),
+        menu_case(g_main, MAIN[3]),
         act_notify(L['notify.survey_start']),
         act_text(text_token(L.prompt('wrap'), Q), sb_wrap),
         act_gpt(text_token('{P}', {'P': (sb_wrap, 'Text')}), sb_gpt),
@@ -507,7 +576,7 @@ def build(lang):
         *journal_note(L['journal.survey']),
 
         # ---- Synthesis: both answer blind, then one of them anchors the assembly
-        menu_case(g_main, MAIN[3]),
+        menu_case(g_main, MAIN[4]),
         menu_open(g_anchor, L['menu.anchor_title'], L['menu.anchor_items']),
 
         menu_case(g_anchor, L['menu.anchor_items'][0]),
@@ -538,7 +607,7 @@ def build(lang):
         menu_close(g_anchor),
 
         # ---- Auto: one classification call recommends the mode to use
-        menu_case(g_main, MAIN[4]),
+        menu_case(g_main, MAIN[5]),
         act_notify(L['notify.auto_start']),
         act_text(text_token(L.prompt('auto-router'), Q), au_prompt),
         act_gpt(text_token('{P}', {'P': (au_prompt, 'Text')}), au_gpt),
@@ -547,7 +616,7 @@ def build(lang):
         *journal_note(L['journal.auto']),
 
         # ---- More…: the less frequent modes plus built-in help
-        menu_case(g_main, MAIN[5]),
+        menu_case(g_main, MAIN[6]),
         menu_open(g_extra, L['menu.extra_title'], EXTRA),
 
         # ---- Decision: fast view, cautious view, referee

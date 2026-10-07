@@ -1,6 +1,6 @@
 {
   "about": "Read by Duo and Trio at most once in 7 days (GitHub raw first, then polyhelper.ai/duo/version.json). A shortcut whose built-in number is lower than the number here offers its <name>_<lang> iCloud link. To release: raise the number, rebuild and sign (tools/build.sh), re-create the iCloud links from the new files, put them here, copy this file to poly-a1 site/duo/version.json, push.",
-  "duo": 2,
+  "duo": 3,
   "trio": 2,
   "duo_en": "https://www.icloud.com/shortcuts/80a91be31b2644af828076a50ad96f00",
   "duo_es": "https://www.icloud.com/shortcuts/ca5b5581d75345afbead3333e9e2a065",
