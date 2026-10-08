@@ -46,11 +46,11 @@ themselves. Nothing goes through a server of ours — there isn't one.
 
 | Language | Duo | Trio |
 |---|---|---|
-| English | [Duo](https://www.icloud.com/shortcuts/80a91be31b2644af828076a50ad96f00) | [Trio](https://www.icloud.com/shortcuts/4006167cb55b4cf2bf36868389318ed2) |
-| Español | [Duo](https://www.icloud.com/shortcuts/ca5b5581d75345afbead3333e9e2a065) | [Trio](https://www.icloud.com/shortcuts/95c56fcd4d7d46838a24587dfb755284) |
-| Português | [Duo](https://www.icloud.com/shortcuts/d34ffbb01bef48b9a2241c3ffdef9dcb) | [Trio](https://www.icloud.com/shortcuts/8fcd2cbb58704d14907537d0e4e9569c) |
-| Русский | [Duo](https://www.icloud.com/shortcuts/fb6f02342d6a4b8c98d27ee0eba53744) | [Trio](https://www.icloud.com/shortcuts/9b29f1f7207f49c194dda7856b3474ff) |
-| Українська | [Duo](https://www.icloud.com/shortcuts/e115312f4e0c4dd5ac74e9be2584e868) | [Trio](https://www.icloud.com/shortcuts/c905d881cbbb4616a2f4e7e568d4da17) |
+| English | [Duo](https://www.icloud.com/shortcuts/fc2660eeb9304479afeb203447b4dbdd) | [Trio](https://www.icloud.com/shortcuts/4006167cb55b4cf2bf36868389318ed2) |
+| Español | [Duo](https://www.icloud.com/shortcuts/93c72cbef35e4a75912baf58396f7c7c) | [Trio](https://www.icloud.com/shortcuts/95c56fcd4d7d46838a24587dfb755284) |
+| Português | [Duo](https://www.icloud.com/shortcuts/dff2316afbc24829b2a242739d35607f) | [Trio](https://www.icloud.com/shortcuts/8fcd2cbb58704d14907537d0e4e9569c) |
+| Русский | [Duo](https://www.icloud.com/shortcuts/62ba03c01b77478395108c671d2f6c94) | [Trio](https://www.icloud.com/shortcuts/9b29f1f7207f49c194dda7856b3474ff) |
+| Українська | [Duo](https://www.icloud.com/shortcuts/5de28133a05d4067b6dfcb248685f875) | [Trio](https://www.icloud.com/shortcuts/c905d881cbbb4616a2f4e7e568d4da17) |
 
 **Backup: the signed file.**
 
