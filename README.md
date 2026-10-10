@@ -4,15 +4,15 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23089503.svg)](https://doi.org/10.5281/zenodo.23089503) Archived on Zenodo — concept DOI (all versions): [10.5281/zenodo.23089503](https://doi.org/10.5281/zenodo.23089503)
 
-**Pay $5 once — that's it: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No server of ours, no computer, nothing more to pay.**
+**Free: two AIs from different companies work together right on your phone. ChatGPT answers, Claude checks. No server of ours, no computer, nothing to pay.**
 
-The Duo and Trio shortcuts below are free and open source. The $5 is for the **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)): it installs Duo and Trio for you, walks you through every step, and on Android runs the same pair automatically on a free key.
+The Duo and Trio shortcuts below are free and open source. The **Poly A1** app ([App Store / Google Play](https://polyhelper.ai/)) is free to download, and Duo and Trio stay free in it: it installs them for you, walks you through every step, and on Android runs the same pair automatically on a free key.
 
 Have ChatGPT and Claude? Start right away. Have one? It helps you install the other. Have neither? Gemini (Google) or Meta AI (WhatsApp, Facebook) helps you install both, free.
 
 ### How it works
 
-The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours, on your own accounts — free ones are enough. Android: inside the Poly A1 app ($5, Google Play) the phone itself calls the strongest free AIs from different companies with your free key — one answers, one from another company checks. NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then Google AI Studio (Gemini Flash), Groq (Qwen, gpt-oss) and OpenRouter `:free` models — no card, no server of ours; or by hand with your ChatGPT and Claude. Verified on an Android emulator on 2026-10-01. Nothing like it exists anywhere else.
+The orchestration runs on the phone itself. iPhone: a Shortcut calls Ask ChatGPT, then Ask Claude — actions the apps publish themselves; answers pass between your own apps, with no server of ours, on your own accounts — free ones are enough. Android: inside the Poly A1 app (free, Google Play) the phone itself calls the strongest free AIs from different companies with your free key — one answers, one from another company checks. NVIDIA first (Kimi K3, GLM-5.3, DeepSeek V4.1 Flash), then Google AI Studio (Gemini Flash), Groq (Qwen, gpt-oss) and OpenRouter `:free` models — no card, no server of ours; or by hand with your ChatGPT and Claude. Verified on an Android emulator on 2026-10-01. Nothing like it exists anywhere else.
 
 C1M is the source of **Duo** and **Trio**, two iPhone shortcuts from the
 [Poly A1](https://polyhelper.ai/) family. They run on the ChatGPT and Claude apps already on your
