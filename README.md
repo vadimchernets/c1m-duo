@@ -144,7 +144,7 @@ where they disagree — and they stay out of your way until you want them.
 | ➕ **Delta** | Claude anchors, ChatGPT returns only what it would add. A cheap stand-in for Synthesis. | 2 messages |
 | ℹ️ **What is Poly** | Built-in help, right inside the run. | free |
 
-Five everyday modes sit in the main menu; the rest live one tap away under **📂 More…** The ✉
+Six everyday modes sit in the main menu, the rest under More…; the rest live one tap away under **📂 More…** The ✉
 badge on each entry shows the price before you choose. Which mode for which task:
 [docs/en/recipes.md](docs/en/recipes.md).
 
