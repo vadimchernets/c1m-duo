@@ -28,7 +28,7 @@ Touche l’icône → « Que veux-tu demander à Poly ? » → tape ta question 
 
 | Mode | Ce qui se passe | Coût |
 |---|---|---|
-| **⚖️ Critique · 2✉** | ChatGPT répond, Claude vérifie et livre une version finale améliorée. Ton mode de tous les jours. | 2 messages |
+| **⚖️ Critique · 3✉** | ChatGPT répond, Claude vérifie et livre une version finale améliorée. Ton mode de tous les jours. | 3 messages |
 | **🩺 Conseil · 1✉** | Claude relit TON texte déjà terminé sans le réécrire : un verdict en une ligne, l’objection la plus forte d’abord, ce qu’il faut revérifier. Le mode le moins cher. | 1 message |
 | **👀 Côte à côte · 2✉** | Les deux répondent indépendamment ; les réponses sont placées l’une à côté de l’autre. | 2 messages |
 | **🔀 Synthèse · 3✉** | Les deux répondent à l’aveugle, puis on fusionne en un résultat « ancre + delta ». On te demandera qui sert d’ancre : Claude (faits/structure) ou ChatGPT (ton/créativité). Pour tout ce qui compte. | 3 messages |

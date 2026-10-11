@@ -36,7 +36,7 @@
   "menu": {
     "main_title": "Poly 模式（ℹ️ 帮助在“📂 更多…”里）",
     "main_items": [
-      "⚖️ 审校 · 2✉",
+      "⚖️ 审校 · 3✉",
       "🤝 辩论到共识 · 3–8✉",
       "🩺 顾问 · 1✉",
       "👀 并排对照 · 2✉",
@@ -77,7 +77,8 @@
   },
   "notify": {
     "critique_start": "⚖️ 审校：ChatGPT 先答 → Claude 复核。约 1 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
-    "critique_step2": "[2/2] Claude 正在复核并整理最终答案……",
+    "critique_step2": "[2/3] Claude 正在复核并整理最终答案……",
+    "critique_summary": "[3/3] Claude 正在整理两份回答：一致之处／分歧之处／需要你自己核实的内容……（复核后的答案已在剪贴板中）",
     "advisor_start": "🩺 顾问：Claude 只点评你的文字，不改写。约 40 秒，别碰屏幕。",
     "survey_start": "👀 并排对照：分别独立地问两边。约 1 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
     "synthesis_claude_start": "🔀 综合（以 Claude 为主干）：两份盲答 → 合成。约 1.5 分钟，别碰手机。如果 ChatGPT 说“logged out” —— 打开它的 App，再重新运行 Poly。",
@@ -117,6 +118,7 @@
     "pc_notice_body": "💻 在笔记本或台式电脑上，PolyHelper 能做得更多：文件夹、智能体、频道、定时任务、由多个 AI 组成的评审团。手机上的 Poly 是轻量版，不含电脑端功能。"
   },
   "output": {
+    "critique": "{S}\n\n■ 复核后的答案（Claude）\n{C}",
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ 主干（Claude）\n{C}\n\n➕ 补充（ChatGPT）\n{G}",
     "auto": "🧭 针对你的问题，Poly 推荐这个模式：“{R}”（模式名可能是英文的）。\n\n在下一屏选择“🔁 换个模式 —— 同一个问题” —— Poly 会带着同一个问题重新开始；然后在菜单里选推荐的那个模式。",

@@ -130,7 +130,7 @@ where they disagree — and they stay out of your way until you want them.
 
 | Mode | What happens | Cost |
 |---|---|---|
-| ⚖️ **Critique** | ChatGPT answers, Claude verifies and delivers the improved final. Your default. | 2 messages |
+| ⚖️ **Critique** | ChatGPT answers, Claude verifies and delivers the improved final, opened by three blocks: both agree / where they differ / what to check yourself. Your default. | 3 messages |
 | 🤝 **Debate until agreement** | ChatGPT takes a side, Claude objects, up to 3 rounds until one concedes; then where they agreed, what is still disputed, what is yours to decide. For life choices with no right answer. | 3–8 messages |
 | 🩺 **Advisor** | Claude reviews *your own* text without rewriting it: verdict, strongest objection first. | 1 message |
 | 👀 **Side by side** | Both answer independently, answers shown next to each other, nothing blended. | 2 messages |

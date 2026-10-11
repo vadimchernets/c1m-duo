@@ -36,7 +36,7 @@
   "menu": {
     "main_title": "Mode Poly (ℹ️ l’aide est dans « 📂 Plus… »)",
     "main_items": [
-      "⚖️ Critique · 2✉",
+      "⚖️ Critique · 3✉",
       "🤝 Débat jusqu'à l'accord · 3–8✉",
       "🩺 Conseil · 1✉",
       "👀 Côte à côte · 2✉",
@@ -77,7 +77,8 @@
   },
   "notify": {
     "critique_start": "⚖️ Critique : ChatGPT répond → Claude vérifie. ≈1 min, ne touche pas au téléphone. Si ChatGPT dit « logged out » — ouvre son app et relance Poly.",
-    "critique_step2": "[2/2] Claude vérifie et assemble la réponse finale…",
+    "critique_step2": "[2/3] Claude vérifie et assemble la réponse finale…",
+    "critique_summary": "[3/3] Claude trie les deux réponses : sur quoi elles s'accordent / où elles divergent / ce qu'il faut vérifier vous-même… (la réponse vérifiée est déjà dans le presse-papiers)",
     "advisor_start": "🩺 Conseil : Claude relit ton texte sans le réécrire. ≈40 s, ne touche pas à l’écran.",
     "survey_start": "👀 Côte à côte : je les interroge séparément. ≈1 min, ne touche pas au téléphone. Si ChatGPT dit « logged out » — ouvre son app et relance Poly.",
     "synthesis_claude_start": "🔀 Synthèse (ancre : Claude) : deux réponses à l’aveugle → assemblage. ≈1,5 min, ne touche pas au téléphone. Si ChatGPT dit « logged out » — ouvre son app et relance Poly.",
@@ -117,6 +118,7 @@
     "pc_notice_body": "💻 Sur un ordinateur portable ou un PC, PolyHelper en fait plus : dossiers, agents, canaux, planification, un conseil de plusieurs IA. Poly sur le téléphone est la version légère, sans les fonctions PC."
   },
   "output": {
+    "critique": "{S}\n\n■ RÉPONSE VÉRIFIÉE (Claude)\n{C}",
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ ANCRE (Claude)\n{C}\n\n➕ AJOUTS (ChatGPT)\n{G}",
     "auto": "🧭 Poly recommande ce mode pour ta question : « {R} » (le nom peut arriver en anglais).\n\nSur l’écran suivant, choisis « 🔁 Autre mode — même question » : Poly redémarre avec la même question ; sélectionne dans le menu le mode recommandé.",

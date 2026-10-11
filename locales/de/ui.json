@@ -36,7 +36,7 @@
   "menu": {
     "main_title": "Poly-Modus (ℹ️ Hilfe steckt in „📂 Mehr…“)",
     "main_items": [
-      "⚖️ Kritik · 2✉",
+      "⚖️ Kritik · 3✉",
       "🤝 Streit bis zur Einigung · 3–8✉",
       "🩺 Berater · 1✉",
       "👀 Nebeneinander · 2✉",
@@ -77,7 +77,8 @@
   },
   "notify": {
     "critique_start": "⚖️ Kritik: ChatGPT antwortet → Claude prüft nach. ≈1 Min., Finger weg vom Handy. Meldet ChatGPT „logged out“ — öffne seine App und starte Poly neu.",
-    "critique_step2": "[2/2] Claude prüft nach und baut die finale Antwort…",
+    "critique_step2": "[2/3] Claude prüft nach und baut die finale Antwort…",
+    "critique_summary": "[3/3] Claude sortiert beide Antworten: worin sie übereinstimmen / wo sie sich unterscheiden / was du selbst prüfen solltest… (die geprüfte Antwort ist schon in der Zwischenablage)",
     "advisor_start": "🩺 Berater: Claude prüft deinen Text, ohne ihn umzuschreiben. ≈40 Sek., Finger weg vom Bildschirm.",
     "survey_start": "👀 Nebeneinander: Ich frage beide unabhängig voneinander. ≈1 Min., Finger weg vom Handy. Meldet ChatGPT „logged out“ — öffne seine App und starte Poly neu.",
     "synthesis_claude_start": "🔀 Synthese (Claude verankert): zwei blinde Antworten → Zusammenbau. ≈1,5 Min., Finger weg vom Handy. Meldet ChatGPT „logged out“ — öffne seine App und starte Poly neu.",
@@ -117,6 +118,7 @@
     "pc_notice_body": "💻 Auf dem Laptop oder PC kann PolyHelper mehr: Ordner, Agenten, Kanäle, Zeitpläne, ein Rat aus mehreren KIs. Poly auf dem Handy ist die leichte Version, ohne die PC-Funktionen."
   },
   "output": {
+    "critique": "{S}\n\n■ GEPRÜFTE ANTWORT (Claude)\n{C}",
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ ANKER (Claude)\n{C}\n\n➕ ERGÄNZUNGEN (ChatGPT)\n{G}",
     "auto": "🧭 Poly empfiehlt für deine Frage diesen Modus: „{R}“.\n\nWähle auf dem nächsten Bildschirm „🔁 Anderer Modus — dieselbe Frage“ — Poly startet mit derselben Frage neu; wähle dann im Menü den empfohlenen Modus.",

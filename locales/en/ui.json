@@ -36,7 +36,7 @@
   "menu": {
     "main_title": "Poly mode (ℹ️ help lives in «📂 More…»)",
     "main_items": [
-      "⚖️ Critique · 2✉",
+      "⚖️ Critique · 3✉",
       "🤝 Debate until agreement · 3–8✉",
       "🩺 Advisor · 1✉",
       "👀 Side by side · 2✉",
@@ -77,7 +77,8 @@
   },
   "notify": {
     "critique_start": "⚖️ Critique: ChatGPT answers → Claude verifies. ≈1 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
-    "critique_step2": "[2/2] Claude is verifying and assembling the final answer…",
+    "critique_step2": "[2/3] Claude is verifying and assembling the final answer…",
+    "critique_summary": "[3/3] Claude is sorting both answers: both agree / where they differ / what to check yourself… (the checked answer is already in the clipboard)",
     "advisor_start": "🩺 Advisor: Claude reviews your text without rewriting it. ≈40 sec, don't touch the screen.",
     "survey_start": "👀 Side by side: asking both independently. ≈1 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
     "synthesis_claude_start": "🔀 Synthesis (Claude anchors): two blind answers → assembly. ≈1.5 min, don't touch the phone. If ChatGPT says «logged out» — open its app and rerun Poly.",
@@ -117,6 +118,7 @@
     "pc_notice_body": "💻 On a laptop or PC, PolyHelper does more: folders, agents, channels, schedules, a council of several AIs. Poly on your phone is the light version, without the PC features."
   },
   "output": {
+    "critique": "{S}\n\n■ CHECKED ANSWER (Claude)\n{C}",
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ ANCHOR (Claude)\n{C}\n\n➕ ADDITIONS (ChatGPT)\n{G}",
     "auto": "🧭 Poly recommends this mode for your question: «{R}».\n\nOn the next screen pick «🔁 Another mode — same question» — Poly restarts with the same question; choose the recommended mode from the menu.",

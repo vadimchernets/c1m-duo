@@ -39,7 +39,7 @@ Toque el icono → «¿Qué quiere preguntarle a Poly?» → escriba su pregunta
 
 | Modo | Qué pasa | Coste |
 |---|---|---|
-| **⚖️ Crítica · 2✉** | ChatGPT responde, Claude lo comprueba y entrega una versión final mejorada. Su modo de cada día. | 2 mensajes |
+| **⚖️ Crítica · 3✉** | ChatGPT responde, Claude lo comprueba y entrega una versión final mejorada. Su modo de cada día. | 3 mensajes |
 | **🤝 Debate hasta el acuerdo · 3–8✉** | Para decisiones de vida sin respuesta correcta («qué elegir», «si aceptar»). ChatGPT toma una postura, Claude la objeta, ChatGPT responde — hasta 3 rondas, hasta que uno ceda de verdad. Al final: en qué coinciden, qué sigue en disputa, qué decide usted. | 3–8 mensajes |
 | **🩺 Asesor · 1✉** | Claude revisa SU texto ya terminado sin reescribirlo: un veredicto en una línea, la objeción más fuerte por delante y qué conviene volver a comprobar. El modo más barato. | 1 mensaje |
 | **👀 En paralelo · 2✉** | Los dos responden de forma independiente; las respuestas quedan una junto a la otra. | 2 mensajes |

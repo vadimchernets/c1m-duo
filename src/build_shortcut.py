@@ -438,7 +438,7 @@ def build(lang):
                 act_set_variable(JOURNAL_EXTRA, uid, 'Text')]
 
     # --- Critique
-    cr_wrap, cr_gpt, cr_prompt, cr_claude = ids(4)
+    cr_wrap, cr_gpt, cr_prompt, cr_claude, cr_sum_prompt, cr_sum, cr_out = ids(7)
     # --- Debate until agreement (see argue_round below)
     ar_open, ar_gpt, ar_log0, ar_get, ar_prompt, ar_verdict, ar_out, ar_log_final = ids(8)
     ARGUE_LOG = L['variables.argue_log']
@@ -532,7 +532,19 @@ def build(lang):
                             {**QUESTION, 'GPT_ANSWER': (cr_gpt, 'Ask ChatGPT')}), cr_prompt),
         act_notify(L['notify.critique_step2']),
         act_claude(text_token('{P}', {'P': (cr_prompt, 'Text')}), cr_claude),
-        act_set_variable(RESULT, cr_claude, 'Ask Claude'),
+        # Claude's checked answer reaches the clipboard before the summary call: whatever happens to
+        # that call, the person already holds the answer.
+        act_clipboard(attachment(cr_claude, 'Ask Claude')),
+        # The result in three blocks (both agree / where they differ / what to check yourself): Claude,
+        # as a neutral recorder, sorts the two answers; the full checked answer follows below it.
+        act_notify(L['notify.critique_summary']),
+        act_text(text_token(L.prompt('summary'),
+                            {**QUESTION, 'GPT_ANSWER': (cr_gpt, 'Ask ChatGPT'),
+                             'CLAUDE_ANSWER': (cr_claude, 'Ask Claude')}), cr_sum_prompt),
+        act_claude(text_token('{P}', {'P': (cr_sum_prompt, 'Text')}), cr_sum),
+        act_text(text_token(L['output.critique'], {'S': (cr_sum, 'Ask Claude'),
+                                                   'C': (cr_claude, 'Ask Claude')}), cr_out),
+        act_set_variable(RESULT, cr_out, 'Text'),
         *journal_note(L['journal.critique'], {'X': (cr_gpt, 'Ask ChatGPT')}),
 
         # ---- Debate until agreement: ChatGPT takes a side, Claude objects, ChatGPT answers… up to three

@@ -4,23 +4,23 @@ Poly ist ein Allrounder: Jede Aufgabe läuft auf die richtige Formulierung plus 
 
 | Aufgabe | Was du in die Frage schreibst | Modus |
 |---|---|---|
-| Eine E-Mail vor dem Senden prüfen | „Prüfe und verbessere diese E-Mail, behalte einen warmen professionellen Ton: [Text]“ | ⚖️ Kritik · 2✉ (schon fertig und soll nicht umgeschrieben werden? Dann lieber 🩺 Berater — siehe unten) |
-| Auf eine schwierige oder unangenehme Nachricht antworten | „Hier ist eine eingegangene Nachricht. Analysiere Ton und Absicht und schlag 3 Antworten in verschiedenen Tonlagen vor: [Text]“ | ⚖️ Kritik · 2✉ |
-| Code schreiben und prüfen lassen | „Schreibe [was du brauchst]. Anforderungen: …“ | ⚖️ Kritik · 2✉ (🥊 Debatte · 4✉ nur für kritischen Code, wenn ausdrücklich jemand nach Lücken suchen soll) |
+| Eine E-Mail vor dem Senden prüfen | „Prüfe und verbessere diese E-Mail, behalte einen warmen professionellen Ton: [Text]“ | ⚖️ Kritik · 3✉ (schon fertig und soll nicht umgeschrieben werden? Dann lieber 🩺 Berater — siehe unten) |
+| Auf eine schwierige oder unangenehme Nachricht antworten | „Hier ist eine eingegangene Nachricht. Analysiere Ton und Absicht und schlag 3 Antworten in verschiedenen Tonlagen vor: [Text]“ | ⚖️ Kritik · 3✉ |
+| Code schreiben und prüfen lassen | „Schreibe [was du brauchst]. Anforderungen: …“ | ⚖️ Kritik · 3✉ (🥊 Debatte · 4✉ nur für kritischen Code, wenn ausdrücklich jemand nach Lücken suchen soll) |
 | Vorhandenen Code prüfen | „Finde Fehler, Risiken und Verbesserungen: [Code]“ | 👀 Nebeneinander · 2✉ |
 | Eine Entscheidung treffen (kaufen / wechseln / starten?) | „Soll ich [Idee/Entscheidung]? Kontext: …“ | ⚔️ Entscheidung · 3✉ |
 | Risiken in einem Projekt oder Deal einschätzen | „Welche Risiken stecken in [Sache] und wie schließe ich sie?“ | ⚔️ Entscheidung · 3✉ |
 | Einen Text oder Nachrichtenartikel auf Fakten prüfen | „Prüfe diese Behauptungen auf sachliche Fehler: [Text]“ | 🔀 Synthese · 3✉ |
 | Frage mit viel auf dem Spiel (medizinisch / juristisch / finanziell) | Frag sie, wie sie ist | 🔀 Synthese · 3✉ (🥊 Debatte ist kein Ersatz — sie ist dafür da, das Fazit gezielt unter Druck zu setzen) |
-| Ein neues Thema schnell verstehen | „Erkläre das für Laien, ohne Füllwerk: [Thema]“ | ⚖️ Kritik · 2✉ |
-| Etwas lernen und sich selbst abfragen | „Erkläre [Thema] und gib mir 3 Kontrollfragen mit Antworten“ | ⚖️ Kritik · 2✉ |
+| Ein neues Thema schnell verstehen | „Erkläre das für Laien, ohne Füllwerk: [Thema]“ | ⚖️ Kritik · 3✉ |
+| Etwas lernen und sich selbst abfragen | „Erkläre [Thema] und gib mir 3 Kontrollfragen mit Antworten“ | ⚖️ Kritik · 3✉ |
 | Auf ein Meeting oder eine Verhandlung vorbereiten | „Meeting über [Thema] mit [wem]. Welche Fragen soll ich stellen und mit welchen Einwänden muss ich rechnen, samt Antworten?“ | ⚔️ Entscheidung · 3✉ |
 | Namen, Slogans, kreative Varianten | „Gib mir 10 Varianten für [Sache] in verschiedenen Stilen und wähle danach deine Top 3 mit Begründung“ | 👀 Nebeneinander · 2✉ |
-| Einen Artikel zusammenfassen | Artikel markieren → Teilen → „Fasse zusammen: die Kernpunkte und das Fazit“ | ⚖️ Kritik · 2✉ |
+| Einen Artikel zusammenfassen | Artikel markieren → Teilen → „Fasse zusammen: die Kernpunkte und das Fazit“ | ⚖️ Kritik · 3✉ |
 | Den Tag planen / Aufgaben priorisieren | „Hier sind meine Aufgaben: […]. Priorisiere sie und schlag eine Reihenfolge vor“ | ⚔️ Entscheidung · 3✉ |
-| Übersetzen und feinschleifen | „Übersetze ins [Sprache] und schleif den Stil: [Text]“ | ⚖️ Kritik · 2✉ |
-| Brainstorming | „Schlag 5 nicht offensichtliche Lösungen für dieses Problem vor: […], und bewerte dann, welche realistisch sind“ | ⚖️ Kritik · 2✉ (das ist „erzeugen und filtern“, kein Härtetest — Debatte ist nicht nötig) |
-| Lange Erklärung → kurze Zusammenfassung | „Erkläre […] ausführlich und verdichte es am Ende auf 3 Punkte mit je einem Satz“ | ⚖️ Kritik · 2✉ |
+| Übersetzen und feinschleifen | „Übersetze ins [Sprache] und schleif den Stil: [Text]“ | ⚖️ Kritik · 3✉ |
+| Brainstorming | „Schlag 5 nicht offensichtliche Lösungen für dieses Problem vor: […], und bewerte dann, welche realistisch sind“ | ⚖️ Kritik · 3✉ (das ist „erzeugen und filtern“, kein Härtetest — Debatte ist nicht nötig) |
+| Lange Erklärung → kurze Zusammenfassung | „Erkläre […] ausführlich und verdichte es am Ende auf 3 Punkte mit je einem Satz“ | ⚖️ Kritik · 3✉ |
 | Heikle Nachricht → Antwortentwurf | Konversation markieren → Teilen → „Analysiere den Ton und schlag eine Antwort vor“ | ⚔️ Entscheidung · 3✉ |
 | DEINEN EIGENEN Text prüfen, ohne Umschreiben | Deinen Entwurf markieren → Teilen → (nichts hinzufügen) | 🩺 Berater · 1✉ |
 | Umstrittenes Thema — was stimmt wirklich? | Frag es, wie es ist — du bekommst eine Karte der Übereinstimmungen und Widersprüche, ohne erzwungenes Fazit | 🗺 Streitkarte · 3✉ |

@@ -35,6 +35,17 @@ providers' docs on 2026-10-01: grok-4.7 → grok-4.6 (docs.x.ai), deepseek-v4-pr
 content block is the text), gpt-6-astra → gpt-6.1-sol (Chat Completions, `max_completion_tokens`).
 
 Locales without locales/<lang>/trio.json are skipped: Trio ships where its words exist.
+
+The result comes in three blocks first (plan item 4, owner 2026-10-11, as in the Android Duo): after the
+third voice, Claude — as a neutral recorder — sorts the three answers into «all agree / where they differ /
+what to check yourself» (prompt summary-trio.txt); Claude's checked answer and the third voice follow in full.
+
+TRIO WITHOUT A KEY (plan item 12, owner 2026-10-11; `build(lang, nokey=True)` → dist/<lang>/nokey/Trio.shortcut,
+only for locales whose trio.json has `nokey.comment` — Apple Intelligence languages: en, es, pt). The same
+Trio, never asking for a key: if poly-key.txt holds keys, the key chain above runs as usual; with no key
+file, or when none of the keys answered, the third voice is Shortcuts' own «Use Model» action
+(Apple Intelligence; prompt trio-nokey.txt). It keeps the name «Trio» (Duo's «another mode» calls that name)
+and has its own number in releases/version.json, `trio_nokey`, with links `trio_nokey_<lang>`.
 """
 import json
 import os
@@ -135,6 +146,26 @@ def if_contains(group, var_name, needle):
                                            'WFConditionalActionString': needle,
                                            'WFInput': {'Type': 'Variable',
                                                        'Variable': variable(var_name)}}}
+
+
+def act_use_model(prompt_uid, uid):
+    """Shortcuts' «Use Model» (Apple Intelligence), output «Response».
+
+    Encoding checked 2026-10-11 against the system (the identifier `is.workflow.actions.askllm` and
+    `WFLLMModel` / `WFGenerativeResultType` are in WorkflowKit on macOS 26.6) and against shortcuts built in
+    the Shortcuts editor and exported (github.com/jagdishpal02000/apple-llm, shortcut_definition):
+      · the prompt key is WFLLMPrompt — NOT WFInput: a wrong key imports fine, is silently dropped, and
+        the action then waits forever on its interactive panel;
+      · no WFLLMModel key on purpose: the action then uses its default model — Private Cloud Compute on
+        iOS/macOS 26; on 27 the old values «Private Cloud Compute» / «On-Device» fail to load and the
+        default is «Apple Intelligence», which is what a missing key gives. One file works on both;
+      · WFGenerativeResultType «Text»: plain text out (Automatic would reshape it for the next action);
+      · no Follow Up key: off by default, the run never stops for a chat.
+    """
+    return {'WFWorkflowActionIdentifier': 'is.workflow.actions.askllm',
+            'WFWorkflowActionParameters': {'WFLLMPrompt': text_token('{P}', {'P': (prompt_uid, 'Text')}),
+                                           'WFGenerativeResultType': 'Text',
+                                           'UUID': uid}}
 
 
 def plain(text):
@@ -564,40 +595,88 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
 
 # ---------------------------------------------------------------- build
 
-def build(lang):
+def build(lang, nokey=False):
     trio_file = ROOT / 'locales' / lang / 'trio.json'
     if not trio_file.exists():
         print(f'{lang}: no trio.json — Trio not built for this language')
         return
     L = Locale(lang)
     T = json.loads(trio_file.read_text(encoding='utf-8'))
+    if nokey and 'nokey.comment' not in T:
+        print(f'{lang}: no nokey words in trio.json — Trio without a key not built for this language')
+        return
     NAME = T['name']
     V = T['variables']
 
     ids = lambda n: [new_uuid() for _ in range(n)]
     k_get, k_file, k_ask, k_save, k_var = ids(5)
     question, wrap, gpt, critique, claude = ids(5)
-    t_prompt, = ids(1)
+    t_prompt, n_prompt, apple = ids(3)
     f_third, f_provider, f_claude, f_out = ids(4)
-    g_key, = ids(1)
+    s_prompt, s_claude = ids(2)
+    g_key, g_apple = ids(2)
     Q = {'Q': (question, 'Provided Input')}
 
-    actions = [
-        act_comment(T['comment']),
+    if nokey:
+        keys_first = []
+    else:
+        keys_first = [
+            # ---- the keys: from iCloud Drive → Shortcuts → poly-key.txt, or asked once and saved there.
+            # Any number of free keys, one per line; each is recognised by how it begins.
+            act_get_file(T['files.key'], k_get),
+            act_set_variable(V['key_file'], k_get, 'File'),
+            if_has_value(g_key, V['key_file']),
+            *set_text(V['keys'], '{F}', k_file, {'F': (k_get, 'File')}),
+            if_else(g_key),
+            dict(act_ask(T['ask.key'], k_ask), WFWorkflowActionParameters={
+                **act_ask(T['ask.key'], k_ask)['WFWorkflowActionParameters'], 'WFAllowsMultilineText': True}),
+            act_save_file(T['files.key'], k_ask, k_save),
+            act_set_variable(V['keys'], k_ask, 'Provided Input'),
+            if_close(g_key),
+            act_get_variable(V['keys'], k_var),
+        ]
 
-        # ---- the keys: from iCloud Drive → Shortcuts → poly-key.txt, or asked once and saved there.
-        # Any number of free keys, one per line; each is recognised by how it begins.
-        act_get_file(T['files.key'], k_get),
-        act_set_variable(V['key_file'], k_get, 'File'),
-        if_has_value(g_key, V['key_file']),
-        *set_text(V['keys'], '{F}', k_file, {'F': (k_get, 'File')}),
-        if_else(g_key),
-        dict(act_ask(T['ask.key'], k_ask), WFWorkflowActionParameters={
-            **act_ask(T['ask.key'], k_ask)['WFWorkflowActionParameters'], 'WFAllowsMultilineText': True}),
-        act_save_file(T['files.key'], k_ask, k_save),
-        act_set_variable(V['keys'], k_ask, 'Provided Input'),
-        if_close(g_key),
-        act_get_variable(V['keys'], k_var),
+    trio_prompt = act_text(text_token(L.prompt('trio'),
+                                      {'QUESTION': (question, 'Provided Input'),
+                                       'GPT_ANSWER': (gpt, 'Ask ChatGPT'),
+                                       'CLAUDE_ANSWER': (claude, 'Ask Claude')}), t_prompt)
+    if nokey:
+        third = [
+            # ---- the third voice: saved keys first (never asked for), else Apple Intelligence
+            act_get_file(T['files.key'], k_get),
+            act_set_variable(V['key_file'], k_get, 'File'),
+            if_has_value(g_key, V['key_file']),
+            act_notify(NAME, T['notify.step3']),
+            *set_text(V['keys'], '{F}', k_file, {'F': (k_get, 'File')}),
+            act_get_variable(V['keys'], k_var),
+            trio_prompt,
+            *third_voice(T, V, t_prompt, k_var),
+            if_else(g_key),
+            *set_text(V['provider'], T['provider.none'], new_uuid()),
+            if_close(g_key),
+            # no key file, or none of the keys answered → «Use Model»
+            if_contains(g_apple, V['provider'], T['provider.none']),
+            act_notify(NAME, T['nokey.notify.step3']),
+            act_text(text_token(L.prompt('trio-nokey'),
+                                {'QUESTION': (question, 'Provided Input'),
+                                 'GPT_ANSWER': (gpt, 'Ask ChatGPT'),
+                                 'CLAUDE_ANSWER': (claude, 'Ask Claude')}), n_prompt),
+            act_use_model(n_prompt, apple),
+            act_set_variable(V['third'], apple, 'Response'),
+            *set_text(V['provider'], T['provider.apple'], new_uuid()),
+            if_close(g_apple),
+        ]
+    else:
+        third = [
+            # ---- the third voice
+            act_notify(NAME, T['notify.step3']),
+            trio_prompt,
+            *third_voice(T, V, t_prompt, k_var),
+        ]
+
+    actions = [
+        act_comment(T['nokey.comment'] if nokey else T['comment']),
+        *keys_first,
 
         # ---- the pair, exactly as Critique in Poly: ChatGPT answers, Claude checks
         act_ask(T['ask.question'], question, prefill_from_share=True),
@@ -613,18 +692,24 @@ def build(lang):
         # in any way, the person still holds the checked answer.
         act_clipboard(attachment(claude, 'Ask Claude')),
 
-        # ---- the third voice
-        act_notify(NAME, T['notify.step3']),
-        act_text(text_token(L.prompt('trio'),
-                            {'QUESTION': (question, 'Provided Input'),
-                             'GPT_ANSWER': (gpt, 'Ask ChatGPT'),
-                             'CLAUDE_ANSWER': (claude, 'Ask Claude')}), t_prompt),
-        *third_voice(T, V, t_prompt, k_var),
+        *third,
 
-        # ---- one document: Claude's checked answer, then the third voice as its own block
+        # ---- the result in three blocks: Claude, as a neutral recorder, sorts the three answers
+        # (all agree / where they differ / what to check yourself)
         act_get_variable(V['third'], f_third),
         act_get_variable(V['provider'], f_provider),
-        act_text(text_token(T['output'], {'C': (claude, 'Ask Claude'),
+        act_notify(NAME, T['notify.summary']),
+        act_text(text_token(L.prompt('summary-trio'),
+                            {'QUESTION': (question, 'Provided Input'),
+                             'GPT_ANSWER': (gpt, 'Ask ChatGPT'),
+                             'CLAUDE_ANSWER': (claude, 'Ask Claude'),
+                             'PROVIDER': (f_provider, 'Variable'),
+                             'THIRD': (f_third, 'Variable')}), s_prompt),
+        act_claude(text_token('{P}', {'P': (s_prompt, 'Text')}), s_claude),
+
+        # ---- one document: the three blocks, Claude's checked answer, then the third voice as its own block
+        act_text(text_token(T['output'], {'S': (s_claude, 'Ask Claude'),
+                                          'C': (claude, 'Ask Claude'),
                                           'P': (f_provider, 'Variable'),
                                           'T': (f_third, 'Variable')}), f_out),
         act_clipboard(attachment(f_out, 'Text')),
@@ -632,7 +717,7 @@ def build(lang):
         act_quick_look(attachment(f_out, 'Text')),
 
         # ---- Last of all, at most once a week: is there a newer Trio? (build_shortcut.version_check)
-        *version_check(L, 'trio', NAME, lang),
+        *version_check(L, 'trio_nokey' if nokey else 'trio', NAME, lang),
     ]
 
     validate(actions)
@@ -647,14 +732,17 @@ def build(lang):
     workflow['WFWorkflowActions'] = actions
 
     out_dir = Path(os.environ.get('C1_DIST', ROOT / 'dist')) / lang
+    if nokey:
+        out_dir = out_dir / 'nokey'
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / f'{NAME}.shortcut'
     with out.open('wb') as f:
         plistlib.dump(workflow, f, fmt=plistlib.FMT_BINARY)
-    print(f'{lang}: {out.name} — {len(actions)} actions')
+    print(f'{lang}: {"nokey/" if nokey else ""}{out.name} — {len(actions)} actions')
 
 
 if __name__ == '__main__':
     languages = sys.argv[1:] or [d.name for d in sorted((ROOT / 'locales').iterdir()) if d.is_dir()]
     for language in languages:
         build(language)
+        build(language, nokey=True)

@@ -39,7 +39,7 @@ Tap the icon → "Question for Poly?" → type your question → "Done" → pick
 
 | Mode | What happens | Cost |
 |---|---|---|
-| **⚖️ Critique · 2✉** | ChatGPT answers, Claude checks it and delivers an improved final version. Your everyday driver. | 2 messages |
+| **⚖️ Critique · 3✉** | ChatGPT answers, Claude checks it and delivers an improved final version. Your everyday driver. | 3 messages |
 | **🤝 Debate until agreement · 3–8✉** | For life choices with no right answer («which to choose», «should I agree»). ChatGPT takes a side, Claude objects, ChatGPT answers — up to 3 rounds, until one of them honestly concedes. Then: where they agreed, what is still disputed, what is yours to decide. | 3–8 messages |
 | **🩺 Advisor · 1✉** | Claude reviews YOUR finished text without rewriting it: a one-line verdict, the strongest objection first, what to double-check. The cheapest mode. | 1 message |
 | **👀 Side by side · 2✉** | Both answer independently; the answers sit next to each other. | 2 messages |

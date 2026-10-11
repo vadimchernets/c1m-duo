@@ -36,7 +36,7 @@
   "menu": {
     "main_title": "Poly のモード（ℹ️ ヘルプは「📂 その他…」の中）",
     "main_items": [
-      "⚖️ 批評 · 2✉",
+      "⚖️ 批評 · 3✉",
       "🤝 合意までの議論 · 3–8✉",
       "🩺 助言 · 1✉",
       "👀 並べて比較 · 2✉",
@@ -77,7 +77,8 @@
   },
   "notify": {
     "critique_start": "⚖️ 批評：ChatGPT が答え → Claude が検証。約1分、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
-    "critique_step2": "[2/2] Claude が検証して最終回答をまとめています…",
+    "critique_step2": "[2/3] Claude が検証して最終回答をまとめています…",
+    "critique_summary": "[3/3] Claude が2つの回答を整理しています：一致点／相違点／自分で確かめること…（検証済みの回答はすでにクリップボードにあります）",
     "advisor_start": "🩺 助言：Claude があなたの文章を書き換えずに講評します。約40秒、画面に触らないでください。",
     "survey_start": "👀 並べて比較：二人に別々に聞いています。約1分、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
     "synthesis_claude_start": "🔀 統合（軸は Claude）：互いを見ずに二つの回答 → 組み立て。約1分半、スマホには触らないでください。ChatGPT が「logged out」と言ったら、その App を開いてから Poly をやり直してください。",
@@ -117,6 +118,7 @@
     "pc_notice_body": "💻 ノートPCやパソコンでは、PolyHelper がもっと多くのことをこなします: フォルダ、エージェント、チャンネル、スケジュール、複数の AI による合議。スマホの Poly は、PC 向け機能を省いた軽量版です。"
   },
   "output": {
+    "critique": "{S}\n\n■ 検証済みの回答（Claude）\n{C}",
     "survey": "■ CHATGPT\n{G}\n\n■ CLAUDE\n{C}",
     "delta": "■ 軸（Claude）\n{C}\n\n➕ 追加（ChatGPT）\n{G}",
     "auto": "🧭 Poly はあなたの質問にこのモードを勧めます：「{R}」（モード名は英語で返ることがあります）。\n\n次の画面で「🔁 別のモード — 同じ質問」を選んでください — Poly が同じ質問で再スタートするので、メニューから勧められたモードを選びます。",

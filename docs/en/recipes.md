@@ -4,23 +4,23 @@ Poly is a generalist: any task boils down to the right phrasing plus the right m
 
 | Task | What to write in the question | Mode |
 |---|---|---|
-| Proofread an email before sending | "Check and improve this email, keep a warm professional tone: [text]" | ⚖️ Critique · 2✉ (already final and shouldn't be rewritten? Use 🩺 Advisor instead — see below) |
-| Reply to a difficult or unpleasant message | "Here's an incoming message. Break down the tone and intent, and suggest 3 replies in different tones: [text]" | ⚖️ Critique · 2✉ |
-| Write code and get it reviewed | "Write [what you need]. Requirements: …" | ⚖️ Critique · 2✉ (🥊 Debate · 4✉ only for critical code, when you specifically want someone hunting for holes) |
+| Proofread an email before sending | "Check and improve this email, keep a warm professional tone: [text]" | ⚖️ Critique · 3✉ (already final and shouldn't be rewritten? Use 🩺 Advisor instead — see below) |
+| Reply to a difficult or unpleasant message | "Here's an incoming message. Break down the tone and intent, and suggest 3 replies in different tones: [text]" | ⚖️ Critique · 3✉ |
+| Write code and get it reviewed | "Write [what you need]. Requirements: …" | ⚖️ Critique · 3✉ (🥊 Debate · 4✉ only for critical code, when you specifically want someone hunting for holes) |
 | Review existing code | "Find bugs, risks, and what to improve: [code]" | 👀 Side by side · 2✉ |
 | Make a decision (buy / switch / launch?) | "Should I [idea/decision]? Context: …" | ⚔️ Decision · 3✉ |
 | Assess risk in a project or deal | "What are the risks in [thing] and how do I close them off?" | ⚔️ Decision · 3✉ |
 | Fact-check a text or news article | "Check these claims for factual errors: [text]" | 🔀 Synthesis · 3✉ |
 | High-stakes question (medical / legal / financial) | Ask it as-is | 🔀 Synthesis · 3✉ (🥊 Debate is not a substitute — it's for when you specifically want the conclusion stress-tested) |
-| Quickly understand a new topic | "Explain this for a non-specialist, no fluff: [topic]" | ⚖️ Critique · 2✉ |
-| Learn something with self-testing | "Explain [topic] and give me 3 self-check questions with answers" | ⚖️ Critique · 2✉ |
+| Quickly understand a new topic | "Explain this for a non-specialist, no fluff: [topic]" | ⚖️ Critique · 3✉ |
+| Learn something with self-testing | "Explain [topic] and give me 3 self-check questions with answers" | ⚖️ Critique · 3✉ |
 | Prepare for a meeting or negotiation | "Meeting about [topic] with [who]. What questions should I ask, and what objections should I expect, with answers?" | ⚔️ Decision · 3✉ |
 | Names, taglines, creative options | "Give me 10 variations of [thing] in different styles, then pick your top 3 with reasoning" | 👀 Side by side · 2✉ |
-| Summarize an article | select the article → Share → "Summarize: the main points and the takeaway" | ⚖️ Critique · 2✉ |
+| Summarize an article | select the article → Share → "Summarize: the main points and the takeaway" | ⚖️ Critique · 3✉ |
 | Plan your day / prioritize tasks | "Here are my tasks: […]. Prioritize them and suggest an order" | ⚔️ Decision · 3✉ |
-| Translate and polish | "Translate into [language] and polish the style: [text]" | ⚖️ Critique · 2✉ |
-| Brainstorm | "Suggest 5 non-obvious solutions to this problem: […], then rate which ones are realistic" | ⚖️ Critique · 2✉ (this is "generate and filter," not "stress-test" — Debate isn't needed) |
-| Long explanation → short summary | "Explain […] in detail, then compress it into 3 one-sentence points at the end" | ⚖️ Critique · 2✉ |
+| Translate and polish | "Translate into [language] and polish the style: [text]" | ⚖️ Critique · 3✉ |
+| Brainstorm | "Suggest 5 non-obvious solutions to this problem: […], then rate which ones are realistic" | ⚖️ Critique · 3✉ (this is "generate and filter," not "stress-test" — Debate isn't needed) |
+| Long explanation → short summary | "Explain […] in detail, then compress it into 3 one-sentence points at the end" | ⚖️ Critique · 3✉ |
 | Awkward message → draft reply | select the conversation → Share → "Break down the tone and suggest a reply" | ⚔️ Decision · 3✉ |
 | Check YOUR OWN text without a rewrite | select your draft → Share → (don't add anything) | 🩺 Advisor · 1✉ |
 | Contested topic — what's actually true? | ask it as-is — you'll get a map of agreements and disagreements with no forced conclusion | 🗺 Dispute map · 3✉ |
