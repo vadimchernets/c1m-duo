@@ -367,6 +367,25 @@ PROVIDERS = [  # (locale name key, url, key regex, models, max_tokens)
     ('provider.openai', OPENAI_URL, OPENAI_KEY_RE, OPENAI_MODELS, OPENAI_MAX_TOKENS),
 ]
 
+# Trio without a key serves BOTH Poly A1 modes with one link, ordinary and USA (poly-a1
+# store/TRIO-NO-KEY-RECIPE.md: «the third voice has no Chinese models»; TrioScreen shows the no-key card in
+# USA mode too). So its saved-keys chain is the USA Trio's chain (poly-a1 scripts/trio-usa.py, ids checked
+# 2026-10-07 against integrate.api.nvidia.com/v1/models and openrouter.ai/api/v1/models): US companies only,
+# no DeepSeek paid key, no `openrouter/free` (OpenRouter picks that model itself, and it can be anyone's).
+US_NVIDIA_MODELS = ['nvidia/nemotron-3-ultra-550b-a55b', 'openai/gpt-oss-20b',
+                    'meta/llama-3.2-90b-vision-instruct', 'google/gemma-4-31b-it']
+US_GROQ_MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b']
+US_OPENROUTER_MODELS = ['nvidia/nemotron-3-ultra-550b-a55b:free', 'google/gemma-4-26b-a4b-it:free',
+                        'thinkingmachines/inkling:free', 'nvidia/nemotron-3-super-120b-a12b:free']
+
+
+def us_providers(providers):
+    """`providers` with US models only: the DeepSeek paid key dropped, NVIDIA / Groq / OpenRouter swapped."""
+    swap = {'provider.nvidia': US_NVIDIA_MODELS, 'provider.groq': US_GROQ_MODELS,
+            'provider.openrouter': US_OPENROUTER_MODELS}
+    return [(k, url, rx, swap.get(k, models), mt)
+            for (k, url, rx, models, mt) in providers if k != 'provider.deepseek']
+
 # A 429 (owner, 2026-10-02; providers' docs checked that day): the free limit is per project or account,
 # not per key — Google: «Rate limits are applied per project, not per API key»
 # (ai.google.dev/gemini-api/docs/rate-limits); Groq: «at the organization level»
@@ -420,7 +439,7 @@ def pause_actions(u, V, paused_v):
     ]
 
 
-def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
+def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable', providers=None):
     """From the finished trio prompt and the saved keys text to V['third'] holding the third voice.
 
     Every key the person saved is tried with every model of its provider until one answers; a key
@@ -437,7 +456,8 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
 
     # ---- the attempt list: one line «url|model|key|provider|max_tokens» per (model, key)
     parts = {}
-    for n, (name_key, url, key_re, models, max_tokens) in enumerate(PROVIDERS):
+    for n, (name_key, url, key_re, models, max_tokens) in enumerate(PROVIDERS if providers is None
+                                                                     else providers):
         found, joined = u(), u()
         actions += [act_match(key_re, keys_uid, keys_name, found),
                     act_combine(found, 'Matches', joined)]
@@ -595,6 +615,14 @@ def third_voice(T, V, prompt_uid, keys_uid, keys_name='Variable'):
 
 # ---------------------------------------------------------------- build
 
+def body_template(output):
+    """trio.json `output` without its leading summary block `{S}`: Claude's answer and the third voice."""
+    head = '{S}\n\n'
+    if not output.startswith(head):
+        raise ValueError(f'trio.json output must start with {head!r}: {output[:40]!r}')
+    return output[len(head):]
+
+
 def build(lang, nokey=False):
     trio_file = ROOT / 'locales' / lang / 'trio.json'
     if not trio_file.exists():
@@ -612,7 +640,7 @@ def build(lang, nokey=False):
     k_get, k_file, k_ask, k_save, k_var = ids(5)
     question, wrap, gpt, critique, claude = ids(5)
     t_prompt, n_prompt, apple = ids(3)
-    f_third, f_provider, f_claude, f_out = ids(4)
+    f_third, f_provider, f_claude, f_out, f_body = ids(5)
     s_prompt, s_claude = ids(2)
     g_key, g_apple = ids(2)
     Q = {'Q': (question, 'Provided Input')}
@@ -650,7 +678,8 @@ def build(lang, nokey=False):
             *set_text(V['keys'], '{F}', k_file, {'F': (k_get, 'File')}),
             act_get_variable(V['keys'], k_var),
             trio_prompt,
-            *third_voice(T, V, t_prompt, k_var),
+            # US models only: this one file is also USA mode's Trio (us_providers above)
+            *third_voice(T, V, t_prompt, k_var, providers=us_providers(PROVIDERS)),
             if_else(g_key),
             *set_text(V['provider'], T['provider.none'], new_uuid()),
             if_close(g_key),
@@ -698,6 +727,13 @@ def build(lang, nokey=False):
         # (all agree / where they differ / what to check yourself)
         act_get_variable(V['third'], f_third),
         act_get_variable(V['provider'], f_provider),
+        # Claude's answer + the third voice reach the clipboard BEFORE the summary call: if Claude hits
+        # its limit on the summary, the person still holds the third voice (it always arrived before
+        # the summary step existed). The same document as below, without the three blocks.
+        act_text(text_token(body_template(T['output']), {'C': (claude, 'Ask Claude'),
+                                                         'P': (f_provider, 'Variable'),
+                                                         'T': (f_third, 'Variable')}), f_body),
+        act_clipboard(attachment(f_body, 'Text')),
         act_notify(NAME, T['notify.summary']),
         act_text(text_token(L.prompt('summary-trio'),
                             {'QUESTION': (question, 'Provided Input'),
