@@ -13,8 +13,8 @@ Poly es un «atajo» para iPhone: usted hace una sola pregunta y la trabajan dos
 
 En su iPhone, toque el enlace → se abre la app Atajos → **Añadir**. En la primera ejecución el atajo pide permiso 4–6 veces — pulse **Permitir siempre** cada vez.
 
-- **Duo:** https://www.icloud.com/shortcuts/f1b4331366364d4981e27d1ff6c97762
-- **Trio** (la tercera voz, ver abajo): https://www.icloud.com/shortcuts/f8d873006271496c860715d91ad16d9a
+- **Duo:** https://www.icloud.com/shortcuts/c2519593b11449658cf6cde6d423d0f1
+- **Trio** (la tercera voz, ver abajo): https://www.icloud.com/shortcuts/ded614df4a5849f399c9ef0ac33e601d
 
 ### Alternativa — el archivo
 
